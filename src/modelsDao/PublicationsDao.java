@@ -1,37 +1,38 @@
-package GPubli_Models_DAO;
+package modelsDao;
 
 import java.sql.Connection;
-import GPubli_Models.Published;
 
-public class Published_DAO extends DAO<Published>{
+import models.Publications;
 
-	public Published_DAO(Connection connect) {
+public class PublicationsDao extends Dao<Publications>{
+
+	public PublicationsDao(Connection connect) {
 		super(connect);
 		// TODO Auto-generated constructor stub
 	}
 
 
 	@Override
-	public Published find(int id) {
+	public Publications find(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	
 	@Override
-	public boolean create(Published object) {
+	public boolean create(Publications object) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean update(Published object) {
+	public boolean update(Publications object) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean delete(Published object) {
+	public boolean delete(Publications object) {
 		// TODO Auto-generated method stub
 		return false;
 	}

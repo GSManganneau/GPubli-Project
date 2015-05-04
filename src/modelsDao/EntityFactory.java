@@ -1,5 +1,5 @@
 
-package GPubli_Models_DAO;
+package modelsDao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -24,21 +24,21 @@ public class EntityFactory {
 		
 	}
 	
-	public Authors_DAO getAuthors() {
-			return new Authors_DAO(connection);
+	public AuthorsDao getAuthors() {
+			return new AuthorsDao(connection);
 		}
-	public Publications_DAO getPublications() {
-		return new Publications_DAO(connection);
+	public PublicationsDao getPublications() {
+		return new PublicationsDao(connection);
 	}
-	public Teams_DAO getTeams() {
-		return new Teams_DAO(connection);
+	public TeamsDao getTeams() {
+		return new TeamsDao(connection);
 	}
-	public Type_DAO getType() {
-		return new Type_DAO(connection);
+	public TypeDao getType() {
+		return new TypeDao(connection);
 	}
 	
-	public Published_DAO getPublished() {
-		return new Published_DAO(connection);
+	public PublishedDao getPublished() {
+		return new PublishedDao(connection);
 	}
 	}
 

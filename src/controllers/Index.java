@@ -1,4 +1,4 @@
-package GPubli_Controllers;
+package controllers;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

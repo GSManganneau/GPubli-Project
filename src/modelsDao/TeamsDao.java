@@ -1,37 +1,38 @@
-package GPubli_Models_DAO;
+package modelsDao;
 
 import java.sql.Connection;
-import GPubli_Models.Type;
 
-public class Type_DAO extends DAO<Type>{
+import models.Teams;
 
-	public Type_DAO(Connection connect) {
+public class TeamsDao extends Dao<Teams>{
+
+	public TeamsDao(Connection connect) {
 		super(connect);
 		// TODO Auto-generated constructor stub
 	}
 
 
 	@Override
-	public Type find(int id) {
+	public Teams find(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	
 	@Override
-	public boolean create(Type object) {
+	public boolean create(Teams object) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean update(Type object) {
+	public boolean update(Teams object) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean delete(Type object) {
+	public boolean delete(Teams object) {
 		// TODO Auto-generated method stub
 		return false;
 	}
