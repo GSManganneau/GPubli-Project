@@ -4,6 +4,7 @@ import java.sql.Connection;
 import GPubli_Models.Authors;
 
 public class Authors_DAO extends DAO<Authors>{
+	
 
 	public Authors_DAO(Connection connect) {
 		super(connect);
