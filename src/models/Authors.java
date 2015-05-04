@@ -1,4 +1,4 @@
-package GPubli_Models;
+package models;
 
 public class Authors {
 

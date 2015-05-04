@@ -1,10 +1,10 @@
-package GPubli_Models_DAO;
+package modelsDao;
 import java.sql.Connection;
 
-public abstract class DAO<T> {
+public abstract class Dao<T> {
 	protected Connection connect = null;
 
-	public DAO(Connection connect) {
+	public Dao(Connection connect) {
 		this.connect = connect;
 	}
 

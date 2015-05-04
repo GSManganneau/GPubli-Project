@@ -1,37 +1,38 @@
-package GPubli_Models_DAO;
+package modelsDao;
 
 import java.sql.Connection;
-import GPubli_Models.Authors;
 
-public class Authors_DAO extends DAO<Authors>{
+import models.Type;
 
-	public Authors_DAO(Connection connect) {
+public class TypeDao extends Dao<Type>{
+
+	public TypeDao(Connection connect) {
 		super(connect);
 		// TODO Auto-generated constructor stub
 	}
 
 
 	@Override
-	public Authors find(int id) {
+	public Type find(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	
 	@Override
-	public boolean create(Authors object) {
+	public boolean create(Type object) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean update(Authors object) {
+	public boolean update(Type object) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean delete(Authors object) {
+	public boolean delete(Type object) {
 		// TODO Auto-generated method stub
 		return false;
 	}
