@@ -258,3 +258,42 @@ footer h5
 	line-height: 1.4em;
 	color: #666666;
 }
+
+
+/* ==== Header / Right ==== */
+
+header > .container > .header-right {
+	float: right;
+	/*background-color: blue;*/
+}
+
+header > .container > .header-right > * {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+header > .container > .header-right > nav > ul > li {
+	display: inline-block;
+}
+
+header > .container > .header-right > nav > ul > li > a {
+	display: inline-block;
+	vertical-align: middle;
+	padding: 8px 6px;
+	font-size: 14px;
+}
+
+header > .container > .header-right > nav > ul > li.profile img {
+	display: inline-block;
+	vertical-align: middle;
+	width: 30px;
+	height: 30px;
+	border-radius: 15px;
+	margin-right: 4px;
+}
+
+header > .container > .header-right > nav > ul > li.profile a {
+	margin-right: 8px;
+	padding-right: 16px;
+	border-right: 1px solid #e5e5e5;
+}
