@@ -1,0 +1,42 @@
+.visit
+{
+	width: 30%;
+	margin-right: 5%;
+	font-family: 'Biko Bold';
+	font-size: 1.3em;
+	padding: 10px 0;
+	background-image: url('../img/visits.svg');
+	background-repeat: no-repeat;
+	background-position: 28px 31px;
+}
+
+.members
+{
+	width: 30%;
+	margin-right: 5%;
+	font-family: 'Biko Bold';
+	font-size: 1.3em;
+	padding: 10px 0;
+	background-image: url('../img/members.svg');
+	background-repeat: no-repeat;
+	background-position: 15px 26px;
+}
+
+.annonces
+{
+	width: 30%;
+	margin-right: 0;
+	font-family: 'Biko Bold';
+	font-size: 1.2em;
+	padding: 10px 0;
+	background-image: url('../img/annonces.svg');
+	background-repeat: no-repeat;
+	background-position: 15px 26px;
+}
+
+.infos_dash
+{
+	margin-left: 62px;
+	line-height: 1.5em;
+	text-align: center;
+}
