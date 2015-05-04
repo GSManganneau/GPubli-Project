@@ -6,8 +6,8 @@ import models.Type;
 
 public class TypeDao extends Dao<Type>{
 
-	public TypeDao(Connection connect) {
-		super(connect);
+	public TypeDao(EntityFactory entityFactory) {
+		
 		// TODO Auto-generated constructor stub
 	}
 

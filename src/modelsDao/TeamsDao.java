@@ -6,8 +6,8 @@ import models.Teams;
 
 public class TeamsDao extends Dao<Teams>{
 
-	public TeamsDao(Connection connect) {
-		super(connect);
+	public TeamsDao(EntityFactory entityFactory) {
+		
 		// TODO Auto-generated constructor stub
 	}
 
