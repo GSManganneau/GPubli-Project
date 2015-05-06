@@ -61,6 +61,7 @@ header {
 	background-color: #f5f5f5;
 	border-bottom: 1px solid #e5e5e5;
 	padding: 9px 0;
+	z-index: 2;
 }
 
 header a {
@@ -89,7 +90,7 @@ header > .container > .header-left > * {
 header > .container > .header-left > .logo {
 	height: 30px;
 	width: 30px;
-	background-image: url('img/l1.svg');
+	background-image: url('../img/l1.svg');
 	background-repeat: no-repeat;
 	background-position: left center;
 }
@@ -166,7 +167,13 @@ header > .container > .header-right > nav > ul > li.profile a {
 	border-radius: 3px;
 	border: 1px solid #e5e5e5;
 	overflow: hidden;
-	margin-bottom: 20px;
+	/* margin-bottom: 20px; */
+}
+#content .box {
+	border-radius: 3px;
+	border: 1px solid #e5e5e5;
+	overflow: hidden;
+	/* margin-bottom: 20px; */
 }
 
 #content .box:last-child {
@@ -237,6 +244,7 @@ header > .container > .header-right > nav > ul > li.profile a {
 	text-align: justify;
 }
 
+z-index: 1;
 
 
 
