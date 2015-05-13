@@ -1,0 +1,13 @@
+/* ==== */
+
+
+#content > .container > #content-right > .box {
+	width: 700px;
+}
+
+#content > .container > #content-right > .box > .box-content {
+	padding: 16px 10px;
+	line-height: 18px;
+	text-align: justify;
+	width: 700px;
+}
