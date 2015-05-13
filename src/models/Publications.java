@@ -2,6 +2,12 @@ package models;
 
 public class Publications {
 
+	@Override
+	public String toString() {
+		return "Publications [id=" + id + ", type=" + type + ", date=" + date
+				+ ", resume=" + resume + ", journal=" + journal
+				+ ", book_title=" + book_title + ", title=" + title + "]";
+	}
 	private int id;
 	private int type;
 	private String date;

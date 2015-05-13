@@ -11,7 +11,8 @@
         <c:forEach var="publication" items="${Publications}">
             <li><c:out value="${ publication.type }" /> <c:out value="${ publication.resume }" /> <c:out value="${publication.journal}" /></li>
         </c:forEach>
-    </ul>    
-coucou
+      
+    </ul>
+    <p>Bonjour utilisateur numéro</p>  <c:out value="${session.author_id }" />    
 </body>
 </html>

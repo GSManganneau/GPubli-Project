@@ -2,11 +2,13 @@ package controllers;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 //import models.Publications;
 import modelsDao.*;
@@ -28,7 +30,7 @@ public class Index extends HttpServlet {
 
         protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             request.setAttribute("Publications", PublicationsDao.lister());
-            this.getServletContext().getRequestDispatcher("/WebContent/index.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/Publications.jsp").include(request, response);
         }
 
         public void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
