@@ -29,3 +29,4 @@ BACK-OFFICE:
 	
 	Page Dashboard:
 		-Un bloc activité: dernières publications date/temps
+		- nombre utilisateurs/publications/équipes/types
