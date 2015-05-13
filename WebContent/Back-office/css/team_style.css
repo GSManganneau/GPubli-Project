@@ -1,0 +1,79 @@
+.delete_icon {
+	height: 12px;
+	width: 12px;
+	background-image: url('../img/cross106.svg');
+	background-repeat: no-repeat;
+	background-attachment:scroll; 
+	background-position: center center; 
+	background-size: cover; 
+	background-color: transparent; 
+	background-size:contain;
+	display: inline-block;
+	vertical-align: middle;
+
+}
+
+header > .container > .header-left > .logo {
+	height: 30px;
+	width: 30px;
+	background-image: url('../img/l1.svg');
+	background-repeat: no-repeat;
+	background-position: left center;
+}
+
+.add_icon {
+	height: 20px;
+	width: 20px;
+	background-image: url('../img/add182.svg');
+	background-repeat: no-repeat;
+	background-attachment:scroll; 
+	background-position: center center; 
+	background-size: cover; 
+	background-color: transparent; 
+	background-size:contain;
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 108px;
+}
+
+.box_team{
+	width:335px;
+	display: inline-block;
+	
+}
+
+.box_team:nth-child(odd){
+	width:335px;
+	display: inline-block;
+	margin-right :20px;	
+}
+
+/*.box_team:last-child{
+	float: none;
+}*/
+
+.box-content > table {
+	width:100%;
+}
+
+tr {
+	height:20px;
+	/*border: 1px solid #e5e5e5;*/
+}
+
+.member {
+	vertical-align:middle;
+}
+
+.member_sub {
+	vertical-align:sub;
+}
+
+.input_page_team {
+	margin-top:10px;
+}
+
+
+#content .box:last-child {
+    margin-bottom: 20px;
+}

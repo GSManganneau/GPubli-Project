@@ -1,36 +1,72 @@
-.visit
-{
-	width: 30%;
-	margin-right: 5%;
-	font-size: 1.3em;
-	padding: 10px 0;
-	background-repeat: no-repeat;
-	background-position: 28px 31px;
-}
 
-.members
-{
-	width: 30%;
-	margin-right: 5%;
-	font-size: 1.3em;
-	padding: 10px 0;
-	background-repeat: no-repeat;
-	background-position: 15px 26px;
-}
-
-.annonces
-{
-	width: 30%;
-	margin-right: 0;
-	font-size: 1.2em;
-	padding: 10px 0;
-	background-repeat: no-repeat;
-	background-position: 15px 26px;
-}
-
-.infos_dash
-{
-	margin-left: 62px;
-	line-height: 1.5em;
+#content > .container > #content-right > .box  {
+	display: inline-block;
+	vertical-align: top;
 	text-align: center;
+	width: 158px;
+
+}
+
+
+
+#content > .container > #content-right > .box:nth-child(2) > .box-content > .box-content-child {
+	background-image: url('../img/contract11.svg');
+	font-weight: bold;
+ 	font-size: 28px;
+	background-repeat: no-repeat;
+	background-position: 12px 8px;
+	padding: 16px 10px;
+}
+
+#content > .container > #content-right > .box:nth-child(3) > .box-content > .box-content-child {
+	background-image: url('../img/load.svg');
+	font-weight: bold;
+ 	font-size: 28px;
+	background-repeat: no-repeat;
+	background-position: 12px 8px;
+	background-size: 45px;
+	padding: 16px 10px;
+}
+
+#content > .container > #content-right > .box:nth-child(4) > .box-content > .box-content-child {
+	background-image: url('../img/list40.svg');
+	font-weight: bold;
+ 	font-size: 28px;
+	background-repeat: no-repeat;
+	background-position: 12px 8px;
+	padding: 16px 10px;
+}
+
+#content > .container > #content-right > .box:nth-child(5) > .box-content > .box-content-child {
+	background-image: url('../img/contacts1.svg');
+	font-weight: bold;
+ 	font-size: 28px;
+	background-repeat: no-repeat;
+	background-position: 12px 8px;
+	background-size: 45px;
+	padding: 16px 10px;
+}
+
+
+
+
+#content > .container > #content-right > .box:nth-child(1) {
+	width: 700px;
+}
+
+#content > .container > #content-right > .box:nth-child(1) > .box-content {
+	padding: 16px 10px;
+	line-height: 18px;
+	text-align: justify;
+	width: 700px;
+}
+
+#content > .container > #content-right > .box:nth-child(3), #content > .container > #content-right > .box:nth-child(4), #content > .container > #content-right > .box:nth-child(5) {
+	margin-left: 20px;
+}
+
+.box-content > li.active
+{
+    border-bottom: 1px solid #e5e5e5;
+    background-color: #f5f5f5;
 }
