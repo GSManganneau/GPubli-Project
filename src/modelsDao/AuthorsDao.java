@@ -7,8 +7,8 @@ import models.Authors;
 public class AuthorsDao extends Dao<Authors>{
 	
 
-	public AuthorsDao(Connection connect) {
-		super(connect);
+	public AuthorsDao(EntityFactory entityFactory) {
+		
 		// TODO Auto-generated constructor stub
 	}
 

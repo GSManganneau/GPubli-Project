@@ -6,8 +6,8 @@ import models.Published;
 
 public class PublishedDao extends Dao<Published>{
 
-	public PublishedDao(Connection connect) {
-		super(connect);
+	public PublishedDao(EntityFactory entityFactory) {
+		
 		// TODO Auto-generated constructor stub
 	}
 
