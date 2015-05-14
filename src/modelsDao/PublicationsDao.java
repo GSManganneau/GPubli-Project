@@ -51,7 +51,7 @@ public class PublicationsDao extends Dao<Publications>{
         try {
             connexion =factory.getConnection();
             statement = connexion.createStatement();
-            resultat = statement.executeQuery("SELECT * FROM \"Publication\"");
+            resultat = statement.executeQuery("SELECT * FROM Publication");
 
             while (resultat.next()) {
                 int type = resultat.getInt("type_id");

@@ -27,7 +27,7 @@ public class AuthorsDao extends Dao<Authors>{
 		// TODO Auto-generated method stub
 		try{
 			connexion=factory.getConnection();
-			String query= "SELECT * FROM \"Author\" where eldap_id="+id;
+			String query= "SELECT * FROM Author where eldap_id="+id;
 			statement = connexion.createStatement();
 	        resultat = statement.executeQuery(query);
 	     // Récupération des données
@@ -66,7 +66,7 @@ public class AuthorsDao extends Dao<Authors>{
         			
         	            
         			connexion=factory.getConnection();
-        			String query= "INSERT INTO  \"Author\" (firstname,lastname,team_id,eldap_id) VALUES (?,?,?,?)";
+        			String query= "INSERT INTO  Author (firstname,lastname,team_id,eldap_id) VALUES (?,?,?,?)";
         			PreparedStatement preparedStatement = connexion.prepareStatement(query);
         			preparedStatement.setString(1,firstname);
     	            preparedStatement.setString(2,lastname);
