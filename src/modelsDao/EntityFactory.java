@@ -25,7 +25,7 @@ public class EntityFactory {
 	        }
 
 	        EntityFactory instance = new EntityFactory(
-	                "jdbc:mysql://localhost:3306/GPubli","root","");
+	                "jdbc:mysql://localhost:3306/GPubli","root","root");
 	        return instance;
 	    }
 
