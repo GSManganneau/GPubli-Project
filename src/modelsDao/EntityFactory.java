@@ -19,13 +19,13 @@ public class EntityFactory {
 
 	    public static EntityFactory getInstance() {
 	        try {
-	            Class.forName("org.postgresql.Driver");
+	            Class.forName("com.mysql.jdbc.Driver");
 	        } catch (ClassNotFoundException e) {
 
 	        }
 
 	        EntityFactory instance = new EntityFactory(
-	                "jdbc:postgresql://localhost:5432/Gpubli","postgres","1gillesleon");
+	                "jdbc:mysql://localhost:3306/GPubli","root","");
 	        return instance;
 	    }
 
