@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.Teams;
+import beans.Teams;
 import modelsDao.TeamsDao;
-import modelsDao.EntityFactory;
+import modelsDao.DAOFactory;
 import modelsDao.PublicationsDao;
 
 /**
@@ -31,7 +31,7 @@ public class Listing_team extends HttpServlet {
     private TeamsDao TeamsDao;
 
     public void init() throws ServletException {
-    	 EntityFactory factory = EntityFactory.getInstance();
+    	 DAOFactory factory = DAOFactory.getInstance();
          this.TeamsDao = factory.getTeams();
     }
     
