@@ -8,13 +8,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import models.Authors;
+import beans.Authors;
 
 public class AuthorsDao extends Dao<Authors>{
 	
-	 private EntityFactory factory;
+	 private DAOFactory factory;
 
-	    public AuthorsDao(EntityFactory daoFactory) {
+	    public AuthorsDao(DAOFactory daoFactory) {
 	        this.factory = daoFactory;
 	    }
 
@@ -29,7 +29,7 @@ public class AuthorsDao extends Dao<Authors>{
 		// TODO Auto-generated method stub
 		try{
 			connexion=factory.getConnection();
-			String query= "SELECT * FROM Author where eldap_id="+id;
+			String query= "SELECT * FROM Author where ldap_id="+id;
 			statement = connexion.createStatement();
 	        resultat = statement.executeQuery(query);
 	     // Récupération des données
@@ -37,7 +37,7 @@ public class AuthorsDao extends Dao<Authors>{
                 String firstname = resultat.getString("firstname");
                 String lastname = resultat.getString("lastname");
                 int author_id=resultat.getInt("author_id");
-                int eldap_id=resultat.getInt("eldap_id");
+                int eldap_id=resultat.getInt("ldap_id");
                 int team_id= resultat.getInt("team_id");
                 
                author = new Authors();
@@ -67,7 +67,7 @@ public class AuthorsDao extends Dao<Authors>{
         			
         	            
         			connexion=factory.getConnection();
-        			String query= "INSERT INTO  Author (firstname,lastname,team_id,eldap_id) VALUES (?,?,?,?)";
+        			String query= "INSERT INTO  Author (firstname,lastname,team_id,ldap_id) VALUES (?,?,?,?)";
         			PreparedStatement preparedStatement = connexion.prepareStatement(query);
         			preparedStatement.setString(1,firstname);
     	            preparedStatement.setString(2,lastname);

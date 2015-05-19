@@ -5,30 +5,26 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class EntityFactory {
+public class DAOFactory {
 
 	    private String url;
 	    private String username;
 	    private String password;
 
-	    EntityFactory(String url, String username, String password) {
+	    DAOFactory(String url, String username, String password) {
 	        this.url = url;
 	        this.username = username;
 	        this.password = password;
 	    }
 
-	    public static EntityFactory getInstance() {
-	    	
-	    	//chargement du driver
+	    public static DAOFactory getInstance() {
 	        try {
 	            Class.forName("com.mysql.jdbc.Driver");
 	        } catch (ClassNotFoundException e) {
 
 	        }
-	        
-	        //connexion à la base de donnée
-	        EntityFactory instance = new EntityFactory(
-	                "jdbc:mysql://localhost:3306/GPubli","root","root");
+
+	        DAOFactory instance = new DAOFactory("jdbc:mysql://localhost:3306/GPubli","root","root");
 	        return instance;
 	    }
 

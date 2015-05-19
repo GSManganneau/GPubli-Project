@@ -1,4 +1,4 @@
-package models;
+package beans;
 
 public class Authors {
 private int eldap_id;

@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
+
+import beans.Publications;
 //import models.Publications;
 import modelsDao.*;
 
@@ -24,7 +26,7 @@ public class Index extends HttpServlet {
         private PublicationsDao PublicationsDao;
 
         public void init() throws ServletException {
-        	 EntityFactory factory = EntityFactory.getInstance();
+        	 DAOFactory factory = DAOFactory.getInstance();
              this.PublicationsDao = factory.getPublications();
         }
 
@@ -34,15 +36,15 @@ public class Index extends HttpServlet {
         }
 
         public void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
-           /* Publications Publications = new Publications();
-            Publications.setNom(request.getParameter("nom"));
-            Publications.setPrenom(request.getParameter("prenom"));
+          // Publications Publications = new Publications();
+          //Publications.setN(request.getParameter("nom"));
+            //Publications.setPrenom(request.getParameter("prenom"));
             
-            PublicationsDao.ajouter(Publications);
+           // PublicationsDao.ajouter(Publications);
             
-            request.setAttribute("Publicationss", PublicationsDao.lister());
+            request.setAttribute("Publications", PublicationsDao.lister());
             
-            this.getServletContext().getRequestDispatcher("/WEB-INF/bonjour.jsp").forward(request, response);*/
+            this.getServletContext().getRequestDispatcher("/WEB-INF/bonjour.jsp").forward(request, response);
         }
         
 }

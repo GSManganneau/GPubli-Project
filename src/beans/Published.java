@@ -1,4 +1,4 @@
-package models;
+package beans;
 
 public class Published {
 private int pu_id;

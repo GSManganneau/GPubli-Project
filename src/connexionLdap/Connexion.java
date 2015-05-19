@@ -6,10 +6,9 @@ import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
+import beans.*;
 import modelsDao.*;
-import models.*;
 import connexionLdap.LDAPObject;
 import connexionLdap.LDAPaccess;
 
@@ -30,7 +29,7 @@ public class Connexion extends HttpServlet {
     private AuthorsDao AuthorsDao;
 
     public void init() throws ServletException {
-    	 EntityFactory factory = EntityFactory.getInstance();
+    	 DAOFactory factory = DAOFactory.getInstance();
          this.AuthorsDao = factory.getAuthors();
     }
 
@@ -70,12 +69,16 @@ public class Connexion extends HttpServlet {
 				HttpSession s = request.getSession();
 				Authors createSessionAuthor= AuthorsDao.find(nwAuthor.getEldap_id());
 				s.setAttribute("author_id",createSessionAuthor.getAuthor_id() ); 
+				s.setAttribute("ldap_id",createSessionAuthor.getEldap_id() );
+				s.setAttribute("firstname",createSessionAuthor.getFirstname() ); 
 				request.setAttribute("session",s);
 				getServletContext().getRequestDispatcher("/Publications.jsp").include(request, response);
 			}
 			else{
 				HttpSession s = request.getSession();
 				s.setAttribute("author_id",author.getAuthor_id() );
+				s.setAttribute("ldap_id", author.getEldap_id());
+				s.setAttribute("firstname", author.getFirstname());
 				request.setAttribute("session",s);
 				getServletContext().getRequestDispatcher("/Publications.jsp").include(request, response);
 				
