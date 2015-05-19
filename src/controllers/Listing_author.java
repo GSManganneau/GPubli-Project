@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.Authors;
+import beans.Authors;
 import modelsDao.AuthorsDao;
-import modelsDao.EntityFactory;
+import modelsDao.DAOFactory;
 import modelsDao.PublicationsDao;
 
 /**
@@ -31,7 +31,7 @@ public class Listing_author extends HttpServlet {
     private AuthorsDao AuthorsDao;
 
     public void init() throws ServletException {
-    	 EntityFactory factory = EntityFactory.getInstance();
+    	 DAOFactory factory = DAOFactory.getInstance();
          this.AuthorsDao = factory.getAuthors();
     }
     

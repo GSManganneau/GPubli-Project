@@ -7,11 +7,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import beans.Authors;
 import beans.Teams;
 
 public class TeamsDao extends Dao<Teams>{
-
-	public TeamsDao(DAOFactory entityFactory) {
+	
+	private DAOFactory factory;
+	public TeamsDao(DAOFactory daoFactory) {
 		// TODO Auto-generated constructor stub
 		this.factory = daoFactory;
 	}
