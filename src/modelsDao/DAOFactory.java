@@ -24,7 +24,7 @@ public class DAOFactory {
 
 	        }
 
-	        DAOFactory instance = new DAOFactory("jdbc:mysql://localhost:3306/GPubli","root","root");
+	        DAOFactory instance = new DAOFactory("jdbc:mysql://localhost:3306/GPubli","gpubli","gpubli");
 	        return instance;
 	    }
 

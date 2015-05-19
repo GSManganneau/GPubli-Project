@@ -30,7 +30,7 @@ public class PublicationsDao extends Dao<Publications>{
 	public boolean create(Publications object) {
 		// TODO Auto-generated method stub
 		Connection connexion = null;
-        int id=object.getId();
+  
         int type =object.getType();
         String date=object.getDate();
         String resume =object.getResume();
