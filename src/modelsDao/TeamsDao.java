@@ -45,9 +45,9 @@ public class TeamsDao extends Dao<Teams>{
 	}
 
 
-	public List<Authors> lister() {
+	public List<Teams> lister() {
 		// TODO Auto-generated method stub
-        List<Authors> Teams = new ArrayList<Authors>();
+        List<Teams> Teams = new ArrayList<Teams>();
         Connection connexion = null;
         Statement statement = null;
         ResultSet resultat = null;
@@ -55,21 +55,23 @@ public class TeamsDao extends Dao<Teams>{
         try {
             connexion = factory.getConnection();
             statement = connexion.createStatement();
-            resultat  = statement.executeQuery("SELECT a.firstname, a.lastname, t.name FROM author a,team t "
-            		+ "WHERE t.team_id = a.team_id");
+            resultat  = statement.executeQuery("SELECT * FROM team");
 
             while (resultat.next()) {
-                String team_name = resultat.getString("name");
-                String author_firstname = resultat.getString("firstname");
-                String author_lastname = resultat.getString("lastname");
+                String name = resultat.getString("name");
+                /*String author_firstname = resultat.getString("firstname");
+                String author_lastname = resultat.getString("lastname");*/
                 
-                //Nom des auteurs
+                Teams Team = new Teams();
+                Team.setName(name);
+                
+/*                //Nom des auteurs
                 Authors author = new Authors();
                 author.setFirstname(author_firstname);
                 author.setLastname(author_lastname);  
-                author.getTeam().setName(team_name);
+                author.getTeam().setName(team_name);*/
 
-                Teams.add(author);
+                Teams.add(Team);
             }
         } catch (SQLException e) {
             e.printStackTrace();

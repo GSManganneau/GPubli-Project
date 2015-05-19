@@ -9,7 +9,7 @@
 <body>
 	<ul>
         <c:forEach var="Author" items="${Authors}">
-            <li><c:out value="${ Author.firstname }" /> <c:out value="${ Author.lastname }" /></li>
+            <li><c:out value="${ Author.firstname }"/>  <c:out value="${ Author.lastname }"/>  <c:out value="${ Author.team.name }"/></li>
         </c:forEach>    
     </ul>
 </body>

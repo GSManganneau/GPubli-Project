@@ -4,15 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Liste des auteurs</title>
+<title>Liste des equipe</title>
 </head>
 <body>
 	<ul>
-        <c:forEach var="Author" items="${Authors}">
-            <li><c:out value="${ Author.team.name }" /></li>
-	            		<li><c:out value="${ Author.firstname }" /></li>
-	            		<li><c:out value="${ Author.lastname }" /></li>
-	            </c:forEach>  
+        <c:forEach var="Team" items="${Teams}">
+           <li><c:out value="${ Team.name }" /></li>
+	    </c:forEach>  
     </ul>
 </body>
 </html>

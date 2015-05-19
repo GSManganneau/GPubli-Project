@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import beans.Authors;
+import beans.Teams;
 
 public class AuthorsDao extends Dao<Authors>{
 	
@@ -93,15 +94,18 @@ public class AuthorsDao extends Dao<Authors>{
         try {
             connexion =factory.getConnection();
             statement = connexion.createStatement();
-            resultat = statement.executeQuery("SELECT * FROM Author");
+            resultat = statement.executeQuery("SELECT a.firstname, a.lastname, t.name FROM author a,team t WHERE t.team_id = a.team_id");
 
             while (resultat.next()) {
+            	String team_name = resultat.getString("name");
                 String firstname = resultat.getString("firstname");
                 String lastname = resultat.getString("lastname");
+                
 
                 Authors Author = new Authors();
                 Author.setFirstname(firstname);
                 Author.setLastname(lastname);
+                Author.getTeam().setName(team_name);
 
                 Authors.add(Author);
             }
