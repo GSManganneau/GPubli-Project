@@ -2,11 +2,11 @@ package modelsDao;
 
 import java.sql.Connection;
 
-import models.Published;
+import beans.Published;
 
 public class PublishedDao extends Dao<Published>{
 
-	public PublishedDao(EntityFactory entityFactory) {
+	public PublishedDao(DAOFactory entityFactory) {
 		
 		// TODO Auto-generated constructor stub
 	}

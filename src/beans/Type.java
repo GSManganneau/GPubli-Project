@@ -1,4 +1,4 @@
-package models;
+package beans;
 
 public class Type {
 	private int type_id;

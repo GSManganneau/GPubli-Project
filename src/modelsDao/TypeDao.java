@@ -2,11 +2,11 @@ package modelsDao;
 
 import java.sql.Connection;
 
-import models.Type;
+import beans.Type;
 
 public class TypeDao extends Dao<Type>{
 
-	public TypeDao(EntityFactory entityFactory) {
+	public TypeDao(DAOFactory entityFactory) {
 		
 		// TODO Auto-generated constructor stub
 	}

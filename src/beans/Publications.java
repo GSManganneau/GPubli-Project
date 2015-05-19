@@ -1,4 +1,4 @@
-package models;
+package beans;
 
 public class Publications {
 
@@ -15,6 +15,7 @@ public class Publications {
 	private String journal;
 	private String book_title;
 	private String title;
+	private String url;
 	public String getDate() {
 		return date;
 	}
@@ -56,6 +57,12 @@ public class Publications {
 	}
 	public void setType(int type) {
 		this.type = type;
+	}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
 	}
 	
 }

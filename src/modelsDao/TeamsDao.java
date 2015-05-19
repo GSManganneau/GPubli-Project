@@ -2,11 +2,11 @@ package modelsDao;
 
 import java.sql.Connection;
 
-import models.Teams;
+import beans.Teams;
 
 public class TeamsDao extends Dao<Teams>{
 
-	public TeamsDao(EntityFactory entityFactory) {
+	public TeamsDao(DAOFactory entityFactory) {
 		
 		// TODO Auto-generated constructor stub
 	}
