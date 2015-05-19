@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import models.Authors;
 
@@ -42,7 +44,6 @@ public class AuthorsDao extends Dao<Authors>{
                author.setFirstname(firstname);
                author.setLastname(lastname);
                author.setEldap_id(eldap_id);
-               author.setTeam_id(team_id);
                author.setAuthor_id(author_id);
                
                     
@@ -60,7 +61,7 @@ public class AuthorsDao extends Dao<Authors>{
 		Connection connexion = null;
         String firstname=object.getFirstname();
         String lastname=object.getLastname();
-        int team_id=object.getTeam_id();
+        int team_id=object.getTeam().getTeam_id();
         int eldap_id=object.getEldap_id();
         		try{
         			
@@ -82,7 +83,34 @@ public class AuthorsDao extends Dao<Authors>{
         		
 		return true;
 	}
+	
+	public List<Authors> lister() {
+        List<Authors> Authors = new ArrayList<Authors>();
+        Connection connexion = null;
+        Statement statement = null;
+        ResultSet resultat = null;
 
+        try {
+            connexion =factory.getConnection();
+            statement = connexion.createStatement();
+            resultat = statement.executeQuery("SELECT * FROM Author");
+
+            while (resultat.next()) {
+                String firstname = resultat.getString("firstname");
+                String lastname = resultat.getString("lastname");
+
+                Authors Author = new Authors();
+                Author.setFirstname(firstname);
+                Author.setLastname(lastname);
+
+                Authors.add(Author);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return Authors;
+    }
+	
 	@Override
 	public boolean update(Authors object) {
 		// TODO Auto-generated method stub

@@ -15,6 +15,22 @@
     <url-pattern>/index</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>Listing_author</servlet-name>
+    <servlet-class>controllers.Listing_author</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Listing_author</servlet-name>
+    <url-pattern>/listing</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Listing_team</servlet-name>
+    <servlet-class>controllers.Listing_team</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Listing_team</servlet-name>
+    <url-pattern>/team</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>Connexion</servlet-name>
     <servlet-class>connexionLdap.Connexion</servlet-class>
   </servlet>

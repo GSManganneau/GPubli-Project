@@ -18,12 +18,15 @@ public class EntityFactory {
 	    }
 
 	    public static EntityFactory getInstance() {
+	    	
+	    	//chargement du driver
 	        try {
 	            Class.forName("com.mysql.jdbc.Driver");
 	        } catch (ClassNotFoundException e) {
 
 	        }
-
+	        
+	        //connexion à la base de donnée
 	        EntityFactory instance = new EntityFactory(
 	                "jdbc:mysql://localhost:3306/GPubli","root","root");
 	        return instance;

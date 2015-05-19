@@ -5,13 +5,9 @@ private int eldap_id;
 private int author_id;
 private String firstname;
 private String lastname;
-private int team_id=1;
-@Override
-public String toString() {
-	return "Authors [eldap_id=" + eldap_id + ", author_id=" + author_id
-			+ ", firstname=" + firstname + ", lastname=" + lastname
-			+ ", team_id=" + team_id + "]";
-}
+private Teams team = new Teams();
+
+
 public int getEldap_id() {
 	return eldap_id;
 }
@@ -36,11 +32,13 @@ public String getLastname() {
 public void setLastname(String lastname) {
 	this.lastname = lastname;
 }
-public int getTeam_id() {
-	return team_id;
+public Teams getTeam() {
+	return team;
 }
-public void setTeam_id(int team_id) {
-	this.team_id = team_id;
+public void setTeam(Teams team) {
+	this.team = team;
 }
+
+
 
 }
