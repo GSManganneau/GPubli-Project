@@ -22,7 +22,7 @@ import modelsDao.*;
 public class Index extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-
+		public String template= "publication.jsp";
         private PublicationsDao PublicationsDao;
 
         public void init() throws ServletException {
@@ -31,8 +31,10 @@ public class Index extends HttpServlet {
         }
 
         protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+           
             request.setAttribute("Publications", PublicationsDao.lister());
-            getServletContext().getRequestDispatcher("/Publications.jsp").include(request, response);
+            request.setAttribute("template",template);
+            this.getServletContext().getRequestDispatcher("/WebContent/Front-Office/template.jsp").forward(request, response);
         }
 
         public void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
@@ -43,8 +45,10 @@ public class Index extends HttpServlet {
            // PublicationsDao.ajouter(Publications);
             
             request.setAttribute("Publications", PublicationsDao.lister());
+            request.setAttribute("template",template);
             
-            this.getServletContext().getRequestDispatcher("/WEB-INF/bonjour.jsp").forward(request, response);
+            
+            this.getServletContext().getRequestDispatcher("/WebContent/Front-Office/template.jsp").forward(request, response);
         }
         
 }
