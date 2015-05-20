@@ -42,7 +42,7 @@ public class Listing_author extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setAttribute("Authors", AuthorsDao.lister());
-        getServletContext().getRequestDispatcher("/Liste_auteurs.jsp").include(request, response);
+        getServletContext().getRequestDispatcher("/liste_auteurs.jsp").include(request, response);
 	}
 
 	/**

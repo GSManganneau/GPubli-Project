@@ -6,9 +6,11 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="css/bootstrap.css">
-		<link rel="stylesheet" href="css/main.css">
-		<link rel="stylesheet" href="css/index.css">
+		<link rel="stylesheet" href="front-office/css/bootstrap.css">
+		<link rel="stylesheet" href="front-office/css/main.css">
+		<c:if test="${!empty cssContent }">
+		<link rel="stylesheet" href="front-office/css/<c:out value="${cssContent}"/>">
+		</c:if>
 		<!--[if lt IE 9]>
 			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -44,7 +46,7 @@
 							
 						<ul class="nav navbar-nav navbar-right">
 							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Matthieu <span class="caret"></span></a>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
 									<li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp; Profil</a></li>
 									<li><a href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp; Paramètres</a></li>
@@ -57,10 +59,16 @@
 				</div>
 			</nav>
 		</header>
-
+		
+		<c:if test="${!empty session}">
+<p>Bonjour utilisateur numéro</p>  <c:out value="${session.getAttribute(\"author_id\")}" />    
+    <p>Votre numéro LDAP est </p> <c:out value="${session.getAttribute(\"ldap_id\")}" />  
+    <p>Votre prénom est:</p> <c:out value="${session.getAttribute(\"firstname\")}" /> 
+    </c:if>
 		<div id="content">
 			<div class="container">
-				<c:import url=${template}></c:import>
+		<c:import url="${content}"></c:import>
+		
 			</div>
 		</div>
 
@@ -85,8 +93,11 @@
 			</div>
 		</footer>
 
-		<script src="js/jquery-1.11.3.js"></script>
-		<script src="js/bootstrap.js"></script>
-		<script src="js/main.js"></script>
+		<script src="front-office/js/jquery-1.11.3.js"></script>
+		<script src="front-office/js/bootstrap.js"></script>
+		<script src="front-office/js/main.js"></script>
+		<c:if test="${!empty jsContent }">
+			<script src="front-office/js/<c:out value="${jsContent}"/>"></script>
+		</c:if>
 	</body>
 </html>

@@ -1,22 +1,22 @@
 package beans;
 
 public class Published {
-private int pu_id;
-private int author_id;
-public int getPu_id() {
-	return pu_id;
+
+
+private Publications publications =  new Publications();
+private Authors authors = new Authors();
+
+
+public Publications getPublications() {
+	return publications;
 }
-public void setPu_id(int pu_id) {
-	this.pu_id = pu_id;
+public void setPublications(Publications publications) {
+	this.publications = publications;
 }
-public int getAuthor_id() {
-	return author_id;
+public Authors getAuthors() {
+	return authors;
 }
-public void setAuthor_id(int author_id) {
-	this.author_id = author_id;
-}
-@Override
-public String toString() {
-	return "Published [pu_id=" + pu_id + ", author_id=" + author_id + "]";
+public void setAuthors(Authors authors) {
+	this.authors = authors;
 }
 }

@@ -38,4 +38,13 @@
     <servlet-name>Connexion</servlet-name>
     <url-pattern>/connexion</url-pattern>
   </servlet-mapping>
+   <servlet>
+    <servlet-name>AddPublications</servlet-name>
+    <servlet-class>controllers.AddPublications</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddPublications</servlet-name>
+    <url-pattern>/addpublications</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

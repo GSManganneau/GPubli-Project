@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import beans.Publications;
+import beans.Type;
 
 public class PublicationsDao extends Dao<Publications>{
 
@@ -31,7 +32,7 @@ public class PublicationsDao extends Dao<Publications>{
 		// TODO Auto-generated method stub
 		Connection connexion = null;
   
-        int type =object.getType();
+        int type =object.getType().getType_id();
         String date=object.getDate();
         String resume =object.getResume();
         String journal = object.getJournal();
@@ -42,7 +43,7 @@ public class PublicationsDao extends Dao<Publications>{
         			
         	            
         			connexion=factory.getConnection();
-        			String query= "INSERT INTO  Publications (date,type_id,resume,book_title,title,journal,url) VALUES (?,?,?,?,?,?,?)";
+        			String query= "INSERT INTO  Publication (date,type_id,resume,book_title,title,journal,url) VALUES (?,?,?,?,?,?,?)";
         			PreparedStatement preparedStatement = connexion.prepareStatement(query);
         			preparedStatement.setString(1,date);
     	            preparedStatement.setInt(2,type);
@@ -52,8 +53,7 @@ public class PublicationsDao extends Dao<Publications>{
     	            preparedStatement.setString(6,journal);
     	            preparedStatement.setString(7, url);
     	          
-    	           
-    	            
+    	 
     	            preparedStatement.executeUpdate();
 
         		}catch(SQLException e){
@@ -75,7 +75,7 @@ public class PublicationsDao extends Dao<Publications>{
 		return false;
 	}
 	public List<Publications> lister() {
-        List<Publications> Publications = new ArrayList<Publications>();
+        List<Publications> publications = new ArrayList<Publications>();
         Connection connexion = null;
         Statement statement = null;
         ResultSet resultat = null;
@@ -83,24 +83,37 @@ public class PublicationsDao extends Dao<Publications>{
         try {
             connexion =factory.getConnection();
             statement = connexion.createStatement();
-            resultat = statement.executeQuery("SELECT * FROM Publication");
+            resultat = statement.executeQuery("SELECT *,t.name FROM  Publication p, Type t where p.type_id=t.type_id ORDER BY publication_id DESC");
 
             while (resultat.next()) {
-                int type = resultat.getInt("type_id");
+                int type_id = resultat.getInt("type_id");
+                String type_name= resultat.getString("name");
+               
+                Type type = new Type();
+                type.setType_id(type_id);
+                type.setName(type_name);
+                
                 String resume = resultat.getString("resume");
                 String journal= resultat.getString("journal");
+                String date=resultat.getString("date");
+                String book_title= resultat.getString("book_title");
+                String title = resultat.getString("title");
+                
+                Publications publication = new Publications();
+                publication.setType(type);
+                publication.setResume(resume);
+                publication.setJournal(journal);
+                publication.setDate(date);
+                publication.setBook_title(book_title);
+                publication.setTitle(title);
+               
 
-                Publications Publication = new Publications();
-                Publication.setType(type);
-                Publication.setResume(resume);
-                Publication.setJournal(journal);
-
-                Publications.add(Publication);
+                publications.add(publication);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return Publications;
+        return publications;
     }
 
 

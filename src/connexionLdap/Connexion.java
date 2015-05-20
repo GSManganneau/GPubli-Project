@@ -11,6 +11,7 @@ import beans.*;
 import modelsDao.*;
 import connexionLdap.LDAPObject;
 import connexionLdap.LDAPaccess;
+import controllers.Index;
 
 /**
  * Servlet implementation class Connexion
@@ -27,19 +28,22 @@ public class Connexion extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
     private AuthorsDao AuthorsDao;
+    private PublicationsDao publicationDao;
+    public String content="front-office/connexion.html";
 
     public void init() throws ServletException {
     	 DAOFactory factory = DAOFactory.getInstance();
          this.AuthorsDao = factory.getAuthors();
+         this.publicationDao = factory.getPublications();
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		PrintWriter out = response.getWriter();
-		out.print("eeeee");
+		request.setAttribute("content", content);
+		this.getServletContext().getRequestDispatcher("/front-office/template.jsp").include(request, response);
+
 	}
 
 	/**
@@ -47,6 +51,7 @@ public class Connexion extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		HttpSession s;
 		String l = request.getParameter("login");
 		String p = request.getParameter("password");
 		LDAPObject reponse =null;
@@ -66,23 +71,29 @@ public class Connexion extends HttpServlet {
 				nwAuthor.setFirstname(firstname);
 				nwAuthor.setLastname(reponse.getNomFamille());
 				AuthorsDao.create(nwAuthor);
-				HttpSession s = request.getSession();
+				s = request.getSession();
 				Authors createSessionAuthor= AuthorsDao.find(nwAuthor.getEldap_id());
 				s.setAttribute("author_id",createSessionAuthor.getAuthor_id() ); 
 				s.setAttribute("ldap_id",createSessionAuthor.getEldap_id() );
 				s.setAttribute("firstname",createSessionAuthor.getFirstname() ); 
-				request.setAttribute("session",s);
-				getServletContext().getRequestDispatcher("/Publications.jsp").include(request, response);
 			}
 			else{
-				HttpSession s = request.getSession();
+				s = request.getSession();
 				s.setAttribute("author_id",author.getAuthor_id() );
 				s.setAttribute("ldap_id", author.getEldap_id());
 				s.setAttribute("firstname", author.getFirstname());
-				request.setAttribute("session",s);
-				getServletContext().getRequestDispatcher("/Publications.jsp").include(request, response);
+				 
 				
 			}
+			this.content="publications.jsp";
+	        String cssContent ="publications.css";
+	        String jsContent ="publications.js";
+	        request.setAttribute("publications", publicationDao.lister());
+	        request.setAttribute("session",s);
+	        request.setAttribute("content",content);
+	        request.setAttribute("jsContent",jsContent);
+	        request.setAttribute("cssContent",cssContent);
+	        this.getServletContext().getRequestDispatcher("/front-office/template.jsp").forward(request, response);
 			
 		
 	}

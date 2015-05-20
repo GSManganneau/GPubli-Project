@@ -9,7 +9,7 @@ public class Publications {
 				+ ", book_title=" + book_title + ", title=" + title + "]";
 	}
 	private int id;
-	private int type;
+	private Type type = new Type();
 	private String date;
 	private String resume;
 	private String journal;
@@ -52,10 +52,10 @@ public class Publications {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getType() {
+	public Type getType() {
 		return type;
 	}
-	public void setType(int type) {
+	public void setType(Type type) {
 		this.type = type;
 	}
 	public String getUrl() {
