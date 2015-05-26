@@ -1,14 +1,21 @@
 package modelsDao;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
+import beans.Teams;
 import beans.Type;
 
 public class TypeDao extends Dao<Type>{
-
-	public TypeDao(DAOFactory entityFactory) {
-		
+	
+	private DAOFactory factory;
+	public TypeDao(DAOFactory daoFactory) {	
 		// TODO Auto-generated constructor stub
+		this.factory = daoFactory;
 	}
 
 
@@ -35,6 +42,37 @@ public class TypeDao extends Dao<Type>{
 	public boolean delete(Type object) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	
+	public List<Type> search(String field) {
+		List<Type> Types = new ArrayList<Type>();
+		Connection connexion = null;
+        Statement statement = null;
+        ResultSet resultat = null;
+      
+		// TODO Auto-generated method stub
+		try{
+			connexion=factory.getConnection();
+			String query = "SELECT name FROM type WHERE name like '%"+field+"%'";
+			
+			statement = connexion.createStatement();
+	        resultat = statement.executeQuery(query);
+	        
+	        // Récupération des données
+            while (resultat.next()) {
+                          
+            	//Données de la table type
+                String name = resultat.getString("name");          
+                
+                Type Type = new Type();
+                Type.setName(name);
+                
+                Types.add(Type);
+            }
+		}catch (SQLException e) {
+            e.printStackTrace();
+		}
+		return Types;
 	}
 
 }

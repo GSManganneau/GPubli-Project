@@ -115,6 +115,40 @@ public class AuthorsDao extends Dao<Authors>{
         return Authors;
     }
 	
+	
+	public List<Authors> search(String field) {
+		List<Authors> Authors = new ArrayList<Authors>();
+		Connection connexion = null;
+        Statement statement = null;
+        ResultSet resultat = null;
+      
+		// TODO Auto-generated method stub
+		try{
+			connexion=factory.getConnection();
+			String query = "SELECT * FROM author WHERE firstname like '%"+field+"%' OR lastname like '%"+field+"%'";
+			
+			statement = connexion.createStatement();
+	        resultat = statement.executeQuery(query);
+	        
+	        // Récupération des données
+            while (resultat.next()) {
+            	
+            	//Données de la table author
+                String firstname = resultat.getString("firstname");
+                String lastname = resultat.getString("lastname");          
+
+                Authors author = new Authors();
+                author.setFirstname(firstname);
+                author.setLastname(lastname);
+                
+                Authors.add(author);
+            }
+		}catch (SQLException e) {
+            e.printStackTrace();
+		}
+		return Authors;
+	}
+	
 	@Override
 	public boolean update(Authors object) {
 		// TODO Auto-generated method stub

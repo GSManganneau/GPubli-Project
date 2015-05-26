@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import beans.Authors;
 import beans.Publications;
 import beans.Type;
 
@@ -115,6 +116,39 @@ public class PublicationsDao extends Dao<Publications>{
         }
         return publications;
     }
+	
+	public List<Publications> search(String field) {
+		List<Publications> Publications = new ArrayList<Publications>();
+		Connection connexion = null;
+        Statement statement = null;
+        ResultSet resultat = null;
+      
+		// TODO Auto-generated method stub
+		try{
+			connexion=factory.getConnection();
+			String query = "SELECT * FROM publication WHERE title like '%"+field+"%' OR resume like '%"+field+"%'";
+			
+			statement = connexion.createStatement();
+	        resultat = statement.executeQuery(query);
+	        
+	        // Récupération des données
+            while (resultat.next()) {
+                          
+                //Données de la table publication
+                String title = resultat.getString("title");
+                String resume = resultat.getString("resume");           
+                
+                Publications Publication = new Publications();
+                Publication.setTitle(title);
+                Publication.setResume(resume);
+                
+                Publications.add(Publication);
+            }
+		}catch (SQLException e) {
+            e.printStackTrace();
+		}
+		return Publications;
+	}
 
 
 }
