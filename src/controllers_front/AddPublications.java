@@ -1,16 +1,14 @@
-package controllers;
+package controllers_front;
 
 import java.io.IOException;
-import java.util.Date;
-
+import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.HttpSession;
 import beans.Publications;
-import beans.Type;
 import modelsDao.DAOFactory;
 import modelsDao.PublicationsDao;
 
@@ -22,7 +20,7 @@ public class AddPublications extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	 
-		public String content="addPublicationForm.html";
+		public String content="addPublicationForm.jsp";
 		
 		
      private PublicationsDao publicationDao;
@@ -44,8 +42,16 @@ public class AddPublications extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		HttpSession s = request.getSession();
+		String connected=(String)s.getAttribute("connected");
+		if(connected==null){
+			response.sendRedirect("/GPubli-Project/connexion");
+		}
+		else{
+		request.setAttribute("session", s);
         request.setAttribute("content",content);
         this.getServletContext().getRequestDispatcher("/front-office/template.jsp").forward(request, response);
+		}
 	}
 
 	/**
@@ -55,8 +61,7 @@ public class AddPublications extends HttpServlet {
 		// TODO Auto-generated method stub
 		int type_id=1;
 		String type_name =request.getParameter("type");
-
-        String date = "2015-05-20";
+        String date = "";
         String resume =request.getParameter("resume");
         String journal = request.getParameter("journal");
         String book_title= request.getParameter("book_title");

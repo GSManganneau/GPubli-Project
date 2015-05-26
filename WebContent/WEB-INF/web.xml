@@ -7,16 +7,16 @@
     </jsp-property-group>
   </jsp-config>
   <servlet>
-    <servlet-name>Index</servlet-name>
-    <servlet-class>controllers.Index</servlet-class>
+    <servlet-name>Home</servlet-name>
+    <servlet-class>controllers_front.Home</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Index</servlet-name>
-    <url-pattern>/index</url-pattern>
+    <servlet-name>Home</servlet-name>
+    <url-pattern>/home</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>Listing_author</servlet-name>
-    <servlet-class>controllers.Listing_author</servlet-class>
+    <servlet-class>controllers_back.Listing_author</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Listing_author</servlet-name>
@@ -24,7 +24,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>Listing_team</servlet-name>
-    <servlet-class>controllers.Listing_team</servlet-class>
+    <servlet-class>controllers_back.Listing_team</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Listing_team</servlet-name>
@@ -40,7 +40,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>AddPublications</servlet-name>
-    <servlet-class>controllers.AddPublications</servlet-class>
+    <servlet-class>controllers_front.AddPublications</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>AddPublications</servlet-name>

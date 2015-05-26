@@ -11,7 +11,7 @@ import beans.*;
 import modelsDao.*;
 import connexionLdap.LDAPObject;
 import connexionLdap.LDAPaccess;
-import controllers.Index;
+import controllers_front.Home;
 
 /**
  * Servlet implementation class Connexion
@@ -27,14 +27,12 @@ public class Connexion extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-    private AuthorsDao AuthorsDao;
-    private PublicationsDao publicationDao;
-    public String content="front-office/connexion.html";
+    private AuthorsDao authorDao;
+    public String content="connexion.jsp";
 
     public void init() throws ServletException {
     	 DAOFactory factory = DAOFactory.getInstance();
-         this.AuthorsDao = factory.getAuthors();
-         this.publicationDao = factory.getPublications();
+         this.authorDao = factory.getAuthors();
     }
 
 	/**
@@ -62,38 +60,32 @@ public class Connexion extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-			int id= Integer.parseInt(reponse.getNumber());
-			Authors author= AuthorsDao.find(id);
+			//int id= Integer.parseInt(reponse.getNumber());
+		 int id =8329;
+			Authors author= authorDao.find(id);
 			if(author==null){
 				Authors nwAuthor = new Authors();
 				nwAuthor.setEldap_id(id);
 				String firstname = reponse.getNom().split(" ")[0];
 				nwAuthor.setFirstname(firstname);
 				nwAuthor.setLastname(reponse.getNomFamille());
-				AuthorsDao.create(nwAuthor);
+				authorDao.create(nwAuthor);
 				s = request.getSession();
-				Authors createSessionAuthor= AuthorsDao.find(nwAuthor.getEldap_id());
+				Authors createSessionAuthor= authorDao.find(nwAuthor.getEldap_id());
 				s.setAttribute("author_id",createSessionAuthor.getAuthor_id() ); 
 				s.setAttribute("ldap_id",createSessionAuthor.getEldap_id() );
 				s.setAttribute("firstname",createSessionAuthor.getFirstname() ); 
 			}
 			else{
 				s = request.getSession();
+				s.setAttribute("connected", "true");
 				s.setAttribute("author_id",author.getAuthor_id() );
 				s.setAttribute("ldap_id", author.getEldap_id());
 				s.setAttribute("firstname", author.getFirstname());
 				 
 				
 			}
-			this.content="publications.jsp";
-	        String cssContent ="publications.css";
-	        String jsContent ="publications.js";
-	        request.setAttribute("publications", publicationDao.lister());
-	        request.setAttribute("session",s);
-	        request.setAttribute("content",content);
-	        request.setAttribute("jsContent",jsContent);
-	        request.setAttribute("cssContent",cssContent);
-	        this.getServletContext().getRequestDispatcher("/front-office/template.jsp").forward(request, response);
+			response.sendRedirect("/GPubli-Project/home");
 			
 		
 	}

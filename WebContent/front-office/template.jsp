@@ -46,6 +46,7 @@
 							
 						<ul class="nav navbar-nav navbar-right">
 							<li class="dropdown">
+					
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
 									<li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp; Profil</a></li>
@@ -59,21 +60,15 @@
 				</div>
 			</nav>
 		</header>
-		
-		<c:if test="${!empty session}">
-<p>Bonjour utilisateur numéro</p>  <c:out value="${session.getAttribute(\"author_id\")}" />    
-    <p>Votre numéro LDAP est </p> <c:out value="${session.getAttribute(\"ldap_id\")}" />  
-    <p>Votre prénom est:</p> <c:out value="${session.getAttribute(\"firstname\")}" /> 
-    </c:if>
 		<div id="content">
 			<div class="container">
-		<c:import url="${content}"></c:import>
+		<jsp:include page="${content}"/>
 		
 			</div>
 		</div>
 
 		<footer>
-			<div class="container">
+			
 				<div class="row">
 					<div class="col-md-6">
 						<ul class="list-inline">
