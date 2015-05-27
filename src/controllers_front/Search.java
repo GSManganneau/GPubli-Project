@@ -1,4 +1,4 @@
-package controllers;
+package controllers_front;
 
 import java.io.IOException;
 
@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import modelsDao.AuthorsDao;
 import modelsDao.DAOFactory;
@@ -20,6 +21,8 @@ import modelsDao.TypeDao;
 @WebServlet("/Search")
 public class Search extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
+	public String content = "search.jsp";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -56,8 +59,9 @@ public class Search extends HttpServlet {
 		request.setAttribute("Teams", teamsDao.search(search));
 		request.setAttribute("Types", typeDao.search(search));
 
-		getServletContext().getRequestDispatcher("/search.jsp").include(
-				request, response);
+		request.setAttribute("content", content);
+		getServletContext().getRequestDispatcher("/front-office/template.jsp")
+				.include(request, response);
 	}
 
 	/**

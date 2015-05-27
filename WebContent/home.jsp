@@ -2,9 +2,9 @@
 <head>
 <meta charset="utf-8">
 <title>Autocomplete Example</title>
-<link rel="stylesheet" href="css/jquery-ui.css">
-<script src="js/jquery-1.11.2.js"></script>
-<script src="js/jquery-ui.js"></script>
+<link rel="stylesheet" href="front-office/css/jquery-ui.css">
+<script src="front-office/js/jquery-1.11.2.js"></script>
+<script src="front-office/js/jquery-ui.js"></script>
 <script>
 	$(function() {
 
