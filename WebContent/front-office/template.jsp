@@ -9,6 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="front-office/css/bootstrap.css">
 <link rel="stylesheet" href="front-office/css/jquery-ui.css">
+
 <link rel="stylesheet" href="front-office/css/main.css">
 <c:if test="${!empty cssContent }">
 	<link rel="stylesheet"
@@ -94,7 +95,7 @@
 		</div>
 	</footer>
 
-	<script src="front-office/js/jquery-1.11.2.js"></script>
+	<script src="front-office/js/jquery-1.11.3.js"></script>
 	<script src="front-office/js/jquery-ui.js"></script>
 	<script>
 		$(function() {
@@ -120,7 +121,7 @@
 
 		});
 	</script>
-	<script src="front-office/js/jquery-1.11.3.js"></script>
+
 	<script src="front-office/js/bootstrap.js"></script>
 	<script src="front-office/js/main.js"></script>
 	<c:if test="${!empty jsContent }">

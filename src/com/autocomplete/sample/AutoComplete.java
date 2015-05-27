@@ -23,37 +23,35 @@ import com.DataSource.mysql.DataSource;
 public class AutoComplete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public AutoComplete() {
-        super();
+	public AutoComplete() {
+		super();
 
-    }
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<String> al=new ArrayList<String>();
-		try{
-		DataSource ds=DataSource.getInstace();
-	     Connection conn=ds.getConnection();
-	     Statement stmt=conn.createStatement();
-	     String sql="SELECT firstname FROM author "
-	     		+ "UNION "
-	     		+ "SELECT lastname FROM author "
-	     		+ "UNION "
-	     		+ "SELECT title FROM publication "
-	     		+ "UNION "
-	     		+ "SELECT name FROM team "
-	     		+ "UNION "
-	     		+ "SELECT name FROM type";
-	     ResultSet rs = stmt.executeQuery(sql);
-	     while(rs.next()){
-	    	 al.add(rs.getString("firstname"));
-	     }
-	     rs.close();
-	     stmt.close();
-	     conn.close();
-		}catch(Exception e){
+	}
+
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		ArrayList<String> al = new ArrayList<String>();
+		try {
+			DataSource ds = DataSource.getInstace();
+			Connection conn = ds.getConnection();
+			Statement stmt = conn.createStatement();
+			String sql = "SELECT firstname FROM author " + "UNION "
+					+ "SELECT lastname FROM author " + "UNION "
+					+ "SELECT title FROM publication " + "UNION "
+					+ "SELECT name FROM team " + "UNION "
+					+ "SELECT name FROM type " + "ORDER BY 1";
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				al.add(rs.getString("firstname"));
+			}
+			rs.close();
+			stmt.close();
+			conn.close();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		 JSONArray json=new JSONArray(al);
-		 response.setContentType("application/json");
-	        response.getWriter().print(json);
-	}   
+		JSONArray json = new JSONArray(al);
+		response.setContentType("application/json");
+		response.getWriter().print(json);
+	}
 }

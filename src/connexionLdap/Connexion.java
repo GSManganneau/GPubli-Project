@@ -60,8 +60,8 @@ public class Connexion extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-			//int id= Integer.parseInt(reponse.getNumber());
-		 int id =8329;
+			int id= Integer.parseInt(reponse.getNumber());
+		// int id =8329;
 			Authors author= authorDao.find(id);
 			if(author==null){
 				Authors nwAuthor = new Authors();
