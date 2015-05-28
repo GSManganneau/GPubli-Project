@@ -2,9 +2,9 @@ package modelsDao;
 
 import java.sql.Connection;
 
-import beans.Type;
+import beans.Types;
 
-public class TypeDao extends Dao<Type>{
+public class TypeDao extends Dao<Types>{
 
 	public TypeDao(DAOFactory entityFactory) {
 		
@@ -13,26 +13,26 @@ public class TypeDao extends Dao<Type>{
 
 
 	@Override
-	public Type find(int id) {
+	public Types find(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	
 	@Override
-	public boolean create(Type object) {
+	public boolean create(Types object) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean update(Type object) {
+	public boolean update(Types object) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean delete(Type object) {
+	public boolean delete(Types object) {
 		// TODO Auto-generated method stub
 		return false;
 	}

@@ -36,16 +36,17 @@ public class Home extends HttpServlet {
              
         }
 
+        
         public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             HttpSession s = request.getSession();
             
             //Si l'utilsateur n'est pas connecté il est redirigé vers la page connexion
             
-            String connected=(String)s.getAttribute("connected");
+            /*String connected=(String)s.getAttribute("connected");
     		if(connected==null){
     			response.sendRedirect("/GPubli-Project/connexion");
     		}
-            else {
+            else {*/
          
             request.setAttribute("publications", publicationDao.lister());
             request.setAttribute("session", s);
@@ -53,7 +54,7 @@ public class Home extends HttpServlet {
             request.setAttribute("jsContent",jsContent);
             request.setAttribute("cssContent",cssContent);
             this.getServletContext().getRequestDispatcher("/front-office/template.jsp").forward(request, response);
-            }
+           // }
         }
 
         public void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {

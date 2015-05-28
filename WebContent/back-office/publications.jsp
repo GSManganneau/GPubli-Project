@@ -13,8 +13,8 @@
         </c:forEach>
       
     </ul>
-    <p>Bonjour utilisateur numéro</p>  <c:out value="${session.getAttribute(\"author_id\")}" />    
-    <p>Votre numéro LDAP est </p> <c:out value="${session.getAttribute(\"ldap_id\")}" />  
+    <p>Bonjour utilisateur numéro</p>  <c:out value="${session.getAttribute(\"authorId\")}" />    
+    <p>Votre numéro LDAP est </p> <c:out value="${session.getAttribute(\"ldapId\")}" />  
     <p>Votre prénom est:</p> <c:out value="${session.getAttribute(\"firstname\")}" /> 
 </body>
 </html>

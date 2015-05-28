@@ -5,4 +5,4 @@ Les règles à suivre:
 -Dans le doGet de chaque servlet, toujours faire le test de connexion, si l'utilsateur n'est pas connecté  le rediriger vers la 
 page connexion
 -j'ai bidouillé unpeu la connexion, on peut se connecter hors de l'ISEP
-Créer juste dans votre BDD un utilisateur avec le numero eldap 8329
+Créer juste dans votre BDD un utilisateur avec le numero ldap 8329

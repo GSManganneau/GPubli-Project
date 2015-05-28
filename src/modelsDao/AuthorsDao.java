@@ -30,22 +30,22 @@ public class AuthorsDao extends Dao<Authors>{
 		// TODO Auto-generated method stub
 		try{
 			connexion=factory.getConnection();
-			String query= "SELECT * FROM Author where ldap_id="+id;
+			String query= "SELECT * FROM Author where ldapId="+id;
 			statement = connexion.createStatement();
 	        resultat = statement.executeQuery(query);
 	     // Récupération des données
             while (resultat.next()) {
                 String firstname = resultat.getString("firstname");
                 String lastname = resultat.getString("lastname");
-                int author_id=resultat.getInt("author_id");
-                int eldap_id=resultat.getInt("ldap_id");
-                int team_id= resultat.getInt("team_id");
+                int authorId=resultat.getInt("authorId");
+                int ldapId=resultat.getInt("ldapId");
+                int teamId= resultat.getInt("teamId");
                 
                author = new Authors();
                author.setFirstname(firstname);
                author.setLastname(lastname);
-               author.setEldap_id(eldap_id);
-               author.setAuthor_id(author_id);
+               author.setLdapId(ldapId);
+               author.setAuthorId(authorId);
                
                     
             }
@@ -62,18 +62,18 @@ public class AuthorsDao extends Dao<Authors>{
 		Connection connexion = null;
         String firstname=object.getFirstname();
         String lastname=object.getLastname();
-        int team_id=object.getTeam().getTeam_id();
-        int eldap_id=object.getEldap_id();
+        int teamId=object.getTeam().getTeamId();
+        int ldapId=object.getLdapId();
         		try{
         			
         	            
         			connexion=factory.getConnection();
-        			String query= "INSERT INTO  Author (firstname,lastname,team_id,ldap_id) VALUES (?,?,?,?)";
+        			String query= "INSERT INTO  Author (firstname,lastname,teamId,ldapId) VALUES (?,?,?,?)";
         			PreparedStatement preparedStatement = connexion.prepareStatement(query);
         			preparedStatement.setString(1,firstname);
     	            preparedStatement.setString(2,lastname);
-    	            preparedStatement.setInt(3,team_id);
-    	            preparedStatement.setInt(4,eldap_id);
+    	            preparedStatement.setInt(3,teamId);
+    	            preparedStatement.setInt(4,ldapId);
     	           
     	            
     	            preparedStatement.executeUpdate();
@@ -94,7 +94,7 @@ public class AuthorsDao extends Dao<Authors>{
         try {
             connexion =factory.getConnection();
             statement = connexion.createStatement();
-            resultat = statement.executeQuery("SELECT a.firstname, a.lastname, t.name FROM author a,team t WHERE t.team_id = a.team_id");
+            resultat = statement.executeQuery("SELECT a.firstname, a.lastname, t.name FROM author a,team t WHERE t.teamId = a.teamId");
 
             while (resultat.next()) {
             	String team_name = resultat.getString("name");

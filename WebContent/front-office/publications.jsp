@@ -4,8 +4,9 @@
             <p>Type publication: <c:out value="${ publication.type.name}"/></p>
             <p>Date d'ajout: <c:out value="${ publication.date}"/></p>
            	<p>Resume: <c:out value="${ publication.resume }" /></p>
-    		<p>Journal de parution: <c:out value="${publication.journal}" /></p>
-    		<p>Titre du Livre: <c:out value="${publication.book_title }"></c:out>
+           	<c:forEach var="attribut" items ="${publication.type.attributes}">
+    		<p><c:out value="${ attribut.attributeName}"/> : <c:out value="${attribut.datas}" /></p>
+    		</c:forEach>
             	<br/>
         </c:forEach>
         

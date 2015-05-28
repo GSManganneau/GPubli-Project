@@ -1,21 +1,22 @@
 package beans;
 
+
 public class Publications {
 
 	@Override
 	public String toString() {
-		return "Publications [id=" + id + ", type=" + type + ", date=" + date
-				+ ", resume=" + resume + ", journal=" + journal
-				+ ", book_title=" + book_title + ", title=" + title + "]";
+		return "Publications [id=" + publicationId + ", type=" + type + ", date=" + date
+				+ ", resume=" + resume 
+				+  ", title=" + title + "]";
 	}
-	private int id;
-	private Type type = new Type();
+	private int publicationId;
+	private Types type = new Types();
 	private String date;
 	private String resume;
-	private String journal;
-	private String book_title;
 	private String title;
 	private String url;
+	
+	
 	public String getDate() {
 		return date;
 	}
@@ -28,34 +29,23 @@ public class Publications {
 	public void setResume(String resume) {
 		this.resume = resume;
 	}
-	public String getJournal() {
-		return journal;
-	}
-	public void setJournal(String journal) {
-		this.journal = journal;
-	}
-	public String getBook_title() {
-		return book_title;
-	}
-	public void setBook_title(String book_title) {
-		this.book_title = book_title;
-	}
+	
 	public String getTitle() {
 		return title;
 	}
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public int getId() {
-		return id;
+	public int getPublicationId() {
+		return publicationId;
 	}
 	public void setId(int id) {
-		this.id = id;
+		this.publicationId = id;
 	}
-	public Type getType() {
+	public Types getType() {
 		return type;
 	}
-	public void setType(Type type) {
+	public void setType(Types type) {
 		this.type = type;
 	}
 	public String getUrl() {

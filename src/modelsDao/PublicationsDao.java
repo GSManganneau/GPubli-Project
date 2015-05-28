@@ -8,8 +8,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import beans.Attributes;
 import beans.Publications;
-import beans.Type;
+import beans.Types;
 
 public class PublicationsDao extends Dao<Publications>{
 
@@ -32,28 +33,23 @@ public class PublicationsDao extends Dao<Publications>{
 		// TODO Auto-generated method stub
 		Connection connexion = null;
   
-        int type =object.getType().getType_id();
+        int type =object.getType().getTypeId();
+        List<Attributes> attributes = object.getType().getAttributes();
         String date=object.getDate();
         String resume =object.getResume();
-        String journal = object.getJournal();
-        String book_title= object.getBook_title();
         String title = object.getTitle();
         String url = object.getUrl();
         		try{
         			
         	            
         			connexion=factory.getConnection();
-        			String query= "INSERT INTO  Publication (date,type_id,resume,book_title,title,journal,url) VALUES (?,?,?,?,?,?,?)";
+        			String query= "INSERT INTO  Publication (date,typeId,resume,title,url) VALUES (?,?,?,?,?)";
         			PreparedStatement preparedStatement = connexion.prepareStatement(query);
         			preparedStatement.setString(1,date);
     	            preparedStatement.setInt(2,type);
     	            preparedStatement.setString(3,resume);
-    	            preparedStatement.setString(4,book_title);
-    	            preparedStatement.setString(5,title);
-    	            preparedStatement.setString(6,journal);
-    	            preparedStatement.setString(7, url);
-    	          
-    	 
+    	            preparedStatement.setString(4,title);
+    	            preparedStatement.setString(5, url);
     	            preparedStatement.executeUpdate();
 
         		}catch(SQLException e){
@@ -76,35 +72,55 @@ public class PublicationsDao extends Dao<Publications>{
 	}
 	public List<Publications> lister() {
         List<Publications> publications = new ArrayList<Publications>();
+        
         Connection connexion = null;
         Statement statement = null;
+        Statement statement2=null;
         ResultSet resultat = null;
+        ResultSet resultat2	= null;
 
         try {
             connexion =factory.getConnection();
             statement = connexion.createStatement();
-            resultat = statement.executeQuery("SELECT *,t.name FROM  Publication p, Type t where p.type_id=t.type_id ORDER BY publication_id DESC");
-
+            statement2=connexion.createStatement();
+            resultat = statement.executeQuery("SELECT * FROM  Publications "
+            		+ "natural join Types ORDER BY publicationId DESC");
             while (resultat.next()) {
-                int type_id = resultat.getInt("type_id");
-                String type_name= resultat.getString("name");
-               
-                Type type = new Type();
-                type.setType_id(type_id);
-                type.setName(type_name);
-                
-                String resume = resultat.getString("resume");
-                String journal= resultat.getString("journal");
+            	String resume = resultat.getString("resumes");
                 String date=resultat.getString("date");
-                String book_title= resultat.getString("book_title");
                 String title = resultat.getString("title");
+                int id = resultat.getInt("publicationId");
+                String typeName= resultat.getString("typeName");
+                int typeId= resultat.getInt("typeId");
+                
+                String query="select * from DataPublications "
+                		+ "natural join TypeHasAttributes "
+                		+ "natural join Attributes A "
+                		+ "natural join Types "
+                		+ "WHERE publicationId="+id;
+                System.out.print(query);
+                resultat2= statement2.executeQuery(query);
+                List<Attributes> attributes = new ArrayList<Attributes>();
+                while(resultat2.next()){
+                	String attributeName = resultat2.getString("attributeName");
+                	String data= resultat2.getString("datas");
+                	Attributes attribute = new Attributes();
+                	
+                	attribute.setAttributeName(attributeName);
+                	attribute.setDatas(data);
+                	attributes.add(attribute);
+                	
+                } 
+
+                Types type = new Types();
+                type.setTypeId(typeId);
+                type.setName(typeName);
+                type.setAttributes(attributes);
                 
                 Publications publication = new Publications();
                 publication.setType(type);
                 publication.setResume(resume);
-                publication.setJournal(journal);
                 publication.setDate(date);
-                publication.setBook_title(book_title);
                 publication.setTitle(title);
                
 
@@ -115,6 +131,7 @@ public class PublicationsDao extends Dao<Publications>{
         }
         return publications;
     }
+	
 
 
 }

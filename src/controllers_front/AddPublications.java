@@ -59,22 +59,18 @@ public class AddPublications extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int type_id=1;
+		int typeId=1;
 		String type_name =request.getParameter("type");
         String date = "";
         String resume =request.getParameter("resume");
-        String journal = request.getParameter("journal");
-        String book_title= request.getParameter("book_title");
         String title = request.getParameter("title");
         String url = request.getParameter("url");
         if (type_name.equals("article")){
-        	type_id=1;
+        	typeId=1;
         }
         Publications publication = new Publications();
-        publication.getType().setType_id(type_id);
-        publication.setBook_title(book_title);
+        publication.getType().setTypeId(typeId);
         publication.setDate(date);
-        publication.setJournal(journal);
         publication.setResume(resume);
         publication.setTitle(title);
         publication.setUrl(url);

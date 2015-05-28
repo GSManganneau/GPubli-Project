@@ -52,7 +52,7 @@ public class Connexion extends HttpServlet {
 		HttpSession s;
 		String l = request.getParameter("login");
 		String p = request.getParameter("password");
-		LDAPObject reponse =null;
+		/*LDAPObject reponse =null;
 		try {
 			 reponse =LDAPaccess.LDAPget(l, p);
 		} catch (Exception e) {
@@ -60,31 +60,33 @@ public class Connexion extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-			//int id= Integer.parseInt(reponse.getNumber());
-		 int id =8329;
+			int id= Integer.parseInt(reponse.getNumber());*/
+		int id =8329;
 			Authors author= authorDao.find(id);
-			if(author==null){
+			/*if(author==null){
 				Authors nwAuthor = new Authors();
-				nwAuthor.setEldap_id(id);
+				nwAuthor.setLdapId(id);
 				String firstname = reponse.getNom().split(" ")[0];
 				nwAuthor.setFirstname(firstname);
 				nwAuthor.setLastname(reponse.getNomFamille());
 				authorDao.create(nwAuthor);
 				s = request.getSession();
-				Authors createSessionAuthor= authorDao.find(nwAuthor.getEldap_id());
-				s.setAttribute("author_id",createSessionAuthor.getAuthor_id() ); 
-				s.setAttribute("ldap_id",createSessionAuthor.getEldap_id() );
-				s.setAttribute("firstname",createSessionAuthor.getFirstname() ); 
+				Authors createSessionAuthor= authorDao.find(nwAuthor.getLdapId());
+				s.setAttribute("authorId",createSessionAuthor.getAuthorId() ); 
+				s.setAttribute("ldapId",createSessionAuthor.getLdapId() );
+				s.setAttribute("firstname",createSessionAuthor.getFirstname()); 
+				s.setAttribute("name", createSessionAuthor.getLastname());
 			}
-			else{
+			else{*/
 				s = request.getSession();
 				s.setAttribute("connected", "true");
-				s.setAttribute("author_id",author.getAuthor_id() );
-				s.setAttribute("ldap_id", author.getEldap_id());
+				s.setAttribute("authorId",author.getAuthorId() );
+				s.setAttribute("ldapId", author.getLdapId());
 				s.setAttribute("firstname", author.getFirstname());
+				s.setAttribute("name", author.getLastname());
 				 
 				
-			}
+			//}
 			response.sendRedirect("/GPubli-Project/home");
 			
 		

@@ -2,3 +2,5 @@
 /connexionLdap/
 /controllers_front/
 /controllers_back/
+/beans/
+/modelsDao/

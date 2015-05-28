@@ -21,11 +21,11 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `Author` (
-`author_id` int(11) NOT NULL,
+`authorId` int(11) NOT NULL,
   `firstname` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `lastname` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `ldap_id` int(11) NOT NULL,
-  `team_id` int(11) NOT NULL
+  `ldapId` int(11) NOT NULL,
+  `teamId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -35,9 +35,9 @@ CREATE TABLE `Author` (
 --
 
 CREATE TABLE `Publication` (
-`publication_id` int(11) NOT NULL,
+`publicationId` int(11) NOT NULL,
   `date` date NOT NULL,
-  `type_id` int(11) NOT NULL,
+  `typeId` int(11) NOT NULL,
   `resume` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   `book_title` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `title` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
@@ -49,7 +49,7 @@ CREATE TABLE `Publication` (
 -- Contenu de la table `Publication`
 --
 
-INSERT INTO `Publication` (`publication_id`, `date`, `type_id`, `resume`, `book_title`, `title`, `journal`, `url`) VALUES
+INSERT INTO `Publication` (`publicationId`, `date`, `typeId`, `resume`, `book_title`, `title`, `journal`, `url`) VALUES
 (1, '2015-05-04', 1, 'SQSDQSDQSDQSD', 'SDQSD', 'QSDQSD', 'QSDQDSQD', 'QSDQSDQSDQSD'),
 (2, '2015-05-14', 1, 'ERERT', 'ZERZEREZ', 'ZERZER', 'EZRZR', 'ZERZRER');
 
@@ -60,8 +60,8 @@ INSERT INTO `Publication` (`publication_id`, `date`, `type_id`, `resume`, `book_
 --
 
 CREATE TABLE `Repository` (
-  `publication_id` int(11) NOT NULL,
-  `author_id` int(11) NOT NULL
+  `publicationId` int(11) NOT NULL,
+  `authorId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -71,7 +71,7 @@ CREATE TABLE `Repository` (
 --
 
 CREATE TABLE `Team` (
-`team_id` int(11) NOT NULL,
+`teamId` int(11) NOT NULL,
   `name` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   `thumbnail` varchar(500) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -83,7 +83,7 @@ CREATE TABLE `Team` (
 --
 
 CREATE TABLE `Type` (
-`type_id` int(11) NOT NULL,
+`typeId` int(11) NOT NULL,
   `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -95,25 +95,25 @@ CREATE TABLE `Type` (
 -- Index pour la table `Author`
 --
 ALTER TABLE `Author`
- ADD PRIMARY KEY (`author_id`);
+ ADD PRIMARY KEY (`authorId`);
 
 --
 -- Index pour la table `Publication`
 --
 ALTER TABLE `Publication`
- ADD PRIMARY KEY (`publication_id`);
+ ADD PRIMARY KEY (`publicationId`);
 
 --
 -- Index pour la table `Team`
 --
 ALTER TABLE `Team`
- ADD PRIMARY KEY (`team_id`);
+ ADD PRIMARY KEY (`teamId`);
 
 --
 -- Index pour la table `Type`
 --
 ALTER TABLE `Type`
- ADD PRIMARY KEY (`type_id`);
+ ADD PRIMARY KEY (`typeId`);
 
 --
 -- AUTO_INCREMENT pour les tables exportées
@@ -123,19 +123,19 @@ ALTER TABLE `Type`
 -- AUTO_INCREMENT pour la table `Author`
 --
 ALTER TABLE `Author`
-MODIFY `author_id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `authorId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `Publication`
 --
 ALTER TABLE `Publication`
-MODIFY `publication_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `publicationId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `Team`
 --
 ALTER TABLE `Team`
-MODIFY `team_id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `teamId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `Type`
 --
 ALTER TABLE `Type`
-MODIFY `type_id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `typeId` int(11) NOT NULL AUTO_INCREMENT;

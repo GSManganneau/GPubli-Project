@@ -1,24 +1,24 @@
 package beans;
 
 public class Authors {
-private int eldap_id;
-private int author_id;
+	private int ldapId;
+private int authorId;
 private String firstname;
 private String lastname;
 private Teams team = new Teams();
 
 
-public int getEldap_id() {
-	return eldap_id;
+public int getLdapId() {
+	return ldapId;
 }
-public void setEldap_id(int eldap_id) {
-	this.eldap_id = eldap_id;
+public void setLdapId(int ldapId) {
+	this.ldapId = ldapId;
 }
-public int getAuthor_id() {
-	return author_id;
+public int getAuthorId() {
+	return authorId;
 }
-public void setAuthor_id(int author_id) {
-	this.author_id = author_id;
+public void setAuthorId(int authorId) {
+	this.authorId = authorId;
 }
 public String getFirstname() {
 	return firstname;
