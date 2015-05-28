@@ -35,11 +35,11 @@ public class AutoComplete extends HttpServlet {
 			DataSource ds = DataSource.getInstace();
 			Connection conn = ds.getConnection();
 			Statement stmt = conn.createStatement();
-			String sql = "SELECT firstname FROM author " + "UNION "
-					+ "SELECT lastname FROM author " + "UNION "
-					+ "SELECT title FROM publication " + "UNION "
-					+ "SELECT name FROM team " + "UNION "
-					+ "SELECT name FROM type " + "ORDER BY 1";
+			String sql = "SELECT firstname FROM authors " + "UNION "
+					+ "SELECT lastname FROM authors " + "UNION "
+					+ "SELECT title FROM publications " + "UNION "
+					+ "SELECT name FROM teams " + "UNION "
+					+ "SELECT name FROM types " + "ORDER BY 1";
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				al.add(rs.getString("firstname"));
