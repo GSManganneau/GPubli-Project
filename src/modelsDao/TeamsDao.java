@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import beans.Authors;
+import beans.Publications;
 import beans.Teams;
 
 public class TeamsDao extends Dao<Teams>{
@@ -76,6 +77,37 @@ public class TeamsDao extends Dao<Teams>{
         } catch (SQLException e) {
             e.printStackTrace();
         }
+		return Teams;
+	}
+	
+	public List<Teams> search(String field) {
+		List<Teams> Teams = new ArrayList<Teams>();
+		Connection connexion = null;
+        Statement statement = null;
+        ResultSet resultat = null;
+      
+		// TODO Auto-generated method stub
+		try{
+			connexion=factory.getConnection();
+			String query = "SELECT teamName FROM teams WHERE teamName like '%"+field+"%'";
+			
+			statement = connexion.createStatement();
+	        resultat = statement.executeQuery(query);
+	        
+	        // Récupération des données
+            while (resultat.next()) {
+                          
+            	//Données de la table team
+                String name = resultat.getString("teamName");          
+                
+                Teams Team = new Teams();
+                Team.setName(name);
+                
+                Teams.add(Team);
+            }
+		}catch (SQLException e) {
+            e.printStackTrace();
+		}
 		return Teams;
 	}
 

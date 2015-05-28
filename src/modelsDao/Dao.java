@@ -6,7 +6,7 @@ public abstract class Dao<T> {
 
 
 	public abstract T find(int id);
-
+	
 	public abstract boolean create(T object);
 
 	public abstract boolean update(T object);
