@@ -89,7 +89,7 @@ public class TeamsDao extends Dao<Teams>{
 		// TODO Auto-generated method stub
 		try{
 			connexion=factory.getConnection();
-			String query = "SELECT name FROM team WHERE name like '%"+field+"%'";
+			String query = "SELECT teamName FROM teams WHERE teamName like '%"+field+"%'";
 			
 			statement = connexion.createStatement();
 	        resultat = statement.executeQuery(query);
@@ -98,7 +98,7 @@ public class TeamsDao extends Dao<Teams>{
             while (resultat.next()) {
                           
             	//Données de la table team
-                String name = resultat.getString("name");          
+                String name = resultat.getString("teamName");          
                 
                 Teams Team = new Teams();
                 Team.setName(name);

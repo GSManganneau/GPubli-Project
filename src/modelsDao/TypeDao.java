@@ -53,7 +53,7 @@ public class TypeDao extends Dao<Type>{
 		// TODO Auto-generated method stub
 		try{
 			connexion=factory.getConnection();
-			String query = "SELECT name FROM type WHERE name like '%"+field+"%'";
+			String query = "SELECT typeName FROM types WHERE typeName like '%"+field+"%'";
 			
 			statement = connexion.createStatement();
 	        resultat = statement.executeQuery(query);
@@ -62,7 +62,7 @@ public class TypeDao extends Dao<Type>{
             while (resultat.next()) {
                           
             	//Données de la table type
-                String name = resultat.getString("name");          
+                String name = resultat.getString("typeName");          
                 
                 Type Type = new Type();
                 Type.setName(name);

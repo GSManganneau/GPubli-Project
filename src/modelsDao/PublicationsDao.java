@@ -126,7 +126,7 @@ public class PublicationsDao extends Dao<Publications>{
 		// TODO Auto-generated method stub
 		try{
 			connexion=factory.getConnection();
-			String query = "SELECT * FROM publication WHERE title like '%"+field+"%' OR resume like '%"+field+"%'";
+			String query = "SELECT * FROM publications WHERE title like '%"+field+"%' OR resume like '%"+field+"%'";
 			
 			statement = connexion.createStatement();
 	        resultat = statement.executeQuery(query);

@@ -57,7 +57,6 @@ public class Search extends HttpServlet {
 		request.setAttribute("Authors", authorsDao.search(search));
 		request.setAttribute("Publications", publicationsDao.search(search));
 		request.setAttribute("Teams", teamsDao.search(search));
-		request.setAttribute("Types", typeDao.search(search));
 
 		request.setAttribute("content", content);
 		getServletContext().getRequestDispatcher("/front-office/template.jsp")
