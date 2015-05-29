@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import beans.Attributes;
+import beans.Authors;
 import beans.Publications;
 import beans.Types;
 
@@ -43,7 +44,7 @@ public class PublicationsDao extends Dao<Publications>{
         			
         	            
         			connexion=factory.getConnection();
-        			String query= "INSERT INTO  Publication (date,typeId,resume,title,url) VALUES (?,?,?,?,?)";
+        			String query= "INSERT INTO  Publications (date,typeId,resume,title,url) VALUES (?,?,?,?,?)";
         			PreparedStatement preparedStatement = connexion.prepareStatement(query);
         			preparedStatement.setString(1,date);
     	            preparedStatement.setInt(2,type);
@@ -86,7 +87,7 @@ public class PublicationsDao extends Dao<Publications>{
             resultat = statement.executeQuery("SELECT * FROM  Publications "
             		+ "natural join Types ORDER BY publicationId DESC");
             while (resultat.next()) {
-            	String resume = resultat.getString("resumes");
+            	String resume = resultat.getString("resume");
                 String date=resultat.getString("date");
                 String title = resultat.getString("title");
                 int id = resultat.getInt("publicationId");
@@ -131,6 +132,40 @@ public class PublicationsDao extends Dao<Publications>{
         }
         return publications;
     }
+
+
+	public List<Publications> search(String field) {
+		// TODO Auto-generated method stub
+		List<Publications> Publications = new ArrayList<Publications>();
+		Connection connexion = null;
+        Statement statement = null;
+        ResultSet resultat = null;
+
+		try{
+			connexion=factory.getConnection();
+			String query = "SELECT * FROM publications WHERE title like '%"+field+"%'";
+			
+			statement = connexion.createStatement();
+	        resultat = statement.executeQuery(query);
+	        
+	        // Récupération des données
+            while (resultat.next()) {
+                          
+            	//Données de la table team
+                String title = resultat.getString("title");   
+                String resume = resultat.getString("resume");  
+                
+                Publications Publication = new Publications();
+                Publication.setTitle(title);
+                Publication.setResume(resume);
+                
+                Publications.add(Publication);
+            }
+		}catch (SQLException e) {
+            e.printStackTrace();
+		}
+		return Publications;
+	}
 	
 
 

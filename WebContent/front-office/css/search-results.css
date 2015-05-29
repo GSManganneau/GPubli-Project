@@ -1,6 +1,6 @@
 /* ---- CONTENT ---- */
 
-#content .pager .pager-select {
+#content .pager li select {
 	display: inline-block;
 	width: 60px;
 }

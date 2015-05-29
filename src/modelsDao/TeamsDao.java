@@ -56,7 +56,7 @@ public class TeamsDao extends Dao<Teams>{
         try {
             connexion = factory.getConnection();
             statement = connexion.createStatement();
-            resultat  = statement.executeQuery("SELECT * FROM team");
+            resultat  = statement.executeQuery("SELECT * FROM teams");
 
             while (resultat.next()) {
                 String name = resultat.getString("name");
