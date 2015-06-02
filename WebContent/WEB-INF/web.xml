@@ -43,27 +43,11 @@
     <url-pattern>/connexion</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>AddPublications</servlet-name>
-    <servlet-class>controllers_front.AddPublications</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AddPublications</servlet-name>
-    <url-pattern>/addpublications</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>Search</servlet-name>
-    <servlet-class>controllers.Search</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Search</servlet-name>
-    <url-pattern>/search</url-pattern>
-  </servlet-mapping>
-  <servlet>
     <servlet-name>Auto</servlet-name>
     <servlet-class>com.autocomplete.sample.AutoComplete</servlet-class>
   </servlet>
   <servlet-mapping>
-     <servlet-name>Auto</servlet-name>
-     <url-pattern>/Auto</url-pattern>
+    <servlet-name>Auto</servlet-name>
+    <url-pattern>/Auto</url-pattern>
   </servlet-mapping>
 </web-app>

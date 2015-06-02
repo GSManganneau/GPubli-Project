@@ -12,8 +12,8 @@ import beans.Authors;
 import beans.Teams;
 
 public class AuthorsDao extends Dao<Authors>{
-	
-	 private DAOFactory factory;
+
+	private DAOFactory factory;
 
 	    public AuthorsDao(DAOFactory daoFactory) {
 	        this.factory = daoFactory;
@@ -140,7 +140,7 @@ public class AuthorsDao extends Dao<Authors>{
 			
 			statement = connexion.createStatement();
 	        resultat = statement.executeQuery(query);
-	        
+	              
 	        // Récupération des données
             while (resultat.next()) {
                           
@@ -150,14 +150,42 @@ public class AuthorsDao extends Dao<Authors>{
                 
                 Authors Author = new Authors();
                 Author.setFirstname(firstname);
-                Author.setFirstname(lastname);
+                Author.setLastname(lastname);
                 
                 Authors.add(Author);
             }
+            
 		}catch (SQLException e) {
             e.printStackTrace();
 		}
 		return Authors;
 	}
-
+	
+	public Authors count(String field) {
+		// TODO Auto-generated method stub
+		Authors Author = new Authors();
+		Connection connexion = null;
+        Statement statement = null;
+        ResultSet resultat = null;
+        int i;
+		try{
+			connexion=factory.getConnection();
+			String query = "SELECT COUNT(*) AS nombre FROM authors WHERE firstname like '%"+field+"%' OR lastname like '%"+field+"%'";
+			
+			statement = connexion.createStatement();
+	        resultat = statement.executeQuery(query);
+	        
+	        // Récupération des données
+            while (resultat.next()) {
+          	   String nombre = resultat.getString("nombre");
+          	  
+          	   i = Integer.parseInt(nombre); 
+          	   Author.setCount(i);        	   
+            }
+            
+		}catch (SQLException e) {
+            e.printStackTrace();
+		}
+		return Author;
+	}
 }

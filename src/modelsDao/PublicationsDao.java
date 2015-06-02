@@ -141,23 +141,28 @@ public class PublicationsDao extends Dao<Publications>{
         Statement statement = null;
         ResultSet resultat = null;
 
+
 		try{
 			connexion=factory.getConnection();
 			String query = "SELECT * FROM publications WHERE title like '%"+field+"%'";
 			
 			statement = connexion.createStatement();
 	        resultat = statement.executeQuery(query);
-	        
+
 	        // Récupération des données
             while (resultat.next()) {
                           
             	//Données de la table team
                 String title = resultat.getString("title");   
-                String resume = resultat.getString("resume");  
+                String resume = resultat.getString("resume");
+                String date = resultat.getString("date");
+                String url = resultat.getString("url");
                 
                 Publications Publication = new Publications();
                 Publication.setTitle(title);
                 Publication.setResume(resume);
+                Publication.setDate(date);
+                Publication.setUrl(url);
                 
                 Publications.add(Publication);
             }
@@ -167,6 +172,35 @@ public class PublicationsDao extends Dao<Publications>{
 		return Publications;
 	}
 	
+	public Publications count(String field) {
+		// TODO Auto-generated method stub
+		Publications Publication = new Publications();
+		Connection connexion = null;
+        Statement statement = null;
+        ResultSet resultat = null;
+        int i;
+        
+		try{
+			connexion=factory.getConnection();
+			String query = "SELECT COUNT(*) AS nombre FROM publications WHERE title like '%"+field+"%'";
+			
+			statement = connexion.createStatement();
+	        resultat = statement.executeQuery(query);
+	        
+	        // Récupération des données
+            while (resultat.next()) {
+          	   String nombre = resultat.getString("nombre");
+          	   
+          	   i = Integer.parseInt(nombre); 
+          	   Publication.setCount(i);
+        	   
+            }
+            
+		}catch (SQLException e) {
+            e.printStackTrace();
+		}
+		return Publication;
+	}
 
 
 }
