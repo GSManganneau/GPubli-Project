@@ -12,7 +12,6 @@
 </c:forEach>
 </select><br><br>
 <button type=submit >Soumettre</button>
-
 </form>
 <p class="test"></p>
 

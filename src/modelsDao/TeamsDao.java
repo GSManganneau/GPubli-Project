@@ -56,7 +56,7 @@ public class TeamsDao extends Dao<Teams>{
         try {
             connexion = factory.getConnection();
             statement = connexion.createStatement();
-            resultat  = statement.executeQuery("SELECT * FROM team");
+            resultat  = statement.executeQuery("SELECT * FROM teams");
 
             while (resultat.next()) {
                 String name = resultat.getString("name");
@@ -98,10 +98,10 @@ public class TeamsDao extends Dao<Teams>{
             while (resultat.next()) {
                           
             	//Données de la table team
-                String name = resultat.getString("teamName");          
+                String teamName = resultat.getString("teamName");          
                 
                 Teams Team = new Teams();
-                Team.setName(name);
+                Team.setName(teamName);
                 
                 Teams.add(Team);
             }
@@ -109,6 +109,37 @@ public class TeamsDao extends Dao<Teams>{
             e.printStackTrace();
 		}
 		return Teams;
+	}
+
+
+	public Teams count(String field) {
+		// TODO Auto-generated method stub
+		Teams Team = new Teams();
+		Connection connexion = null;
+        Statement statement = null;
+        ResultSet resultat = null;
+        int i;
+        
+		try{
+			connexion=factory.getConnection();
+			String query = "SELECT COUNT(teamName) AS nombre FROM teams WHERE teamName like '%"+field+"%'";
+			
+			statement = connexion.createStatement();
+	        resultat = statement.executeQuery(query);
+	        
+	        // Récupération des données
+            while (resultat.next()) {
+          	   String nombre = resultat.getString("nombre");
+          	   
+          	   i = Integer.parseInt(nombre); 
+          	   Team.setCount(i);
+          	    	   
+            }
+            
+		}catch (SQLException e) {
+            e.printStackTrace();
+		}
+		return Team;
 	}
 
 }

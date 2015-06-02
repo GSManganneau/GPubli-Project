@@ -172,6 +172,7 @@ public class PublicationsDao extends Dao<Publications>{
 		return Publications;
 	}
 	
+<<<<<<< HEAD
 	public int attributeId(String s) {
 		int attributeId = 0;
 		Connection connexion = null;
@@ -198,7 +199,7 @@ public class PublicationsDao extends Dao<Publications>{
 		ResultSet resultat = null;
 		try{}
 		return false;
-        
+=======
 	public Publications count(String field) {
 		// TODO Auto-generated method stub
 		Publications Publication = new Publications();
@@ -227,7 +228,7 @@ public class PublicationsDao extends Dao<Publications>{
             e.printStackTrace();
 		}
 		return Publication;
-
+>>>>>>> b22ed3da6aa35468ec548f6b4b5ad382784429ce
 	}
 
 

@@ -15,19 +15,20 @@ import modelsDao.PublicationsDao;
 import modelsDao.TeamsDao;
 
 
+
 /**
  * Servlet implementation class Search
  */
-@WebServlet("/Search")
-public class Search extends HttpServlet {
+@WebServlet("/SearchTeam")
+public class SearchTeam extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public String content = "search.jsp";
+	public String content = "searchTeam.jsp";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public Search() {
+	public SearchTeam() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -52,15 +53,13 @@ public class Search extends HttpServlet {
 		// TODO Auto-generated method stub
 		String search = request.getParameter("search");
 
-		request.setAttribute("Authors", authorsDao.search(search));
-		request.setAttribute("AuthorCount", authorsDao.count(search));
-		
-		request.setAttribute("Publications", publicationsDao.search(search));
-		request.setAttribute("PublicationCount", publicationsDao.count(search));
-		
 		request.setAttribute("Teams", teamsDao.search(search));
+		
+		request.setAttribute("AuthorCount", authorsDao.count(search));
+		request.setAttribute("PublicationCount", publicationsDao.count(search));
 		request.setAttribute("TeamCount", teamsDao.count(search));
 
+		
 		request.setAttribute("content", content);
 		request.setAttribute("search", search);
 		getServletContext().getRequestDispatcher("/front-office/template.jsp")

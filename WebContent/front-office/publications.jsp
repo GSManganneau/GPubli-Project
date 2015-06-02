@@ -1,5 +1,6 @@
 
 
+
         <c:forEach var="publication" items="${publications}">
             <p>Titre: <c:out value="${ publication.title}"/></p>
             <p>Type publication: <c:out value="${ publication.type.name}"/></p>
@@ -11,4 +12,5 @@
             	<br/>
         </c:forEach>
         
+
 
