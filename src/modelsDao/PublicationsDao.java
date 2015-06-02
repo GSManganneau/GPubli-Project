@@ -114,7 +114,7 @@ public class PublicationsDao extends Dao<Publications>{
 
                 Types type = new Types();
                 type.setTypeId(typeId);
-                type.setName(typeName);
+                type.setTypeName(typeName);
                 type.setAttributes(attributes);
                 
                 Publications publication = new Publications();
@@ -132,6 +132,33 @@ public class PublicationsDao extends Dao<Publications>{
         return publications;
     }
 	
+	public int attributeId(String s) {
+		int attributeId = 0;
+		Connection connexion = null;
+		Statement statement = null;
+		ResultSet resultat = null;
+		try {
+			connexion = factory.getConnection();
+			statement = connexion.createStatement();
+			String query = "SELECT (attributeId) FROM Attributes WHERE (attributeName ="
+					+ s;
+			resultat = statement.executeQuery(query);
+			while (resultat.next()) {
+				attributeId = resultat.getInt("attributeId");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return attributeId;
+	}
+	
+	public boolean createData( int publicationId, int typeId, String data){
+		Connection connexion = null;
+		Statement statement = null;
+		ResultSet resultat = null;
+		try{}
+		return false;
+	}
 
 
 }

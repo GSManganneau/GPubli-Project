@@ -47,18 +47,8 @@
 						</div>
 					</form>
 
-<<<<<<< HEAD
-					<div class="collapse navbar-collapse" id="navbar-gpubli">
-						<form class="navbar-form navbar-left" role="search">
-							<div class="input-group custom-search-form">
-								<input type="text" class="form-control" placeholder="Search...">
-								<span class="input-group-btn">
-									<button class="btn btn-default" type="button">
-										<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-									</button>
-								</span>
-							</div>
-						</form>
+
+
 							
 						<ul class="nav navbar-nav navbar-right">
 							<li class="dropdown">
@@ -73,23 +63,7 @@
 							</li>
 						</ul>
 					</div>
-=======
-					<ul class="nav navbar-nav navbar-right">
-						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown" role="button" aria-expanded="false"> <span
-								class="caret"></span></a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="#"><span class="glyphicon glyphicon-user"
-										aria-hidden="true"></span>&nbsp; Profil</a></li>
-								<li><a href="#"><span class="glyphicon glyphicon-cog"
-										aria-hidden="true"></span>&nbsp; Paramètres</a></li>
-								<li class="divider"></li>
-								<li><a href="#"><span
-										class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;
-										Déconnexion</a></li>
-							</ul></li>
-					</ul>
->>>>>>> 59910072cd67e0dcc4297eaa3a30c88ddb8f917f
+
 				</div>
 			</div>
 		</nav>
@@ -149,11 +123,14 @@
 
 		});
 	</script>
+	<script type="text/javascript">  
+</script>
 
 	<script src="front-office/js/bootstrap.js"></script>
 	<script src="front-office/js/main.js"></script>
 	<c:if test="${!empty jsContent }">
 		<script src="front-office/js/<c:out value="${jsContent}"/>"></script>
 	</c:if>
+	<script src="front-office/js/form.js"></script>
 </body>
 </html>

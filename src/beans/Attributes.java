@@ -2,6 +2,11 @@ package beans;
 
 public class Attributes {
 	
+	@Override
+	public String toString() {
+		return "Attributes [attributeId=" + attributeId + ", attributeName="
+				+ attributeName + ", datas=" + datas + "]";
+	}
 	private int attributeId;
 	private String attributeName;
 	private String datas;

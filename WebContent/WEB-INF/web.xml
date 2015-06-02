@@ -52,7 +52,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>Search</servlet-name>
-    <servlet-class>controllers.Search</servlet-class>
+    <servlet-class>controllers_front.Search</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Search</servlet-name>
@@ -63,7 +63,15 @@
     <servlet-class>com.autocomplete.sample.AutoComplete</servlet-class>
   </servlet>
   <servlet-mapping>
-     <servlet-name>Auto</servlet-name>
-     <url-pattern>/Auto</url-pattern>
+    <servlet-name>Auto</servlet-name>
+    <url-pattern>/Auto</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ajax</servlet-name>
+    <servlet-class>controllers_front.AjaxFormulaire</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ajax</servlet-name>
+    <url-pattern>/ajax</url-pattern>
   </servlet-mapping>
 </web-app>

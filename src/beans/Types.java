@@ -4,8 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Types {
+	@Override
+	public String toString() {
+		return "Types [typeId=" + typeId + ", typeName=" + typeName
+				+ ", attributes=" + attributes.toString() + "]";
+	}
 	private int typeId;
-	private String name;
+	private String typeName;
 	private List<Attributes> attributes = new ArrayList<Attributes>();
 	
 	public List<Attributes> getAttributes() {
@@ -20,11 +25,11 @@ public class Types {
 	public void setTypeId(int typeId) {
 		this.typeId = typeId;
 	}
-	public String getName() {
-		return name;
+	public String getTypeName() {
+		return typeName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setTypeName(String name) {
+		this.typeName = name;
 	}
 	
 	

@@ -52,7 +52,7 @@ public class Connexion extends HttpServlet {
 		HttpSession s;
 		String l = request.getParameter("login");
 		String p = request.getParameter("password");
-		/*LDAPObject reponse =null;
+		LDAPObject reponse =null;
 		try {
 			 reponse =LDAPaccess.LDAPget(l, p);
 		} catch (Exception e) {
@@ -60,10 +60,10 @@ public class Connexion extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-			int id= Integer.parseInt(reponse.getNumber());*/
-		int id =8329;
+			int id= Integer.parseInt(reponse.getNumber());
+		//int id =8329;
 			Authors author= authorDao.find(id);
-			/*if(author==null){
+			if(author==null){
 				Authors nwAuthor = new Authors();
 				nwAuthor.setLdapId(id);
 				String firstname = reponse.getNom().split(" ")[0];
@@ -77,7 +77,7 @@ public class Connexion extends HttpServlet {
 				s.setAttribute("firstname",createSessionAuthor.getFirstname()); 
 				s.setAttribute("name", createSessionAuthor.getLastname());
 			}
-			else{*/
+			else{
 				s = request.getSession();
 				s.setAttribute("connected", "true");
 				s.setAttribute("authorId",author.getAuthorId() );
@@ -92,4 +92,4 @@ public class Connexion extends HttpServlet {
 		
 	}
 
-}
+	}}

@@ -2,15 +2,20 @@ package controllers_front;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import beans.Publications;
+import beans.Types;
 import modelsDao.DAOFactory;
 import modelsDao.PublicationsDao;
+import modelsDao.TypeDao;
 
 /**
  * Servlet implementation class AddPublications
@@ -24,10 +29,12 @@ public class AddPublications extends HttpServlet {
 		
 		
      private PublicationsDao publicationDao;
+     private TypeDao typeDao;
 
      public void init() throws ServletException {
      	 DAOFactory factory = DAOFactory.getInstance();
           this.publicationDao = factory.getPublications();
+          this.typeDao = factory.getType();
      }
     /**
      * @see HttpServlet#HttpServlet()
@@ -44,14 +51,16 @@ public class AddPublications extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession s = request.getSession();
 		String connected=(String)s.getAttribute("connected");
-		if(connected==null){
-			response.sendRedirect("/GPubli-Project/connexion");
-		}
-		else{
+//		if(connected==null){
+//			response.sendRedirect("/GPubli-Project/connexion");
+//		}
+//		else{
+		List<Types> types = typeDao.lister();
 		request.setAttribute("session", s);
         request.setAttribute("content",content);
+        request.setAttribute("types", types);
         this.getServletContext().getRequestDispatcher("/front-office/template.jsp").forward(request, response);
-		}
+		//}
 	}
 
 	/**
