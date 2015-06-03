@@ -14,6 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Hashtable; 
+import java.util.Iterator; 
+import java.util.Set; 
 
 import com.DataSource.mysql.DataSource;
 
@@ -30,81 +35,105 @@ public class AutoComplete extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+		HttpServletResponse response) throws ServletException, IOException {
+		String field = request.getParameter("field");
 
 		Hashtable<String, Object> AllResults = new Hashtable<String, Object>();
-		Hashtable<String, String> AuthorsResults = new Hashtable<String, String>();
-		Hashtable<String, String> TeamsResults = new Hashtable<String, String>();
-		Hashtable<String, String> PublicationsResults = new Hashtable<String, String>();
+		Hashtable<String, Object> AllResultsAuthors = new Hashtable<String, Object>();
+		Hashtable<String, Object> AllResultsTeams = new Hashtable<String, Object>();
+		Hashtable<String, Object> AllResultsPublications = new Hashtable<String, Object>();
 
 		try {
 			DataSource ds = DataSource.getInstace();
 			Connection conn = ds.getConnection();
-			Statement stmt = conn.createStatement();
+			Statement stmtrsAuthors = conn.createStatement();
+			Statement stmtrsTeams = conn.createStatement();
+			Statement stmtrsPublications = conn.createStatement();
 
 			// Requêtes
-			String sqlAuthors = "SELECT firstname,lastname FROM authors ";
-			String sqlPublications = "SELECT title,publicationId FROM publications ";
-			String sqlTeams = "SELECT title,publicationId FROM publications ";
+			String sqlAuthors = "SELECT firstname,lastname FROM authors LIMIT 3";
+			String sqlPublications = "SELECT title,publicationId FROM publications LIMIT 3";
+			String sqlTeams = "SELECT teamId,teamName FROM Teams LIMIT 3";
 
 			// Résultats des requêtes
-			ResultSet rsAuthors = stmt.executeQuery(sqlAuthors);
-			ResultSet rsTeams = stmt.executeQuery(sqlTeams);
-			ResultSet rsPublications = stmt.executeQuery(sqlPublications);
+			ResultSet rsAuthors = stmtrsAuthors.executeQuery(sqlAuthors);
+			ResultSet rsTeams = stmtrsTeams.executeQuery(sqlTeams);
+			ResultSet rsPublications = stmtrsPublications.executeQuery(sqlPublications);
 
 			// Stocage des données dans la Hashmap Author
+			int i=0;
 			while (rsAuthors.next()) {
+				
+				
 				String firstname = rsAuthors.getString("firstname");
 				String lastname = rsAuthors.getString("lastname");
-
+				
+				Hashtable<String, String> AuthorsResults = new Hashtable<String, String>();
 				AuthorsResults.put("Firstname", firstname);
 				AuthorsResults.put("Lastname", lastname);
+				
+				AllResultsAuthors.put("key"+i, AuthorsResults);
+				
+				AllResults.put("Utilisateurs", AllResultsAuthors);
+				i++;
 			}
 
 			// Stocage des données dans la Hashmap Team
+			int j=0;
 			while (rsTeams.next()) {
+				
+				
 				String teamId = rsTeams.getString("teamId");
 				String teamName = rsTeams.getString("teamName");
-
-				TeamsResults.put("TeamId", teamId);
+				
+				Hashtable<String, String> TeamsResults = new Hashtable<String, String>();
 				TeamsResults.put("TeamName", teamName);
+				TeamsResults.put("TeamId", teamId);
+				
+				AllResultsTeams.put("key"+j, TeamsResults);
+				
+				AllResults.put("Teams", AllResultsTeams);
+				j++;
 			}
 
 			// Stocage des données dans la Hashmap Pub
+			int k=0;
 			while (rsPublications.next()) {
+				
 				String publicationId = rsPublications
 						.getString("publicationId");
 				String title = rsPublications.getString("title");
-
-				PublicationsResults.put("PublicationId", publicationId);
+				
+				Hashtable<String, String> PublicationsResults = new Hashtable<String, String>();			
 				PublicationsResults.put("Title", title);
+				PublicationsResults.put("PublicationId", publicationId);
+				
+				AllResultsPublications.put("key"+k, PublicationsResults);
+				
+				AllResults.put("Publications", AllResultsPublications);
+				k++;
 			}
 
-			// HashMap contenant toutes les données
-			AllResults.put("Publications", PublicationsResults);
-			AllResults.put("Teams", TeamsResults);
-			AllResults.put("Utilisateurs", AuthorsResults);
 
 			// Close
 			rsAuthors.close();
 			rsTeams.close();
 			rsPublications.close();
 
-			stmt.close();
+			stmtrsAuthors.close();
+			stmtrsTeams.close();
+			stmtrsPublications.close();
 			conn.close();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		JSONArray json = null;
-		try {
-			json = new JSONArray(AllResults);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
+		JSONObject json = new JSONObject(AllResults);
+
 		response.setContentType("application/json");
 		response.getWriter().print(json);
+		System.out.println("json :"+ json);
 	}
 }

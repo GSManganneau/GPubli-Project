@@ -107,7 +107,7 @@
 				$.ajax({
 					url : "Auto",
 					type : "post",
-					data : '',
+					dataType : "json",
 					success : function(data) {
 						$("#tags").autocomplete({
 							source : data
@@ -128,7 +128,7 @@
 </script>
 
 	<script src="front-office/js/bootstrap.js"></script>
-	<script src="front-office/js/main.js"></script>
+	<!-- <script src="front-office/js/main.js"></script> -->
 	<c:if test="${!empty jsContent }">
 		<script src="front-office/js/<c:out value="${jsContent}"/>"></script>
 	</c:if>
