@@ -28,8 +28,11 @@ public class Types {
 	public String getTypeName() {
 		return typeName;
 	}
-	public void setTypeName(String name) {
-		this.typeName = name;
+
+	public void setTypeName(String typeName) {
+		// TODO Auto-generated method stub
+		this.typeName=typeName;
+		
 	}
 	
 	

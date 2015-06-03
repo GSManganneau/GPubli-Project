@@ -95,10 +95,12 @@ public class PublicationsDao extends Dao<Publications>{
                 int typeId= resultat.getInt("typeId");
                 
                 String query="select * from DataPublications "
-                		+ "natural join TypeHasAttributes "
-                		+ "natural join Attributes A "
-                		+ "natural join Types "
-                		+ "WHERE publicationId="+id;
+                		+ "DP join TypeHasAttributes "
+                		+ "T on (DP.typeId=T.typeId "
+                		+ "and DP.attributeId=T.attributeId) "
+                		+ "join Attributes A on "
+                		+ "(T.attributeId=A.attributeId) "
+                		+ "where publicationId = "+id;
                 System.out.print(query);
                 resultat2= statement2.executeQuery(query);
                 List<Attributes> attributes = new ArrayList<Attributes>();
@@ -192,12 +194,12 @@ public class PublicationsDao extends Dao<Publications>{
 		return attributeId;
 	}
 	
-	public boolean createData( int publicationId, int typeId, String data){
+/*	public boolean createData( int publicationId, int typeId, String data){
 		Connection connexion = null;
 		Statement statement = null;
 		ResultSet resultat = null;
 		try{}
-		return false;
+		return false;*/
         
 	public Publications count(String field) {
 		// TODO Auto-generated method stub
