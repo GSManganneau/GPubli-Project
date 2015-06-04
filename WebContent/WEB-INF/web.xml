@@ -31,11 +31,27 @@
     <url-pattern>/team</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>Listing_type</servlet-name>
+    <servlet-class>controllers.Listing_type</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Listing_type</servlet-name>
+    <url-pattern>/type</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>Connexion</servlet-name>
     <servlet-class>connexionLdap.Connexion</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Connexion</servlet-name>
     <url-pattern>/connexion</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <servlet-name>Advanced_research</servlet-name>
+    <servlet-class>controllers.Advanced_research</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Advanced_research</servlet-name>
+    <url-pattern>/research</url-pattern>
   </servlet-mapping>
 </web-app>

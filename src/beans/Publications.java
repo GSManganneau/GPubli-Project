@@ -4,18 +4,17 @@ public class Publications {
 
 	@Override
 	public String toString() {
-		return "Publications [id=" + id + ", type=" + type + ", date=" + date
-				+ ", resume=" + resume + ", journal=" + journal
-				+ ", book_title=" + book_title + ", title=" + title + "]";
+		return "Publications [publicationId=" + publicationId + ", typeId=" + typeId + ", date=" + date
+				+ ", resume=" + resume + ", journal="
+				+ ", book_title=" + ", title=" + title + "]";
 	}
-	private int id;
-	private int type;
+	private int publicationId;
+	private int typeId;
 	private String date;
 	private String resume;
-	private String journal;
-	private String book_title;
 	private String title;
 	private String url;
+	
 	public String getDate() {
 		return date;
 	}
@@ -28,18 +27,6 @@ public class Publications {
 	public void setResume(String resume) {
 		this.resume = resume;
 	}
-	public String getJournal() {
-		return journal;
-	}
-	public void setJournal(String journal) {
-		this.journal = journal;
-	}
-	public String getBook_title() {
-		return book_title;
-	}
-	public void setBook_title(String book_title) {
-		this.book_title = book_title;
-	}
 	public String getTitle() {
 		return title;
 	}
@@ -47,16 +34,16 @@ public class Publications {
 		this.title = title;
 	}
 	public int getId() {
-		return id;
+		return publicationId;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setId(int publicationId) {
+		this.publicationId = publicationId;
 	}
 	public int getType() {
-		return type;
+		return typeId;
 	}
-	public void setType(int type) {
-		this.type = type;
+	public void setType(int typeId) {
+		this.typeId = typeId;
 	}
 	public String getUrl() {
 		return url;
