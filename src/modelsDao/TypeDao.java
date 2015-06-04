@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import beans.Attributes;
 import beans.Authors;
 import beans.Types;
@@ -15,7 +16,7 @@ public class TypeDao extends Dao<Types>{
 	 private DAOFactory factory;
 	
 	 public TypeDao(DAOFactory daoFactory) {
-		
+
 		// TODO Auto-generated constructor stub
 		this.factory = daoFactory;
 	}
@@ -108,4 +109,5 @@ public class TypeDao extends Dao<Types>{
         return types;
 		
 	}
+
 }

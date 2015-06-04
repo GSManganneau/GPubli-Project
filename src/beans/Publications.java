@@ -4,6 +4,7 @@ public class Publications {
 
 	@Override
 	public String toString() {
+
 		return "Publications [id=" + publicationId + ", type=" + type
 				+ ", date=" + date + ", resume=" + resume + ", title=" + title
 				+ "]";
@@ -11,11 +12,13 @@ public class Publications {
 
 	private int publicationId;
 	private Types type = new Types();
+
 	private String date;
 	private String resume;
 	private String title;
 	private String url;
 	private int count;
+
 
 	public String getDate() {
 		return date;
@@ -55,6 +58,7 @@ public class Publications {
 
 	public void setType(Types type) {
 		this.type = type;
+
 	}
 
 	public String getUrl() {

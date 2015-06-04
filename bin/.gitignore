@@ -1,5 +1,6 @@
-/controllers_front/
-/modelsDao/
-/ajax/
 /beans/
+/com/
 /connexionLdap/
+/controllers/
+/modelsDao/
+/controllers_front/
