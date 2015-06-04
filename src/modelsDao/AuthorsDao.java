@@ -9,10 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import beans.Authors;
+import beans.Teams;
 
 public class AuthorsDao extends Dao<Authors>{
-	
-	 private DAOFactory factory;
+
+	private DAOFactory factory;
 
 	    public AuthorsDao(DAOFactory daoFactory) {
 	        this.factory = daoFactory;
@@ -29,22 +30,22 @@ public class AuthorsDao extends Dao<Authors>{
 		// TODO Auto-generated method stub
 		try{
 			connexion=factory.getConnection();
-			String query= "SELECT * FROM Author where ldap_id="+id;
+			String query= "SELECT * FROM Authors where ldapId="+id;
 			statement = connexion.createStatement();
 	        resultat = statement.executeQuery(query);
 	     // Récupération des données
             while (resultat.next()) {
                 String firstname = resultat.getString("firstname");
                 String lastname = resultat.getString("lastname");
-                int author_id=resultat.getInt("author_id");
-                int eldap_id=resultat.getInt("ldap_id");
-                int team_id= resultat.getInt("team_id");
+                int authorId=resultat.getInt("authorId");
+                int ldapId=resultat.getInt("ldapId");
+                int teamId= resultat.getInt("teamId");
                 
                author = new Authors();
                author.setFirstname(firstname);
                author.setLastname(lastname);
-               author.setEldap_id(eldap_id);
-               author.setAuthor_id(author_id);
+               author.setLdapId(ldapId);
+               author.setAuthorId(authorId);
                
                     
             }
@@ -61,18 +62,18 @@ public class AuthorsDao extends Dao<Authors>{
 		Connection connexion = null;
         String firstname=object.getFirstname();
         String lastname=object.getLastname();
-        int team_id=object.getTeam().getTeam_id();
-        int eldap_id=object.getEldap_id();
+        int teamId=object.getTeam().getTeamId();
+        int ldapId=object.getLdapId();
         		try{
         			
         	            
         			connexion=factory.getConnection();
-        			String query= "INSERT INTO  Author (firstname,lastname,team_id,ldap_id) VALUES (?,?,?,?)";
+        			String query= "INSERT INTO  Authors (firstname,lastname,teamId,ldapId) VALUES (?,?,?,?)";
         			PreparedStatement preparedStatement = connexion.prepareStatement(query);
         			preparedStatement.setString(1,firstname);
     	            preparedStatement.setString(2,lastname);
-    	            preparedStatement.setInt(3,team_id);
-    	            preparedStatement.setInt(4,eldap_id);
+    	            preparedStatement.setInt(3,teamId);
+    	            preparedStatement.setInt(4,ldapId);
     	           
     	            
     	            preparedStatement.executeUpdate();
@@ -93,15 +94,18 @@ public class AuthorsDao extends Dao<Authors>{
         try {
             connexion =factory.getConnection();
             statement = connexion.createStatement();
-            resultat = statement.executeQuery("SELECT * FROM Author");
+            resultat = statement.executeQuery("SELECT a.firstname, a.lastname, t.name FROM authors a,team t WHERE t.teamId = a.teamId");
 
             while (resultat.next()) {
+            	String team_name = resultat.getString("name");
                 String firstname = resultat.getString("firstname");
                 String lastname = resultat.getString("lastname");
+                
 
                 Authors Author = new Authors();
                 Author.setFirstname(firstname);
                 Author.setLastname(lastname);
+                Author.getTeam().setName(team_name);
 
                 Authors.add(Author);
             }
@@ -123,4 +127,73 @@ public class AuthorsDao extends Dao<Authors>{
 		return false;
 	}
 
+	public List<Authors> search(String field) {
+		// TODO Auto-generated method stub
+		List<Authors> Authors = new ArrayList<Authors>();
+		Connection connexion = null;
+        Statement statement = null;
+        ResultSet resultat = null;
+
+		try{
+			connexion=factory.getConnection();
+			String query = "SELECT * FROM authors WHERE firstname like '%"+field+"%' OR lastname like '%"+field+"%'";
+			
+			statement = connexion.createStatement();
+	        resultat = statement.executeQuery(query);
+	              
+	        // Récupération des données
+            while (resultat.next()) {
+                          
+            	//Données de la table team
+                String firstname = resultat.getString("firstname");   
+                String lastname = resultat.getString("lastname");  
+                
+                Authors Author = new Authors();
+                Author.setFirstname(firstname);
+                Author.setLastname(lastname);
+                
+                Authors.add(Author);
+            }
+            
+		}catch (SQLException e) {
+            e.printStackTrace();
+		}
+		return Authors;
+	}
+	
+	public Authors count(String field) {
+		// TODO Auto-generated method stub
+		Authors Author = new Authors();
+		Connection connexion = null;
+        Statement statement = null;
+        ResultSet resultat = null;
+        int i;
+		try{
+			connexion=factory.getConnection();
+			String query = "SELECT COUNT(*) AS nombre FROM authors WHERE firstname like '%"+field+"%' OR lastname like '%"+field+"%'";
+			
+			statement = connexion.createStatement();
+	        resultat = statement.executeQuery(query);
+	        
+	        // Récupération des données
+            while (resultat.next()) {
+          	   String nombre = resultat.getString("nombre");
+          	  
+          	   i = Integer.parseInt(nombre); 
+          	   Author.setCount(i);        	   
+            }
+            
+		}catch (SQLException e) {
+            e.printStackTrace();
+		}
+		return Author;
+	}
+
+
+
+	@Override
+	public List<Object> lister(int i, int j) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

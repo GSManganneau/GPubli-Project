@@ -7,71 +7,107 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+
+import beans.Attributes;
 import beans.Authors;
-import beans.Type;
+import beans.Types;
 
-public class TypeDao extends Dao<Type>{
+public class TypeDao extends Dao<Types>{
+	 private DAOFactory factory;
+	
+	 public TypeDao(DAOFactory daoFactory) {
 
-	private DAOFactory factory;
-	public TypeDao(DAOFactory daoFactory) {
 		// TODO Auto-generated constructor stub
 		this.factory = daoFactory;
 	}
 
 
 	@Override
-	public Type find(int id) {
+	public Types find(int id) {
 		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
-	@Override
-	public boolean create(Type object) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean update(Type object) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean delete(Type object) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
-	public List<Type> lister() {
-		// TODO Auto-generated method stub
-        List<Type> Types = new ArrayList<Type>();
-        Connection connexion = null;
+		Types type = new Types();
+		List<Attributes> attributes = new ArrayList<Attributes>();
+		Connection connexion = null;
         Statement statement = null;
         ResultSet resultat = null;
-
-        try {
-            connexion = factory.getConnection();
-            statement = connexion.createStatement();
-            resultat  = statement.executeQuery("SELECT * FROM type");
-
-            while (resultat.next()) {
-            	int type_id = resultat.getInt("type_id");
-            	String name = resultat.getString("name");
-                
-                //Nom des auteurs
-                Type type = new Type();
-                type.setType_id(type_id);
-                type.setName(name); 
-                
-                Types.add(type);
-
-            }
-        } catch (SQLException e) {
+		// TODO Auto-generated method stub
+		try{
+			connexion=factory.getConnection();
+			String query= "SELECT * FROM TypeHasAttributes "
+					+ "natural join Types "
+					+ "natural join Attributes "
+					+ " where typeId="+id;
+			statement = connexion.createStatement();
+	        resultat = statement.executeQuery(query);
+	        int i =0;
+	        String typeName="";
+	        while(resultat.next()){
+	        	i++;
+	        if (i==1) typeName = resultat.getString("typeName");
+	       	String attributeName = resultat.getString("attributeName");
+	       	int attributeId = resultat.getInt("attributeId");
+	        Attributes attribute = new Attributes();
+	        attribute.setAttributeName(attributeName);
+	        attribute.setAttributeId(attributeId);
+	        attributes.add(attribute);
+	        }
+	      
+	        type.setAttributes(attributes);
+	        type.setTypeName(typeName);
+	        type.setTypeId(id);
+	        
+		
+	}
+		catch (SQLException e) {
             e.printStackTrace();
+		}
+		return type;
+	}
+
+	
+	@Override
+	public boolean create(Types object) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean update(Types object) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean delete(Types object) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+ 
+	public List<Types> lister(){
+		List<Types>types = new ArrayList<Types>();
+		Connection connexion = null;
+        Statement statement = null;
+        ResultSet resultat = null;
+        try{
+        	connexion=factory.getConnection();
+        	String query = "SELECT * FROM Types ";
+        	statement = connexion.createStatement();
+        	resultat=statement.executeQuery(query);
+        	while(resultat.next()){
+        		int typeId= resultat.getInt("typeId");
+        		String typeName = resultat.getString("typeName");
+        		Types type = new Types();
+        		type.setTypeName(typeName);
+        		type.setTypeId(typeId);
+        		types.add(type);
+        	}
+        	
         }
-		return Types;
+        catch(SQLException e){
+        	e.printStackTrace();
+        }
+        return types;
+		
 	}
 
 }

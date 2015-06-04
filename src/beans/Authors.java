@@ -1,44 +1,59 @@
 package beans;
 
 public class Authors {
-private int eldap_id;
-private int author_id;
-private String firstname;
-private String lastname;
-private Teams team = new Teams();
+	private int ldapId;
+	private int authorId;
+	private String firstname;
+	private String lastname;
+	private int count;
+	private Teams team = new Teams();
 
+	public int getLdapId() {
+		return ldapId;
+	}
 
-public int getEldap_id() {
-	return eldap_id;
-}
-public void setEldap_id(int eldap_id) {
-	this.eldap_id = eldap_id;
-}
-public int getAuthor_id() {
-	return author_id;
-}
-public void setAuthor_id(int author_id) {
-	this.author_id = author_id;
-}
-public String getFirstname() {
-	return firstname;
-}
-public void setFirstname(String firstname) {
-	this.firstname = firstname;
-}
-public String getLastname() {
-	return lastname;
-}
-public void setLastname(String lastname) {
-	this.lastname = lastname;
-}
-public Teams getTeam() {
-	return team;
-}
-public void setTeam(Teams team) {
-	this.team = team;
-}
+	public void setLdapId(int ldapId) {
+		this.ldapId = ldapId;
+	}
 
+	public int getAuthorId() {
+		return authorId;
+	}
 
+	public void setAuthorId(int authorId) {
+		this.authorId = authorId;
+	}
+
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	public Teams getTeam() {
+		return team;
+	}
+
+	public void setTeam(Teams team) {
+		this.team = team;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
 
 }
