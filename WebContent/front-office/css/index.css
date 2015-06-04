@@ -1,0 +1,22 @@
+/* ---- CONTENT ---- */
+
+#content .pager .pager-select {
+	display: inline-block;
+	width: 60px;
+}
+
+#content .pager li:first-child select {
+	float: left;
+}
+
+#content .pager li:last-child select {
+	float: right;
+}
+
+#content .publications .panel-heading {
+	padding: 8px 15px 7px 15px;
+}
+
+#content .publications h3 {
+	line-height: 1.4em;
+}

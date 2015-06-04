@@ -1,0 +1,299 @@
+
+/* ==== Initialization ==== */
+
+html, body {
+    height: 100%;
+}
+
+body {
+    min-width: 960px;
+    font-family: Helvetica;
+    font-size: 13px;
+    color: #333;
+}
+
+#wrapper {
+    min-height: 100%;
+    position: relative;
+}
+
+.container {
+    width: 960px;
+    margin: auto;
+}
+
+a {
+    color: #4183c4;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+input[type="text"] {
+    height: 26px;
+    padding: 0 8px;
+    font-size: 13px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    outline: none;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);
+    color: #333;
+}
+
+input[type="text"]:focus {
+    border-color: #51a7e8;
+    box-shadow: 0 0 5px rgba(81,167,232,0.5);
+}
+
+
+
+
+
+
+
+
+/* ==== Header ==== */
+
+header {
+    position: fixed;
+    width: 100%;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 9px 0;
+}
+
+header a {
+    color: #333;
+    font-weight: bold;
+}
+
+header a:hover {
+    color: #4183c4;
+    text-decoration: none;
+}
+
+header a:hover > svg path {
+    fill: #4183c4;
+}
+
+
+
+/* ==== Header / Left ==== */
+
+header > .container > #header-left {
+    float: left;
+}
+
+header > .container > #header-left > * {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+header > .container > #header-left > h1 {
+    margin-left: 5px;
+    font-size: 16px;
+}
+
+header > .container > #header-left > input[type="text"] {
+    margin-left: 10px;
+    width: 400px;
+}
+
+.box-content li.active
+{
+    border-bottom: 1px solid #e5e5e5;
+    background-color: #f5f5f5;
+}
+
+
+
+/* ==== Header / Right ==== */
+
+header > .container > #header-right {
+    float: right;
+}
+
+header > .container > #header-right > *, header > .container > #header-right > nav > ul > li, header > .container > #header-right > nav > ul > li.profile > * {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+header > .container > #header-right > nav > ul > li > a {
+    padding: 0 6px;
+    font-size: 14px;
+}
+
+header > .container > #header-right > nav > ul > li:last-child > a {
+    padding-right: 0;
+}
+
+header > .container > #header-right > nav > ul > li:nth-child(2) {
+    padding-left: 8px;
+}
+
+header > .container > #header-right > nav > ul > li.profile {
+    padding-right: 8px;
+    border-right: 1px solid #e5e5e5;
+}
+
+header > .container > #header-right > nav > ul > li.profile img {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    margin-right: 4px;
+}
+
+header > .container > #header-right > nav > ul > li.profile a {
+    margin-right: 8px;
+}
+
+
+
+
+
+
+
+
+/* ==== Content ==== */
+
+#content {
+    padding-top: 71px; /* 51px + 20px */
+    padding-bottom: 92px; /* 72px + 20px */
+}
+
+
+
+/* ==== Content / Box (Basic declaration) ==== */
+
+#content .box {
+    border-radius: 3px;
+    border: 1px solid #e5e5e5;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+#content .box > .box-header {
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #e5e5e5;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#content .box > .box-content {
+    background-color: white;
+    color: #666;
+}
+
+
+
+/* ==== Content / Left ==== */
+
+#content > .container > #content-left {
+    float: left;
+    width: 240px;
+}
+
+
+
+/* ==== Content / Left / Nav / Box ==== */
+
+#content > .container > #content-left > nav > .box > .box-content > ul > li {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+#content > .container > #content-left > nav > .box > .box-content > ul > li:hover {
+    background-color: #f8f8f8;
+}
+
+#content > .container > #content-left > nav > .box > .box-content > ul > li:last-child {
+    border-bottom: 0;
+}
+
+#content > .container > #content-left > nav > .box > .box-content > ul > li > a {
+    display: block;
+    padding: 8px 7px;
+    font-size: 14px;
+    text-decoration: none;
+    border-left: 3px solid transparent;
+}
+
+#content > .container > #content-left > nav > .box > .box-content > ul > li > a:hover {
+    border-color: #4183c4;
+}
+
+
+
+/* ==== Content / Right ==== */
+
+#content > .container > #content-right {
+    width: 700px;
+    margin-left: 260px;
+}
+
+
+
+/* ==== Content / Right / Publications / Box ==== */
+
+#content > .container > #content-right > .publications > .box > .box-content {
+    padding: 16px 10px;
+    line-height: 17px;
+    text-align: justify;
+}
+
+#content > .container > #content-right > .publications > .box-bottom > .box-content {
+    padding: 16px 10px;
+    line-height: 17px;
+    text-align: justify;
+}
+
+
+
+/* ==== Content / Right / Pagination ==== */
+
+#content > .container > #content-right > table.pagination {
+    margin-top: ;
+    width: 100%;
+    table-layout: fixed;
+}
+
+#content > .container > #content-right > table.pagination td.center {
+    text-align: center;
+}
+
+#content > .container > #content-right > table.pagination td.right {
+    text-align: right;
+}
+
+
+
+
+
+/* ==== Footer ==== */
+
+footer {
+    
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	clear: both;
+    color: #666;
+
+}
+
+footer > .container {
+    padding: 30px 0;
+    border-top: 1px solid #e5e5e5;
+}
+
+footer > .container > ul > li {
+    display: inline-block;
+    padding-left: 15px;
+}
+
+footer > .container > ul > li:first-child {
+    padding-left: 0;
+}

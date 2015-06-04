@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:jsp="http://java.sun.com/xml/ns/javaee/jsp"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+
+	<filter>
+		<filter-name>encodingfilter</filter-name>
+		<filter-class>controllers_back.EncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>encodingfilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<display-name>GPubli-Project</display-name>
+	<welcome-file-list>
+		<welcome-file>/front-office/template.jsp</welcome-file>
+	</welcome-file-list>
+	<jsp-config>
+		<jsp-property-group>
+			<url-pattern>*.jsp</url-pattern>
+			<include-prelude>/WEB-INF/taglibs.jsp</include-prelude>
+		</jsp-property-group>
+	</jsp-config>
+	<servlet>
+		<servlet-name>Home</servlet-name>
+		<servlet-class>controllers_front.Home</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Home</servlet-name>
+		<url-pattern>/home</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Listing_author</servlet-name>
+		<servlet-class>controllers_back.Listing_author</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Listing_author</servlet-name>
+		<url-pattern>/listing</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Listing_team</servlet-name>
+		<servlet-class>controllers_back.Listing_team</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Listing_team</servlet-name>
+		<url-pattern>/team</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Connexion</servlet-name>
+		<servlet-class>connexionLdap.Connexion</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Connexion</servlet-name>
+		<url-pattern>/connexion</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>AddPublications</servlet-name>
+		<servlet-class>controllers_front.AddPublications</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddPublications</servlet-name>
+		<url-pattern>/addpublications</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Auto</servlet-name>
+		<servlet-class>com.autocomplete.sample.AutoComplete</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Auto</servlet-name>
+		<url-pattern>/Auto</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ajax</servlet-name>
+		<servlet-class>controllers_front.AjaxFormulaire</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ajax</servlet-name>
+		<url-pattern>/ajax</url-pattern>
+	</servlet-mapping>
+</web-app>
