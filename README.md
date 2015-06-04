@@ -1,1 +1,0 @@
-The web platform will present in its use several features which will essentially be the main, the addition of an archive (newspaper, conference, etc.), consultation through various sorts (types, etc.) and export in different formats.
