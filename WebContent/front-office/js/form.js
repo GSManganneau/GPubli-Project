@@ -13,7 +13,7 @@ $(function(){
 					var length = data.attributes.length;
 					for(var i =0; i<length;i++){
 						if(i===0)$('.attributes').remove();
-						$('#content form').append('<label class ="attributes">'+data.attributes[i].attributeName+'</label><input class ="attributes" name='+data.attributes[i].attributeName+'/><br><br>');
+						$('#content form').append('<label class="attributes">'+data.attributes[i].attributeName+'</label><input class="attributes" name="'+data.attributes[i].attributeName+'"><br><br>');
 					}
 					
 				},
