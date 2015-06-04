@@ -107,7 +107,7 @@
 				$.ajax({
 					url : "Auto",
 					type : "post",
-					data : '',
+					dataType : "json",
 					success : function(data) {
 						$("#tags").autocomplete({
 							source : data
