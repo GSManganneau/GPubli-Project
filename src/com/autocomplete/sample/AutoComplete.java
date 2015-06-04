@@ -16,9 +16,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Hashtable; 
 import java.util.Iterator; 
+import java.util.List;
 import java.util.Set; 
+
+import beans.Authors;
 
 import com.DataSource.mysql.DataSource;
 
@@ -38,10 +42,10 @@ public class AutoComplete extends HttpServlet {
 		HttpServletResponse response) throws ServletException, IOException {
 		String field = request.getParameter("field");
 
-		Hashtable<String, Object> AllResults = new Hashtable<String, Object>();
-		Hashtable<String, Object> AllResultsAuthors = new Hashtable<String, Object>();
-		Hashtable<String, Object> AllResultsTeams = new Hashtable<String, Object>();
-		Hashtable<String, Object> AllResultsPublications = new Hashtable<String, Object>();
+		Hashtable<String, List<Hashtable>> AllResults = new Hashtable<String, List<Hashtable>>();
+		List<Hashtable> AllResultsAuthors = new ArrayList<Hashtable>();
+		List<Hashtable> AllResultsTeams = new ArrayList<Hashtable>();
+		List<Hashtable> AllResultsPublications = new ArrayList<Hashtable>();
 
 		try {
 			DataSource ds = DataSource.getInstace();
@@ -72,7 +76,7 @@ public class AutoComplete extends HttpServlet {
 				AuthorsResults.put("Firstname", firstname);
 				AuthorsResults.put("Lastname", lastname);
 				
-				AllResultsAuthors.put("key"+i, AuthorsResults);
+				AllResultsAuthors.add(AuthorsResults);
 				
 				AllResults.put("Utilisateurs", AllResultsAuthors);
 				i++;
@@ -90,7 +94,7 @@ public class AutoComplete extends HttpServlet {
 				TeamsResults.put("TeamName", teamName);
 				TeamsResults.put("TeamId", teamId);
 				
-				AllResultsTeams.put("key"+j, TeamsResults);
+				AllResultsTeams.add(TeamsResults);
 				
 				AllResults.put("Teams", AllResultsTeams);
 				j++;
@@ -108,7 +112,7 @@ public class AutoComplete extends HttpServlet {
 				PublicationsResults.put("Title", title);
 				PublicationsResults.put("PublicationId", publicationId);
 				
-				AllResultsPublications.put("key"+k, PublicationsResults);
+				AllResultsPublications.add(PublicationsResults);
 				
 				AllResults.put("Publications", AllResultsPublications);
 				k++;
