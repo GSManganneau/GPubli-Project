@@ -1,0 +1,21 @@
+/* ---- CONTENT ---- */
+
+@media(max-width: 767px) {
+	.form-group-date .input-date-begin input {
+		border-radius: 4px 0 0 0;
+	}
+
+	.form-group-date .input-date-begin .input-group-addon {
+		border-radius: 0 4px 0 0;
+	}
+
+	.form-group-date .input-date-end input {
+		border-radius: 0 0 0 4px;
+		border-top: 0;
+	}
+
+	.form-group-date .input-date-end .input-group-addon {
+		border-radius: 0 0 4px 0;
+		border-top: 0;
+	}
+}
