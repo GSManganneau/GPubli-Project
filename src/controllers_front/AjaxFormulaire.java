@@ -50,7 +50,6 @@ public class AjaxFormulaire extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		int typeId =Integer.parseInt(request.getParameter("typeId"));
-		System.out.println("typeId:"+ typeId);
 		Types type = typeDao.find(typeId);
 		List <Attributes> attributes = type.getAttributes();
 		JSONObject json= new JSONObject();
@@ -66,8 +65,7 @@ public class AjaxFormulaire extends HttpServlet {
 		}
 		response.setContentType("application/json");
 		response.getWriter().print(json);
-		System.out.println(json);
-		System.out.print(json.length());
+	
 		
 		
 		

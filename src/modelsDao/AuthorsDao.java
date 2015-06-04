@@ -188,4 +188,12 @@ public class AuthorsDao extends Dao<Authors>{
 		}
 		return Author;
 	}
+
+
+
+	@Override
+	public List<Object> lister(int i, int j) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

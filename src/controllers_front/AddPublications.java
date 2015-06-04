@@ -23,79 +23,72 @@ import modelsDao.TypeDao;
 @WebServlet("/AddPublications")
 public class AddPublications extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-	 
-		public String content="addPublicationForm.jsp";
-		
-		
-     private PublicationsDao publicationDao;
-     private TypeDao typeDao;
 
-     public void init() throws ServletException {
-     	 DAOFactory factory = DAOFactory.getInstance();
-          this.publicationDao = factory.getPublications();
-          this.typeDao = factory.getType();
-     }
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AddPublications() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	public String content = "addPublicationForm.jsp";
+
+	private PublicationsDao publicationDao;
+	private TypeDao typeDao;
+
+	public void init() throws ServletException {
+		DAOFactory factory = DAOFactory.getInstance();
+		this.publicationDao = factory.getPublications();
+		this.typeDao = factory.getType();
+	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public AddPublications() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession s = request.getSession();
 		String connected=(String)s.getAttribute("connected");
-//		if(connected==null){
-//			response.sendRedirect("/GPubli-Project/connexion");
-//		}
-//		else{
+		if(connected==null){
+			response.sendRedirect("/GPubli-Project/connexion");
+			}
+		else{
 		List<Types> types = typeDao.lister();
 		request.setAttribute("session", s);
         request.setAttribute("content",content);
         request.setAttribute("types", types);
         this.getServletContext().getRequestDispatcher("/front-office/template.jsp").forward(request, response);
-		//}
+		}
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int typeId=1;
-		String type_name =request.getParameter("type");
-        String date = "";
-        String resume =request.getParameter("resume");
-        String title = request.getParameter("title");
-        String url = request.getParameter("url");
-        if (type_name.equals("article")){
-        	typeId=1;
-        }
-        Publications publication = new Publications();
-        publication.getType().setTypeId(typeId);
-        publication.setDate(date);
-        publication.setResume(resume);
-        publication.setTitle(title);
-        publication.setUrl(url);
-        
-        publicationDao.create(publication);
-        
-        this.content="publications.jsp";
-        String cssContent ="publications.css";
-        String jsContent ="publications.js";
-        request.setAttribute("publications", publicationDao.lister());
-        request.setAttribute("content",content);
-        request.setAttribute("jsContent",jsContent);
-        request.setAttribute("cssContent",cssContent);
-        getServletContext().getRequestDispatcher("/front-office/template.jsp").forward(request, response);
-        
-        
+
+		int typeId = Integer.parseInt(request.getParameter("typeId"));
+		String date = request.getParameter("date");
+		String resume = request.getParameter("resume");
+		String title = request.getParameter("title");
+		Types type = typeDao.find(typeId);
+		for (int i = 0; i < type.getAttributes().size(); i++) {
+			String attributeName=type.getAttributes().get(i).getAttributeName();
+			String data = request.getParameter(attributeName);
+			type.getAttributes().get(i).setDatas(data);
+		}
+		Publications publication = new Publications();
+		publication.setDate(date);
+		publication.setResume(resume);
+		publication.setTitle(title);
+		publication.setType(type);
+		publicationDao.create(publication);
+		response.sendRedirect("/GPubli-Project/home");
+
 	}
 
 }
