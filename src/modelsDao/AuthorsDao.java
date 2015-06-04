@@ -191,9 +191,9 @@ public class AuthorsDao extends Dao<Authors>{
 
 
 
-	@Override
+/*	@Override
 	public List<Object> lister(int i, int j) {
 		// TODO Auto-generated method stub
 		return null;
-	}
+	}*/
 }
