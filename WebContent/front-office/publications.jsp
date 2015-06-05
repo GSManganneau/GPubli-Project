@@ -114,22 +114,8 @@
 		</div>
 
 		<nav>
-			<ul class="pager">
-				<li class="previous"><a href="#"><span aria-hidden="true">&larr;</span> Précédent</a></li>
-				<li>
-					<div class="pager-select">
-						<select class="form-control">
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-						</select>
-					</div>
-				</li>
-				<li class="next"><a href="#">Suivant <span aria-hidden="true">&rarr;</span></a></li>
-			</ul>
+			<jsp:include page="pagination.jsp" /> 
 		</nav>
-		<!-- <jsp:include page="pagination.jsp" /> -->
+		
 	</div>
 </div>
