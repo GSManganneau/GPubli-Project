@@ -42,10 +42,10 @@ public class AutoComplete extends HttpServlet {
 		HttpServletResponse response) throws ServletException, IOException {
 		String field = request.getParameter("field");
 
-		Hashtable<String, List<Hashtable>> AllResults = new Hashtable<String, List<Hashtable>>();
-		List<Hashtable> AllResultsAuthors = new ArrayList<Hashtable>();
-		List<Hashtable> AllResultsTeams = new ArrayList<Hashtable>();
-		List<Hashtable> AllResultsPublications = new ArrayList<Hashtable>();
+		Hashtable<String, List<Hashtable<String, String>>> AllResults = new Hashtable<String, List<Hashtable<String, String>>>();
+		List<Hashtable<String, String>> AllResultsAuthors = new ArrayList<Hashtable<String, String>>();
+		List<Hashtable<String, String>> AllResultsTeams = new ArrayList<Hashtable<String, String>>();
+		List<Hashtable<String, String>> AllResultsPublications = new ArrayList<Hashtable<String, String>>();
 
 		try {
 			DataSource ds = DataSource.getInstace();
@@ -55,7 +55,7 @@ public class AutoComplete extends HttpServlet {
 			Statement stmtrsPublications = conn.createStatement();
 
 			// Requêtes
-			String sqlAuthors = "SELECT firstname,lastname FROM authors LIMIT 3";
+			String sqlAuthors = "SELECT authorId,firstname,lastname FROM authors LIMIT 3";
 			String sqlPublications = "SELECT title,publicationId FROM publications LIMIT 3";
 			String sqlTeams = "SELECT teamId,teamName FROM Teams LIMIT 3";
 
@@ -65,25 +65,22 @@ public class AutoComplete extends HttpServlet {
 			ResultSet rsPublications = stmtrsPublications.executeQuery(sqlPublications);
 
 			// Stocage des données dans la Hashmap Author
-			int i=0;
 			while (rsAuthors.next()) {
-				
-				
+				String authorId = rsAuthors.getString("authorId");
 				String firstname = rsAuthors.getString("firstname");
 				String lastname = rsAuthors.getString("lastname");
 				
 				Hashtable<String, String> AuthorsResults = new Hashtable<String, String>();
-				AuthorsResults.put("Firstname", firstname);
-				AuthorsResults.put("Lastname", lastname);
+				AuthorsResults.put("value", firstname+" "+lastname);
+				AuthorsResults.put("id", authorId);
+				
 				
 				AllResultsAuthors.add(AuthorsResults);
 				
 				AllResults.put("Utilisateurs", AllResultsAuthors);
-				i++;
 			}
 
 			// Stocage des données dans la Hashmap Team
-			int j=0;
 			while (rsTeams.next()) {
 				
 				
@@ -91,17 +88,15 @@ public class AutoComplete extends HttpServlet {
 				String teamName = rsTeams.getString("teamName");
 				
 				Hashtable<String, String> TeamsResults = new Hashtable<String, String>();
-				TeamsResults.put("TeamName", teamName);
-				TeamsResults.put("TeamId", teamId);
+				TeamsResults.put("value", teamName);
+				TeamsResults.put("id", teamId);
 				
 				AllResultsTeams.add(TeamsResults);
 				
 				AllResults.put("Teams", AllResultsTeams);
-				j++;
 			}
 
 			// Stocage des données dans la Hashmap Pub
-			int k=0;
 			while (rsPublications.next()) {
 				
 				String publicationId = rsPublications
@@ -109,13 +104,12 @@ public class AutoComplete extends HttpServlet {
 				String title = rsPublications.getString("title");
 				
 				Hashtable<String, String> PublicationsResults = new Hashtable<String, String>();			
-				PublicationsResults.put("Title", title);
-				PublicationsResults.put("PublicationId", publicationId);
+				PublicationsResults.put("value", title);
+				PublicationsResults.put("id", publicationId);
 				
 				AllResultsPublications.add(PublicationsResults);
 				
 				AllResults.put("Publications", AllResultsPublications);
-				k++;
 			}
 
 
