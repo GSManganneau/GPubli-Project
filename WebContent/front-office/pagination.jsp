@@ -8,7 +8,8 @@
 	<c:forEach var="i" begin="1" end="${paginate.numberOfPages }" step="1">
 
 						
-							<option value=<c:out value="${i}"/>><c:out value="${i}"/></option>
+							<option value=<c:out value="${i}"/><c:if test="${i== paginate.currentPageNumber }">
+							 selected="selected"</c:if> /><c:out value="${i}"/> </option>
 
 	</c:forEach>
 			</select>
