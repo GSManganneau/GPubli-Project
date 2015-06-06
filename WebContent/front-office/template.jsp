@@ -60,7 +60,7 @@
 							</li>
 						</ul>
 
-						<form class="navbar-form">
+						<form class="navbar-form" method="get" action="Search">
 							<div class="form-group" style="display: inline;">
 								<div class="input-group" style="display: table;">
 									<span class="input-group-btn" style="width: 1%;">
@@ -68,7 +68,7 @@
 											<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 										</button>
 									</span>
-									<input type="text" class="form-control" placeholder="Chercher...">
+									<input type="text" class="form-control" name="search" placeholder="Chercher...">
 								</div>
 							</div>
 						</form>
