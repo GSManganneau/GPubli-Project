@@ -1,3 +1,5 @@
+<jsp:directive.page contentType="text/html;charset=UTF-8" />
+
 <c:set var="field" scope="session" value="${search}" />
 
 <div class="page-header">
@@ -24,7 +26,7 @@
 					
 					<a href="SearchTeam?search=<c:out value="${field}" />" class="list-group-item"><span
 					class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>&nbsp;
-					�quipe <span class="badge"><c:out value="${ TeamCount.count }" /></span></a> 
+					Équipe <span class="badge"><c:out value="${ TeamCount.count }" /></span></a> 
 
 					
  				
@@ -86,7 +88,7 @@
 								<h3 class="panel-title">
 									<span class="glyphicon glyphicon-lock" aria-hidden="true"
 										data-toggle="tooltip" data-placement="bottom"
-										title="Conf�rence"></span>&nbsp;
+										title="Conference"></span>&nbsp;
 									<c:out value="${ Author.firstname }" /> <c:out value="${ Author.lastname }" />
 								</h3>
 							</div>
@@ -130,7 +132,7 @@
 								<h3 class="panel-title">
 									<span class="glyphicon glyphicon-lock" aria-hidden="true"
 										data-toggle="tooltip" data-placement="bottom"
-										title="Conf�rence"></span>&nbsp;
+										title="Conférence"></span>&nbsp;
 									<c:out value="${ Team.name }" />
 								</h3>
 							</div>
