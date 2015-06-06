@@ -1,3 +1,5 @@
+
+<jsp:directive.page contentType="text/html;charset=UTF-8" />
 <div class="page-header">
 	<h1>Statistiques <small>et graphiques</small></h1>
 </div>
