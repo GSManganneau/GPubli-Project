@@ -66,7 +66,6 @@ public class PublicationsDao extends Dao<Publications> {
 				pS2.executeUpdate();
 
 			}
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -87,7 +86,6 @@ public class PublicationsDao extends Dao<Publications> {
 	}
 
 	public List<Publications> lister() {
-
 		List<Publications> publications = new ArrayList<Publications>();
 
 		Connection connexion = null;
@@ -109,7 +107,7 @@ public class PublicationsDao extends Dao<Publications> {
 				int id = resultat.getInt("publicationId");
 				String typeName = resultat.getString("typeName");
 				int typeId = resultat.getInt("typeId");
-			
+
 				String query = "select * from DataPublications "
 						+ "DP join TypeHasAttributes "
 						+ "T on (DP.typeId=T.typeId "
@@ -117,155 +115,40 @@ public class PublicationsDao extends Dao<Publications> {
 						+ "join Attributes A on "
 						+ "(T.attributeId=A.attributeId) "
 						+ "where publicationId = " + id;
-			
+
 				resultat2 = statement2.executeQuery(query);
 				List<Attributes> attributes = new ArrayList<Attributes>();
 				while (resultat2.next()) {
 					String attributeName = resultat2.getString("attributeName");
 					String data = resultat2.getString("datas");
 					Attributes attribute = new Attributes();
-			
+
 					attribute.setAttributeName(attributeName);
 					attribute.setDatas(data);
 					attributes.add(attribute);
-			
+
 				}
-			
+
 				Types type = new Types();
 				type.setTypeId(typeId);
 				type.setTypeName(typeName);
 				type.setAttributes(attributes);
-			
+
 				Publications publication = new Publications();
 				publication.setType(type);
 				publication.setResume(resume);
 				publication.setDate(date);
 				publication.setTitle(title);
-			
+
 				publications.add(publication);
-			
-			}
-			} catch (SQLException e) {
-			e.printStackTrace();
-			}
-			return publications;
-			}
 
-	public List<Publications> research(String reqPubliName, String reqDate, String reqResume) {
-		List<Publications> Publications = new ArrayList<Publications>();
-		Connection connexion = null;
-		// Statement statement = null;
-
-		PreparedStatement preparedStatement = null;
-
-		try {
-			connexion = factory.getConnection();
-			// statement = connexion.createStatement();
-
-			/*
-			 * String requete_part1 = "SELECT * FROM publication"; String
-			 * requete_part2 = " WHERE "; String requete_date =
-			 * "date = '"+req_date+"'"; String requete_name =
-			 * "title LIKE '%"+req_publi_name+"%'"; String requete_resume =
-			 * "resume LIKE '%"+req_resume+"%'"; //String requete_type =
-			 * "typeId = '"+req_type+"'"; String requete_and = " AND "; boolean
-			 * and = false;
-			 */
-
-			/*
-			 * if(!req_date.isEmpty()){ if(and){ requete_to_execute +=
-			 * requete_and; } requete_to_execute += requete_date; and = true; }
-			 * 
-			 * if(!requete_name.isEmpty()){ if(and){ requete_to_execute +=
-			 * requete_and; } requete_to_execute += requete_name; and = true; }
-			 * 
-			 * if(!requete_resume.isEmpty()){ if(and){ requete_to_execute +=
-			 * requete_and; } requete_to_execute += requete_resume; and = true;
-			 * }
-			 */
-
-			String requetePart1 = "SELECT * FROM publication";
-			String requetePart2 = " WHERE ";
-			String requeteDate = "date = ?";
-			String requeteName = "title LIKE ?";
-			String requeteResume = "resume LIKE ?";
-			// String requete_type = "typeId = '"+req_type+"'";
-			String requeteAnd = " AND ";
-			boolean and = false;
-			int i = 1;
-
-			String requeteToExecute = requetePart1 + requetePart2;
-
-			if (!reqDate.isEmpty()) {
-				if (and) {
-					requeteToExecute += requeteAnd;
-				}
-				requeteToExecute += requeteDate;
-				System.out.println(requeteToExecute);
-				and = true;				
-			}
-
-			if (!reqPubliName.isEmpty()) {
-				if (and) {
-					requeteToExecute += requeteAnd;
-				}
-				requeteToExecute += requeteName;
-				and = true;
-			}
-
-			if (!reqResume.isEmpty()) {
-				if (and) {
-					requeteToExecute += requeteAnd;
-				}
-				requeteToExecute += requeteResume;
-				and = true;
-				
-			}
-			
-			preparedStatement = connexion.prepareStatement(requeteToExecute);
-			
-			if (!reqDate.isEmpty()) {
-				preparedStatement.setString(i, reqDate);
-				i++;
-			}
-			
-			if (!reqPubliName.isEmpty()) {
-				preparedStatement.setString(i, "%" + reqPubliName + "%");
-				i++;
-			}
-			
-			if (!reqResume.isEmpty()) {
-				preparedStatement.setString(i, "%" + reqResume + "%");
-				i++;
-			}
-
-
-			ResultSet resultat = preparedStatement.executeQuery();
-
-			while (resultat.next()) {
-				int publicationId = resultat.getInt("publicationId");
-				String resume = resultat.getString("resume");
-				String title = resultat.getString("title");
-				String date = resultat.getString("date");
-				// int typeId = resultat.getInt("typeId");
-				String url = resultat.getString("url");
-
-				Publications Publication = new Publications();
-				Publication.setId(publicationId);
-				Publication.setDate(date);
-				Publication.setResume(resume);
-				Publication.setTitle(title);
-				// Publication.setType(typeId);
-				Publication.setUrl(url);
-
-				Publications.add(Publication);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return Publications;
+		return publications;
 	}
-		
+
 	public List<Publications> lister(int i, int j) {
 		List<Publications> publications = new ArrayList<Publications>();
 
@@ -415,8 +298,6 @@ public class PublicationsDao extends Dao<Publications> {
 		return Publications;
 	}
 
-
-
 	public int attributeId(String s) {
 		int attributeId = 0;
 		Connection connexion = null;
@@ -475,5 +356,122 @@ public class PublicationsDao extends Dao<Publications> {
 
 	}
 
+	public List<Publications> research(String reqPubliName, String reqDate, String reqResume) {
+		List<Publications> Publications = new ArrayList<Publications>();
+		Connection connexion = null;
+		// Statement statement = null;
 
+		PreparedStatement preparedStatement = null;
+
+		try {
+			connexion = factory.getConnection();
+			// statement = connexion.createStatement();
+
+			/*
+			 * String requete_part1 = "SELECT * FROM publication"; String
+			 * requete_part2 = " WHERE "; String requete_date =
+			 * "date = '"+req_date+"'"; String requete_name =
+			 * "title LIKE '%"+req_publi_name+"%'"; String requete_resume =
+			 * "resume LIKE '%"+req_resume+"%'"; //String requete_type =
+			 * "typeId = '"+req_type+"'"; String requete_and = " AND "; boolean
+			 * and = false;
+			 */
+
+			/*
+			 * if(!req_date.isEmpty()){ if(and){ requete_to_execute +=
+			 * requete_and; } requete_to_execute += requete_date; and = true; }
+			 * 
+			 * if(!requete_name.isEmpty()){ if(and){ requete_to_execute +=
+			 * requete_and; } requete_to_execute += requete_name; and = true; }
+			 * 
+			 * if(!requete_resume.isEmpty()){ if(and){ requete_to_execute +=
+			 * requete_and; } requete_to_execute += requete_resume; and = true;
+			 * }
+			 */
+
+			String requetePart1 = "SELECT * FROM publication";
+			String requetePart2 = " WHERE ";
+			String requeteDate = "date = ?";
+			String requeteName = "title LIKE ?";
+			String requeteResume = "resume LIKE ?";
+			// String requete_type = "typeId = '"+req_type+"'";
+			String requeteAnd = " AND ";
+			boolean and = false;
+			int i = 1;
+
+			String requeteToExecute = requetePart1 + requetePart2;
+
+			if (!reqDate.isEmpty()) {
+				if (and) {
+					requeteToExecute += requeteAnd;
+				}
+				requeteToExecute += requeteDate;
+				System.out.println(requeteToExecute);
+				and = true;				
+			}
+
+			if (!reqPubliName.isEmpty()) {
+				if (and) {
+					requeteToExecute += requeteAnd;
+				}
+				requeteToExecute += requeteName;
+				and = true;
+			}
+
+			if (!reqResume.isEmpty()) {
+				if (and) {
+					requeteToExecute += requeteAnd;
+				}
+				requeteToExecute += requeteResume;
+				and = true;
+				
+			}
+			
+			preparedStatement = connexion.prepareStatement(requeteToExecute);
+			
+			if (!reqDate.isEmpty()) {
+				preparedStatement.setString(i, reqDate);
+				i++;
+			}
+			
+			if (!reqPubliName.isEmpty()) {
+				preparedStatement.setString(i, "%" + reqPubliName + "%");
+				i++;
+			}
+			
+			if (!reqResume.isEmpty()) {
+				preparedStatement.setString(i, "%" + reqResume + "%");
+				i++;
+			}
+
+
+			ResultSet resultat = preparedStatement.executeQuery();
+
+			while (resultat.next()) {
+				int publicationId = resultat.getInt("publicationId");
+				String resume = resultat.getString("resume");
+				String title = resultat.getString("title");
+				String date = resultat.getString("date");
+				// int typeId = resultat.getInt("typeId");
+				String url = resultat.getString("url");
+
+				Publications Publication = new Publications();
+				Publication.setId(publicationId);
+				Publication.setDate(date);
+				Publication.setResume(resume);
+				Publication.setTitle(title);
+				// Publication.setType(typeId);
+				Publication.setUrl(url);
+
+				Publications.add(Publication);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return Publications;
+	}
+
+
+	
 }
+

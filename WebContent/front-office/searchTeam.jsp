@@ -1,3 +1,5 @@
+<jsp:directive.page contentType="text/html;charset=UTF-8" />
+
 <c:set var="field" scope="session" value="${search}" />
 
 <div class="page-header">
@@ -24,7 +26,7 @@
 					
 					<a href="SearchTeam?search=<c:out value="${field}" />" class="list-group-item active"><span
 					class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>&nbsp;
-					Équipe <span class="badge"><c:out value="${ TeamCount.count }" /></span></a> 
+					Ã‰quipe <span class="badge"><c:out value="${ TeamCount.count }" /></span></a> 
 
 					
  				
@@ -45,7 +47,7 @@
 								<h3 class="panel-title">
 									<span class="glyphicon glyphicon-lock" aria-hidden="true"
 										data-toggle="tooltip" data-placement="bottom"
-										title="Conférence"></span>&nbsp;
+										title="ConfÃ©rence"></span>&nbsp;
 									<c:out value="${ Team.name }" />
 								</h3>
 							</div>
@@ -84,14 +86,18 @@
 		<nav>
 			<ul class="pager">
 				<li class="previous"><a href="#"><span aria-hidden="true">&larr;</span>
-						Précédent</a></li>
-				<li><select class="form-control">
+						PrÃ©cÃ©dent</a></li>
+					<li>
+				<div class="pager-select">
+				<select class="form-control">
 						<option>1</option>
 						<option>2</option>
 						<option>3</option>
 						<option>4</option>
 						<option>5</option>
-				</select></li>
+				</select>
+				</div>
+				</li>
 				<li class="next"><a href="#">Suivant <span
 						aria-hidden="true">&rarr;</span></a></li>
 			</ul>
