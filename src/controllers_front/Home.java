@@ -49,7 +49,7 @@ public class Home extends HttpServlet {
 			Paginate paginate = new Paginate();
 
 			// On définit le nombre d'éléments par page
-			paginate.setElementsByPage(5);
+			paginate.setElementsByPage(3);
 			// on calcule le nombre de pages
 			int numberOfPages = publicationDao.countNumberPage(paginate
 					.getElementsByPage());
