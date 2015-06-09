@@ -389,7 +389,7 @@ public class PublicationsDao extends Dao<Publications> {
 			 * }
 			 */
 
-			String requetePart1 = "SELECT * FROM publication";
+			String requetePart1 = "SELECT * FROM publications";
 			String requetePart2 = " WHERE ";
 			String requeteDate = "date = ?";
 			String requeteName = "title LIKE ?";
