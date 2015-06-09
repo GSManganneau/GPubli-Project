@@ -5,7 +5,7 @@ public class Publications {
 	@Override
 	public String toString() {
 
-		return "Publications [id=" + publicationId + ", type=" + type
+		return "Publications [publicationId=" + publicationId + ", type=" + type
 				+ ", date=" + date + ", resume=" + resume + ", title=" + title
 				+ "]";
 	}

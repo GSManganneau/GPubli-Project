@@ -9,8 +9,8 @@
 <body>
 	<ul>
         <c:forEach var="Publications" items="${Publications}">
-            <li>Id: <c:out value="${ Publications.id }" /><br> 
-            Type: <c:out value="${ Publications.type }" /><br>
+            <li>Id: <c:out value="${ Publications.publicationId }" /><br> 
+            <!-- Type: <c:out value="${ Publications.type }" /><br> -->
             Title: <c:out value="${ Publications.title }" /><br>
             Date: <c:out value="${ Publications.date }" /><br>
             Resume: <c:out value="${ Publications.resume }" /><br>
