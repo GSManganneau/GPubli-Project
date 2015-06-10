@@ -1,5 +1,8 @@
 package beans;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Publications {
 
 	@Override
@@ -12,6 +15,8 @@ public class Publications {
 
 	private int publicationId;
 	private Types type = new Types();
+	private Authors author = new Authors();
+	private List<Authors> coAuthors = new ArrayList<Authors>();
 	private String date;
 	private String resume;
 	private String title;
@@ -28,6 +33,18 @@ public class Publications {
 
 	public String getResume() {
 		return resume;
+	}
+
+	public Authors getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(Authors author) {
+		this.author = author;
+	}
+
+	public void setPublicationId(int publicationId) {
+		this.publicationId = publicationId;
 	}
 
 	public void setResume(String resume) {
@@ -72,6 +89,14 @@ public class Publications {
 
 	public void setCount(int count) {
 		this.count = count;
+	}
+
+	public List<Authors> getCoAuthors() {
+		return coAuthors;
+	}
+
+	public void setCoAuthors(List<Authors> coAuthors) {
+		this.coAuthors = coAuthors;
 	}
 
 }
