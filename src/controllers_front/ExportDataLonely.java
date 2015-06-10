@@ -65,7 +65,7 @@ public class ExportDataLonely extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String search = request.getParameter("search");
-		/*request.setAttribute("Publications", publicationsDao.search("e"));*/
+		request.setAttribute("Publications", publicationsDao.listeLoneLy(1));
 		
 		//response.setContentType("application/octet-stream");
 		response.setHeader("Content-Description", "File Transfer");

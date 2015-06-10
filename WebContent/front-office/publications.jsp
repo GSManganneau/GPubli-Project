@@ -113,6 +113,7 @@
 					</div>
 				</div>
 			</c:forEach>
+			
 		</div>
 
 		<nav>
