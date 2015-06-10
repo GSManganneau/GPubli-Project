@@ -13,16 +13,16 @@ import modelsDao.DAOFactory;
 import modelsDao.PublicationsDao;
 
 /**
- * Servlet implementation class Advanced_research
+ * Servlet implementation class AdvancedResearch
  */
-@WebServlet("/Advanced_research")
-public class Advanced_research extends HttpServlet {
+@WebServlet("/AdvancedResearch")
+public class AdvancedResearch extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Advanced_research() {
+    public AdvancedResearch() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -55,9 +55,10 @@ public class Advanced_research extends HttpServlet {
 		String publiName = request.getParameter("publiName");
 		String date = request.getParameter("date");
 		String resume = request.getParameter("resume");
+		String author = request.getParameter("author");
 		//String type = request.getParameter("type");
-        request.setAttribute("Publications", PublicationsDao.research(publiName,date,resume));
-        getServletContext().getRequestDispatcher("/result_research.jsp").include(request, response);
+        request.setAttribute("Publications", PublicationsDao.research(publiName,date,resume,author));
+        getServletContext().getRequestDispatcher("/resultResearch.jsp").include(request, response);
 		
 	}
 

@@ -356,7 +356,7 @@ public class PublicationsDao extends Dao<Publications> {
 
 	}
 
-	public List<Publications> research(String reqPubliName, String reqDate, String reqResume) {
+	public List<Publications> research(String reqPubliName, String reqDate, String reqResume, String reqAuthor) {
 		List<Publications> Publications = new ArrayList<Publications>();
 		Connection connexion = null;
 		// Statement statement = null;
@@ -453,7 +453,7 @@ public class PublicationsDao extends Dao<Publications> {
 				String title = resultat.getString("title");
 				String date = resultat.getString("date");
 				// int typeId = resultat.getInt("typeId");
-				String url = resultat.getString("url");
+				//String url = resultat.getString("url");
 
 				Publications Publication = new Publications();
 				Publication.setId(publicationId);
@@ -461,7 +461,7 @@ public class PublicationsDao extends Dao<Publications> {
 				Publication.setResume(resume);
 				Publication.setTitle(title);
 				// Publication.setType(typeId);
-				Publication.setUrl(url);
+				//Publication.setUrl(url);
 
 				Publications.add(Publication);
 			}

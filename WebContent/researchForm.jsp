@@ -9,6 +9,7 @@
 		<p>Resume: <input type="text" name="resume"></p>
 		<p>Date: <input type="date" name="date"></p>
 		<p>Type: <input type="number" name="type"></p>
+		<p>Auteur: <input type="text" name="author"></p>
 		<input type="submit">			
 	</form>
 </body>

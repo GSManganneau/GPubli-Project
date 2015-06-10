@@ -11,7 +11,7 @@
             Title: <c:out value="${ Publications.title }" /><br>
             Date: <c:out value="${ Publications.date }" /><br>
             Resume: <c:out value="${ Publications.resume }" /><br>
-            Url: <c:out value="${ Publications.url }" /><br></li> 
+            <!-- Url: <c:out value="${ Publications.url }" /><br></li> -->
         </c:forEach>      
     </ul>
 </body>
