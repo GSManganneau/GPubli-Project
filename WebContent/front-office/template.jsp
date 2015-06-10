@@ -50,7 +50,8 @@
 							</li>
 
 							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp; Matthieu <span class="caret"></span></a>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;<c:out value="${session.getAttribute(\"firstname\")}" />
+								<c:out value="${session.getAttribute(\"name\")}" /> <span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
 									<li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp; Profil</a></li>
 									<li><a href="?page=parameters-profile"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp; Paramètres</a></li>
