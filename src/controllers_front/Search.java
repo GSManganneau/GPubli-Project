@@ -117,7 +117,7 @@ public class Search extends HttpServlet {
 						"/front-office/template.jsp")
 						.include(request, response);
 			} else {
-				response.sendRedirect("/GPubli-Project/searchpublication?");
+				response.sendRedirect("/GPubli-Project/searchpublication?page=1");
 			}
 		}
 	}
