@@ -212,7 +212,7 @@ public class PublicationsDao extends Dao<Publications> {
 
 				}
 				String query2 = "select * from Repositories "
-						+ " natural join Author where publicationId=" + id
+						+ " natural join Authors where publicationId=" + id
 						+ " and  authorId <> " + authorId;
 				resultat3 = statement3.executeQuery(query2);
 				List<Authors> coAuthors = new ArrayList<Authors>();
