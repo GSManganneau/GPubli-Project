@@ -1,6 +1,10 @@
 package controllers_front;
 
+
+
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,6 +12,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.apache.tomcat.jni.File;
+import org.omg.CORBA.DataInputStream;
+
+
+
+
+
+
+
 
 import modelsDao.AuthorsDao;
 import modelsDao.DAOFactory;
@@ -18,16 +32,16 @@ import modelsDao.TeamsDao;
 /**
  * Servlet implementation class Search
  */
-@WebServlet("/Graphics")
-public class Graphics extends HttpServlet {
+@WebServlet("/ExportDataLonely")
+public class ExportDataLonely extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public String content = "graphics.jsp";
+	public String content = "exportLonely.jsp";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public Graphics() {
+	public ExportDataLonely() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -51,17 +65,15 @@ public class Graphics extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String search = request.getParameter("search");
-
-		request.setAttribute("Authors", authorsDao.search(search));
-		request.setAttribute("AuthorCount", authorsDao.count(search));
+		/*request.setAttribute("Publications", publicationsDao.search("e"));*/
 		
+		//response.setContentType("application/octet-stream");
+		response.setHeader("Content-Description", "File Transfer");
+		response.setHeader("Content-type", "application/octet-stream");
+		response.setHeader("Content-Transfer-Encoding", "binary");
+		response.setHeader("Content-Disposition","attachment; filename=babar.txt");
 		
-		request.setAttribute("Teams", teamsDao.search(search));
-		request.setAttribute("TeamCount", teamsDao.count(search));
-
-		request.setAttribute("content", content);
-		request.setAttribute("search", search);
-		getServletContext().getRequestDispatcher("/front-office/template.jsp")
+		getServletContext().getRequestDispatcher("/front-office/export.jsp")
 				.include(request, response);
 	}
 

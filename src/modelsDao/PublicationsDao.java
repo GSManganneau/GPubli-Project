@@ -632,5 +632,4 @@ public class PublicationsDao extends Dao<Publications> {
 		}
 		return Publications;
 	}
-
 }
