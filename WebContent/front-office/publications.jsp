@@ -55,7 +55,7 @@
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-export" aria-hidden="true"></span>&nbsp; Exporter <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="#"><span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span>&nbsp; Bibtex</a></li>
-								<li><a href="#"><span class="glyphicon glyphicon-text-size" aria-hidden="true"></span>&nbsp; Texte</a></li>
+								<li><a href="ExportData"><span class="glyphicon glyphicon-text-size" aria-hidden="true"></span>&nbsp; Texte</a></li>
 							</ul>
 						</li>
 						<li class="dropdown">

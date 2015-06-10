@@ -262,41 +262,6 @@ public class PublicationsDao extends Dao<Publications> {
 
 	}
 
-	public List<Publications> search(String field) {
-		// TODO Auto-generated method stub
-		List<Publications> Publications = new ArrayList<Publications>();
-		Connection connexion = null;
-		Statement statement = null;
-		ResultSet resultat = null;
-
-		try {
-			connexion = factory.getConnection();
-			String query = "SELECT * FROM publications WHERE title like '%"
-					+ field + "%'";
-
-			statement = connexion.createStatement();
-			resultat = statement.executeQuery(query);
-
-			// Récupération des données
-			while (resultat.next()) {
-
-				// Données de la table team
-				String title = resultat.getString("title");
-				String resume = resultat.getString("resume");
-				String date = resultat.getString("date");
-
-				Publications Publication = new Publications();
-				Publication.setTitle(title);
-				Publication.setResume(resume);
-				Publication.setDate(date);
-
-				Publications.add(Publication);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return Publications;
-	}
 
 	public int attributeId(String s) {
 		int attributeId = 0;
@@ -470,8 +435,5 @@ public class PublicationsDao extends Dao<Publications> {
 		}
 		return Publications;
 	}
-
-
-	
 }
 
