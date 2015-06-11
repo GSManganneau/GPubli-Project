@@ -229,6 +229,15 @@ $(function () {
 
 
 
+	// Pagination
+
+	$('ul.pager .pager-select select').change(function () {
+		window.location.replace($(this).attr('data-href') + $(this).val());
+	});
+
+
+
+
 	// Table alterable
 
 	$('form[data-toggle="validator-form"] table td a.update').click(function (event) {
