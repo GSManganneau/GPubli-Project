@@ -23,7 +23,7 @@ public class Home extends HttpServlet {
 	// Definition du content à inclure au template, du style et du script.
 
 	public String cssContent = "publications.css";
-	public String content = "publications.jsp";
+	public String content = "home.jsp";
 	public String jsContent = "publications.js";
 
 	private PublicationsDao publicationDao;
