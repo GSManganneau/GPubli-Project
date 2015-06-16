@@ -27,6 +27,7 @@ public class AddPublications extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public String content = "addPublicationForm.jsp";
+	public String jsContent = "addPublicationForm.js";
 
 	private PublicationsDao publicationDao;
 	private TypeDao typeDao;
@@ -63,6 +64,7 @@ public class AddPublications extends HttpServlet {
 		List<Authors> authors = authorDao.lister();
 		request.setAttribute("session", s);
         request.setAttribute("content",content);
+        request.setAttribute("jsContent", jsContent);
         request.setAttribute("types", types);
         request.setAttribute("authors", authors);
         this.getServletContext().getRequestDispatcher("/front-office/template.jsp").forward(request, response);
