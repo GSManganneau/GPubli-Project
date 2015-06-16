@@ -1,47 +1,3 @@
-
-<p>Formulaire d'ajout de publication
-<form action="addpublications" method="post">
-<label>Titre</label><input type=text name="title" id="title" required><br><br>
-<label>Résumé de l'article</label> <input type=text name="resume" id="resume" required><br><br>
-<label>Date</label><input type=text name="date" id ="date" required><br><br>
-<label>Type de la publication</label>
-<select id="list" name="typeId" required >
-<option>vide
-</option>
-<c:forEach var="type" items="${types}">
-<option value=<c:out value="${type.typeId}"/>> <c:out value="${type.typeName }"/>
-</option> 
-</c:forEach>
-</select><br><br>
-<button type=submit >Soumettre</button>
-</form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- À toi de jouer Stéphane ! -->
-
 <div class="row">
 	<div class="col-md-12">
 		<ol class="breadcrumb">
@@ -54,7 +10,7 @@
 
 <div class="row">
 	<div class="col-sm-12">
-		<form class="form-horizontal" data-toggle="validator" data-form="not-sendable">
+		<form class="form-horizontal" data-toggle="validator" data-form="not-sendable" action="addpublications" method="post">
 			<div class="form-group">
 				<label for="label-title" class="col-sm-2 control-label">Titre *</label>
 				<div class="col-sm-10">
@@ -90,12 +46,11 @@
 			<div class="form-group">
 				<label for="label-type" class="col-sm-2 control-label">Type *</label>
 				<div class="col-sm-10">
-					<select class="form-control selectize-select-simple" name="type" id="label-type" data-rule-required="true">
+					<select class="form-control selectize-select-simple" name="typeId" id="label-type" data-rule-required="true">
 						<option value="">Choisissez un type</option>
-						<option value="1">Livre</option>
-						<option value="2">Article</option>
-						<option value="3">Conférence</option>
-						<option value="4">Cours</option>
+						<c:forEach var="type" items="${types}">
+						<option value=<c:out value="${type.typeId}"/>><c:out value="${type.typeName}"/></option> 
+						</c:forEach>
 					</select>
 				</div>
 			</div>
