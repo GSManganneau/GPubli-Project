@@ -232,7 +232,7 @@ $(function () {
 	// Pagination
 
 	$('ul.pager .pager-select select').change(function () {
-		window.location.replace($('ul.pager .pager-select select').attr('data-href') + $(this).val());
+		window.location.replace($(this).attr('data-href') + $(this).val());
 	});
 
 

@@ -53,6 +53,8 @@
 					</select>
 				</div>
 			</div>
+
+			<div class="type-attributes"></div>
 			
 			<div class="form-group form-group-submit">
 				<div class="col-sm-10 col-sm-offset-2">
