@@ -1,6 +1,5 @@
 <jsp:directive.page contentType="text/html;charset=UTF-8" />
 		<c:forEach var="publication" items="${publications}">
-		EE
 		<div class="publications">
 			<div class="panel panel-default panel-publication">
 				<div class="panel-heading">
