@@ -2,23 +2,23 @@ package beans;
 
 public class Teams {
 
-	public String name;
+	public String teamName;
 	public int count;
 	public int teamId;
 	public String thumbnail;
 
 	@Override
 	public String toString() {
-		return "Teams [name=" + name + ", teamId=" + teamId + ", thumbnail="
+		return "Teams [name=" + teamName + ", teamId=" + teamId + ", thumbnail="
 				+ thumbnail + "]";
 	}
 
-	public String getName() {
-		return name;
+	public String getTeamName() {
+		return teamName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setTeamName(String name) {
+		this.teamName = name;
 	}
 
 	public int getTeamId() {

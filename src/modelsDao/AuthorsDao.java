@@ -94,18 +94,20 @@ public class AuthorsDao extends Dao<Authors>{
         try {
             connexion =factory.getConnection();
             statement = connexion.createStatement();
-            resultat = statement.executeQuery("SELECT a.firstname, a.lastname, t.name FROM authors a,team t WHERE t.teamId = a.teamId");
+            resultat = statement.executeQuery("SELECT * FROM Authors natural join Teams");
 
             while (resultat.next()) {
-            	String team_name = resultat.getString("name");
+            	String teamName= resultat.getString("teamName");
                 String firstname = resultat.getString("firstname");
                 String lastname = resultat.getString("lastname");
+                int authorId = resultat.getInt("authorId");
                 
 
                 Authors Author = new Authors();
+                Author.setAuthorId(authorId);
                 Author.setFirstname(firstname);
                 Author.setLastname(lastname);
-                Author.getTeam().setName(team_name);
+                Author.getTeam().setTeamName(teamName);
 
                 Authors.add(Author);
             }
