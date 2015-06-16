@@ -119,6 +119,7 @@
 
 		<script src="front-office/js/jquery-validation-checkform.js"></script>
 		<script src="front-office/js/main.js"></script>
+		<script src="front-office/js/addPublicationForm.js"></script>
 
 		<c:if test="${!empty jsContent }">
 			<script src="front-office/js/<c:out value="${jsContent}"/>"></script>

@@ -77,7 +77,7 @@ public class AddPublications extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		int typeId = Integer.parseInt(request.getParameter("typeId"));
+		int typeId = Integer.parseInt(request.getParameter("type"));
 		String date = request.getParameter("date");
 		String resume = request.getParameter("resume");
 		String title = request.getParameter("title");
@@ -88,7 +88,7 @@ public class AddPublications extends HttpServlet {
 			type.getAttributes().get(i).setDatas(data);
 		}
 		String coAuthors= request.getParameter("authors");
-		System.out.print(coAuthors);
+		//System.out.print(coAuthors);
 		Publications publication = new Publications();
 		publication.setDate(date);
 		publication.setResume(resume);
