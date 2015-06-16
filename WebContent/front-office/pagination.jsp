@@ -4,7 +4,7 @@
 		<li class="previous"><a href="/GPubli-Project/<c:out value="${paginate.servlet }"/>?page=<c:out value="${paginate.previousPageNumber }"/>"><span aria-hidden="true">&larr;</span> Précédent</a></li>
 	<li>
 		<div class="pager-select">
-			<select class="form-control">
+			<select class="form-control" data-href="/GPubli-Project/<c:out value="${paginate.servlet }"/>?page=">
 	<c:forEach var="i" begin="1" end="${paginate.numberOfPages }" step="1">
 
 						

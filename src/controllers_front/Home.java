@@ -7,7 +7,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import javax.servlet.http.HttpSession;
 
 import beans.Publications;
@@ -92,7 +91,7 @@ public class Home extends HttpServlet {
 									(paginate.getCurrentPageNumber() - 1)
 											* elementsByPage,
 									elementsByPage));
-					System.out.println(paginate.toString());
+					
 					// On envoi les données à la servlet
 					request.setAttribute("session", s);
 					request.setAttribute("paginate", paginate);
