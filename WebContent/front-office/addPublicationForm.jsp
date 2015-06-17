@@ -10,7 +10,7 @@
 </div>
 <div class="row">
 	<div class="col-sm-12">
-		<form action="addpublications" method="post" class="form-horizontal" data-toggle="validator" data-form="not-sendable">
+		<form  class="form-horizontal" data-toggle="validator" data-form="not-sendable" action="addpublications" method="post">
 			<div class="form-group">
 				<label for="label-title" class="col-sm-2 control-label">Titre *</label>
 				<div class="col-sm-10">
