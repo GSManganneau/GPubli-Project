@@ -103,12 +103,12 @@ $(function () {
 
 		this.get = function () {
 			var request = $.ajax({
-				'type': 'POST',
-				'dataType': 'json',
-				'data': {
+				type: 'POST',
+				dataType: 'json',
+				data: {
 					'field': $.trim(this.input.val())
 				},
-				'url': 'autocomplete.json'
+				url: 'json/autocomplete.json'
 			});
 
 			request.done($.proxy(function (data) {
@@ -224,6 +224,17 @@ $(function () {
 		publication.find('p.resume').trigger('destroy');
 		publication.find('table').show();
 		publication.find('.detail').remove();
+	});
+
+
+
+
+	// Delete publication (modal)
+
+	$('a[data-target="#delete-modal"]').click(function (event) {
+		event.preventDefault();
+		
+		$($(this).attr('data-target')).find('.modal-footer a').attr('href', $(this).attr('href'));
 	});
 
 

@@ -1,6 +1,6 @@
 <jsp:directive.page contentType="text/html;charset=UTF-8" />
-		<c:forEach var="publication" items="${publications}">
 		<div class="publications">
+			<c:forEach var="publication" items="${publications}">
 			<div class="panel panel-default panel-publication">
 				<div class="panel-heading">
 					<div class="row">
@@ -16,7 +16,7 @@
 									<li><a href="#"><span class="glyphicon glyphicon-text-size" aria-hidden="true"></span>&nbsp; Export Texte</a></li>
 									<li class="divider"></li>
 									<li><a href="#"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp; Modifier</a></li>
-									<li><a href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp; Supprimer</a></li>
+									<li><a href="#delete-url" data-toggle="modal" data-target="#delete-modal"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp; Supprimer</a></li>
 								</ul>
 							</div>
 						</div>
@@ -44,6 +44,5 @@
 					</c:forEach>
 				</table>
 			</div>
+			</c:forEach>
 		</div>
-		</c:forEach>
- 		
