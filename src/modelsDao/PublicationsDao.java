@@ -649,10 +649,11 @@ public class PublicationsDao extends Dao<Publications> {
 			statement = connexion.createStatement();
 			statement2 = connexion.createStatement();
 			statement3 = connexion.createStatement();
-			String queri = "SELECT * FROM  Repositories"
-					+ " natural join Publications " + " natural join Authors "
-					+ "natural join Types ORDER BY publicationId DESC "
-					+ "WHERE publicationId = " + PubId;
+			String queri = "SELECT * FROM  Repositories "
+					+ " natural join Publications "
+					+ " natural join Authors "
+					+ " natural join Types WHERE publicationId = " + PubId
+					+ " ORDER BY publicationId DESC ";
 			resultat = statement.executeQuery(queri);
 			while (resultat.next()) {
 				String resume = resultat.getString("resume");
@@ -686,7 +687,7 @@ public class PublicationsDao extends Dao<Publications> {
 
 				}
 				String query2 = "select * from Repositories "
-						+ " natural join Author where publicationId=" + id
+						+ " natural join Authors where publicationId=" + id
 						+ " and  authorId <> " + authorId;
 				resultat3 = statement3.executeQuery(query2);
 				List<Authors> coAuthors = new ArrayList<Authors>();

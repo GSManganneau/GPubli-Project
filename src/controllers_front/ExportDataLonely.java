@@ -23,6 +23,8 @@ import org.omg.CORBA.DataInputStream;
 
 
 
+
+
 import modelsDao.AuthorsDao;
 import modelsDao.DAOFactory;
 import modelsDao.PublicationsDao;
@@ -64,14 +66,16 @@ public class ExportDataLonely extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String search = request.getParameter("search");
-		request.setAttribute("Publications", publicationsDao.listeLoneLy(1));
+		String field = request.getParameter("p");
+		int p = Integer.parseInt(field);
+		System.out.print(p);
+		request.setAttribute("Publications", publicationsDao.listeLoneLy(p));
 		
 		//response.setContentType("application/octet-stream");
 		response.setHeader("Content-Description", "File Transfer");
 		response.setHeader("Content-type", "application/octet-stream");
 		response.setHeader("Content-Transfer-Encoding", "binary");
-		response.setHeader("Content-Disposition","attachment; filename=babar.txt");
+		response.setHeader("Content-Disposition","attachment; filename=publication'+p'.txt");
 		
 		getServletContext().getRequestDispatcher("/front-office/export.jsp")
 				.include(request, response);
