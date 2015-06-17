@@ -64,7 +64,7 @@ public class TeamsDao extends Dao<Teams>{
                 String author_lastname = resultat.getString("lastname");*/
                 
                 Teams Team = new Teams();
-                Team.setName(name);
+                Team.setTeamName(name);
                 
 /*                //Nom des auteurs
                 Authors author = new Authors();
@@ -101,7 +101,7 @@ public class TeamsDao extends Dao<Teams>{
                 String teamName = resultat.getString("teamName");          
                 
                 Teams Team = new Teams();
-                Team.setName(teamName);
+                Team.setTeamName(teamName);
                 
                 Teams.add(Team);
             }

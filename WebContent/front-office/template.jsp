@@ -6,13 +6,14 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="front-office/css/bootstrap.css">
-		<link rel="stylesheet" href="front-office/css/font-awesome.css">
-		<link rel="stylesheet" href="front-office/css/selectize.bootstrap3.css">
-		<link rel="stylesheet" href="front-office/css/bootstrap-datetimepicker.css">
-		<link rel="stylesheet" href="front-office/css/internal/main.css">
+		<link rel="stylesheet" href="front-office/libraries/bootstrap-3.3.4/css/bootstrap.css">
+		<link rel="stylesheet" href="front-office/libraries/font-awesome-4.3/css/font-awesome.css">
+		<link rel="stylesheet" href="front-office/libraries/selectize-0.12.1/css/selectize.bootstrap3.css">
+		<link rel="stylesheet" href="front-office/libraries/bootstrap-datetimepicker-4.7.14/css/bootstrap-datetimepicker.css">
+
+		<link rel="stylesheet" href="front-office/css/main.css">
 		<c:if test="${!empty cssContent }">
-			<link rel="stylesheet" href="front-office/css/internal/<c:out value="${cssContent}"/>">
+			<link rel="stylesheet" href="front-office/css/<c:out value="${cssContent}"/>">
 		</c:if>
 		<!--[if lt IE 9]>
 			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -44,14 +45,13 @@
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>&nbsp; Outils <span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
 									<li><a href="?page=add-publication"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Ajouter une publication</a></li>
-									<li><a href="AdvancedResearch"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp; Recherche avancée</a></li>
+									<li><a href="?page=advanced-search"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp; Recherche avancée</a></li>
 									<li><a href="?page=statistics"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span>&nbsp; Statistiques</a></li>
 								</ul>
 							</li>
 
 							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;<c:out value="${session.getAttribute(\"firstname\")}" />
-								<c:out value="${session.getAttribute(\"name\")}" /> <span class="caret"></span></a>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;<c:out value="${ session.getAttribute(\"name\")}"/> <c:out value="${ session.getAttribute(\"firstname\") }"/> <span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
 									<li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp; Profil</a></li>
 									<li><a href="?page=parameters-profile"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp; Paramètres</a></li>
@@ -61,7 +61,7 @@
 							</li>
 						</ul>
 
-						<form class="navbar-form" method="get" action="Search">
+						<form class="navbar-form">
 							<div class="form-group" style="display: inline;">
 								<div class="input-group" style="display: table;">
 									<span class="input-group-btn" style="width: 1%;">
@@ -69,7 +69,7 @@
 											<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 										</button>
 									</span>
-									<input type="text" class="form-control" name="search" placeholder="Chercher...">
+									<input type="text" class="form-control" placeholder="Chercher...">
 								</div>
 							</div>
 						</form>
@@ -106,17 +106,23 @@
 			</div>
 		</footer>
 
-		<script src="front-office/js/jquery-1.11.3.js"></script>
-		<script src="front-office/js/bootstrap.js"></script>
-		<script src="front-office/js/selectize.js"></script>
-		<script src="front-office/js/stupidtable.js"></script>
-		<script src="front-office/js/moment-with-locales.js"></script>
-		<script src="front-office/js/bootstrap-datetimepicker.js"></script>
-		<script src="front-office/js/internal/main.js"></script>
-		<script src="front-office/js/internal/form.js"></script>
+		<script src="front-office/libraries/jquery-1.11.3/jquery-1.11.3.js"></script>
+		<script src="front-office/libraries/bootstrap-3.3.4/js/bootstrap.js"></script>
+		<script src="front-office/libraries/selectize-0.12.1/js/standalone/selectize.js"></script>
+		<script src="front-office/libraries/stupidtable/stupidtable.js"></script>
+		<script src="front-office/libraries/moment-2.10.3/moment-with-locales.js"></script>
+		<script src="front-office/libraries/bootstrap-datetimepicker-4.7.14/js/bootstrap-datetimepicker.js"></script>
+		<script src="front-office/libraries/jquery-validation-1.13.1/jquery.validate.js"></script>
+		<script src="front-office/libraries/jquery-validation-1.13.1/additional-methods.js"></script>
+		<script src="front-office/libraries/jquery-validation-1.13.1/localization/messages_fr.js"></script>
+		<script src="front-office/libraries/jquery.dotdotdot-1.7.3/jquery.dotdotdot.js"></script>
+
+		<script src="front-office/js/jquery-validation-checkform.js"></script>
+		<script src="front-office/js/main.js"></script>
+		<script src="front-office/js/addPublicationForm.js"></script>
 
 		<c:if test="${!empty jsContent }">
-			<script src="front-office/js/internal/<c:out value="${jsContent}"/>"></script>
+			<script src="front-office/js/<c:out value="${jsContent}"/>"></script>
 		</c:if>
 	</body>
 </html>
