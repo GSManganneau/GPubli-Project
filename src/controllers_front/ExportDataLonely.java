@@ -5,6 +5,7 @@ package controllers_front;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,6 +26,8 @@ import org.omg.CORBA.DataInputStream;
 
 
 
+
+import beans.Publications;
 import modelsDao.AuthorsDao;
 import modelsDao.DAOFactory;
 import modelsDao.PublicationsDao;
@@ -69,16 +72,26 @@ public class ExportDataLonely extends HttpServlet {
 		String field = request.getParameter("p");
 		int p = Integer.parseInt(field);
 		System.out.print(p);
-		request.setAttribute("Publications", publicationsDao.listeLoneLy(p));
+		List<Publications> publications = publicationsDao.listeLoneLy(p);
+		request.setAttribute("Publications", publications);
+		
+
 		
 		//response.setContentType("application/octet-stream");
 		response.setHeader("Content-Description", "File Transfer");
 		response.setHeader("Content-type", "application/octet-stream");
 		response.setHeader("Content-Transfer-Encoding", "binary");
-		response.setHeader("Content-Disposition","attachment; filename=publication'+p'.txt");
 		
+		String typeExport = request.getParameter("export");
+		if (typeExport.equals("text")) {
+		response.setHeader("Content-Disposition","attachment; filename="+ publications.get(0).getTitle() +p+".txt");	
 		getServletContext().getRequestDispatcher("/front-office/export.jsp")
 				.include(request, response);
+		} else if (typeExport.equals("bibTeX")){
+		response.setHeader("Content-Disposition","attachment; filename="+ publications.get(0).getTitle() +p+".bib");	
+		getServletContext().getRequestDispatcher("/front-office/exportBibTeX.jsp")
+				.include(request, response);	
+		}
 	}
 
 	/**

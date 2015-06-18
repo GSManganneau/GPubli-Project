@@ -1,6 +1,6 @@
-<jsp:directive.page contentType="text/html;charset=UTF-8" />
+		<jsp:directive.page contentType="text/html;charset=UTF-8" />
+		<c:forEach var="publication" items="${publications}">
 		<div class="publications">
-			<c:forEach var="publication" items="${publications}">
 			<div class="panel panel-default panel-publication">
 				<div class="panel-heading">
 					<div class="row">
@@ -8,31 +8,17 @@
 							<h3 class="panel-title"><span class="hide-overflow"><i class="fa <%-- <c:out value="${publication.type.iconeName}"/> --%>" data-toggle="tooltip" data-placement="bottom" title=""></i>&nbsp;<c:out value="${publication.title}"/></span></h3>
 						</div>
 
-<<<<<<< HEAD
-							<div class="col-sm-1 col-xs-3 text-right">
+						<div class="col-sm-1 col-xs-3 text-right">
 								<div class="btn-group">
 									<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></button>
 									<ul class="dropdown-menu dropdown-menu-right" role="menu">
-										<li><a href="#<c:out value="${ publication.publicationId}"/>"><span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span>&nbsp; Export Bibtex</a></li>
-										<li><a href="ExportDataLonely?p=<c:out value="${ publication.publicationId}"/>"><span class="glyphicon glyphicon-text-size" aria-hidden="true"></span>&nbsp; Export Texte</a></li>
+										<li><a href="ExportDataLonely?p=<c:out value="${ publication.publicationId}"/>&export=bibTeX"><span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span>&nbsp; Export Bibtex</a></li>
+										<li><a href="ExportDataLonely?p=<c:out value="${ publication.publicationId}"/>&export=text"><span class="glyphicon glyphicon-text-size" aria-hidden="true"></span>&nbsp; Export Texte</a></li>
 										<li class="divider"></li>
 										<li><a href="=<c:out value="${ publication.publicationId}"/>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp; Modifier la publication</a></li>
 										<li><a href="#<c:out value="${ publication.publicationId}"/>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp; Supprimer la publication</a></li>
 									</ul>
 								</div>
-=======
-						<div class="col-sm-1 col-xs-3 text-right">
-							<div class="btn-group">
-								<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></button>
-								<ul class="dropdown-menu dropdown-menu-right" role="menu">
-									<li><a href="#"><span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span>&nbsp; Export Bibtex</a></li>
-									<li><a href="#"><span class="glyphicon glyphicon-text-size" aria-hidden="true"></span>&nbsp; Export Texte</a></li>
-									<li class="divider"></li>
-									<li><a href="#"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp; Modifier</a></li>
-									<li><a href="#delete-url" data-toggle="modal" data-target="#delete-modal"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp; Supprimer</a></li>
-								</ul>
->>>>>>> 6b132c4474d138fc4d251f20bb22425da1400f50
-							</div>
 						</div>
 					</div>
 				</div>
@@ -58,5 +44,6 @@
 					</c:forEach>
 				</table>
 			</div>
-			</c:forEach>
 		</div>
+		</c:forEach>
+					
