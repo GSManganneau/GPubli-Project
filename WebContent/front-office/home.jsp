@@ -18,7 +18,7 @@
  		<nav>
 			<jsp:include page="pagination.jsp" /> 
 		</nav>
-		
-		
 	</div>
 </div>
+
+<jsp:include page="delete-modal.jsp"/> 
