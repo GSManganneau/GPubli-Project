@@ -5,9 +5,9 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="libraries/bootstrap-3.3.4/css/bootstrap.css">
+		<link rel="stylesheet" href="front-office/libraries/bootstrap-3.3.4/css/bootstrap.css">
 
-		<link rel="stylesheet" href="css/authentification.css">
+		<link rel="stylesheet" href="front-office/css/authentification.css">
 
 		<!--[if lt IE 9]>
 			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -45,7 +45,7 @@
 			</div>
 		</div>
 
-		<script src="libraries/jquery-1.11.3/jquery-1.11.3.js"></script>
-		<script src="libraries/bootstrap-3.3.4/js/bootstrap.js"></script>
+		<script src="front-office/libraries/jquery-1.11.3/jquery-1.11.3.js"></script>
+		<script src="front-office/libraries/bootstrap-3.3.4/js/bootstrap.js"></script>
 	</body>
 </html>

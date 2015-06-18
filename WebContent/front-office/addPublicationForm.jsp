@@ -47,13 +47,6 @@
 			</div>
 
 			<div class="form-group">
-				<label for="label-file" class="col-sm-2 control-label">Fichier à joindre</label>
-				<div class="col-sm-10">
-					<input type="file" class="form-control" name="file" id="label-file">
-				</div>
-			</div>
-
-			<div class="form-group">
 				<label for="label-type" class="col-sm-2 control-label">Type *</label>
 				<div class="col-sm-10">
 					<select class="form-control selectize-select-simple" name="typeId" id="label-type" data-rule-required="true">

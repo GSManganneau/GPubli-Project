@@ -5,13 +5,13 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="libraries/bootstrap-3.3.4/css/bootstrap.css">
-		<link rel="stylesheet" href="libraries/font-awesome-4.3/css/font-awesome.css">
-		<link rel="stylesheet" href="libraries/fontawesome-iconpicker/css/fontawesome-iconpicker.css">
-		<link rel="stylesheet" href="libraries/selectize-0.12.1/css/selectize.bootstrap3.css">
+		<link rel="stylesheet" href="front-office/libraries/bootstrap-3.3.4/css/bootstrap.css">
+		<link rel="stylesheet" href="front-office/libraries/font-awesome-4.3/css/font-awesome.css">
+		<link rel="stylesheet" href="front-office/libraries/fontawesome-iconpicker/css/fontawesome-iconpicker.css">
+		<link rel="stylesheet" href="front-office/libraries/selectize-0.12.1/css/selectize.bootstrap3.css">
 
-		<link rel="stylesheet" href="css/main.css">
-		<!-- <link rel="stylesheet" href="css/{{content}}.css"> -->
+		<link rel="stylesheet" href="front-office/css/main.css">
+		<!-- <link rel="stylesheet" href="front-office/css/{{content}}.css"> -->
 
 		<!--[if lt IE 9]>
 			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -72,17 +72,17 @@
 			</div>
 		</div>
 
-		<script src="libraries/jquery-1.11.3/jquery-1.11.3.js"></script>
-		<script src="libraries/bootstrap-3.3.4/js/bootstrap.js"></script>
-		<script src="libraries/selectize-0.12.1/js/standalone/selectize.js"></script>
-		<script src="libraries/stupidtable/stupidtable.js"></script>
-		<script src="libraries/fontawesome-iconpicker/js/fontawesome-iconpicker.js"></script>
-		<script src="libraries/jquery-validation-1.13.1/jquery.validate.js"></script>
-		<script src="libraries/jquery-validation-1.13.1/additional-methods.js"></script>
-		<script src="libraries/jquery-validation-1.13.1/localization/messages_fr.js"></script>
+		<script src="front-office/libraries/jquery-1.11.3/jquery-1.11.3.js"></script>
+		<script src="front-office/libraries/bootstrap-3.3.4/js/bootstrap.js"></script>
+		<script src="front-office/libraries/selectize-0.12.1/js/standalone/selectize.js"></script>
+		<script src="front-office/libraries/stupidtable/stupidtable.js"></script>
+		<script src="front-office/libraries/fontawesome-iconpicker/js/fontawesome-iconpicker.js"></script>
+		<script src="front-office/libraries/jquery-validation-1.13.1/jquery.validate.js"></script>
+		<script src="front-office/libraries/jquery-validation-1.13.1/additional-methods.js"></script>
+		<script src="front-office/libraries/jquery-validation-1.13.1/localization/messages_fr.js"></script>
 
-		<script src="js/jquery-validation-checkform.js"></script>
-		<script src="js/main.js"></script>
-		<!-- <script src="js/{{content}}.js"></script> -->
+		<script src="front-office/js/jquery-validation-checkform.js"></script>
+		<script src="front-office/js/main.js"></script>
+		<!-- <script src="front-office/js/{{content}}.js"></script> -->
 	</body>
 </html>
