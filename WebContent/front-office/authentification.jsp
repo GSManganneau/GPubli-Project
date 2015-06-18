@@ -17,7 +17,7 @@
 	<body>
 		<div id="content">
 			<div class="container">
-				<form class="form-signin">
+				<form class="form-signin" action="connexion" method="post">
 					<h2 class="form-signin-heading">
 						<svg version="1.1" id="logo-gpubli" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" height="35px" fill="#5e5e5e" viewBox="0 0 1112.6 1112.6" enable-background="new 0 0 1112.6 1112.6" xml:space="preserve">
 							<path d="M556.3,0C249.1,0,0,249.1,0,556.3s249.1,556.3,556.3,556.3s556.3-249.1,556.3-556.3S863.5,0,556.3,0z M194.3,825.3l87-479l63,12l-71,393l378,157L194.3,825.3z M335.3,721.3l85-476l72,29l-72,403l264,190L335.3,721.3z M477.3,645.3l86-475l66,48l-75,414l194.5,209L477.3,645.3z M834,855.3l-221-234l84-468l219,257L834,855.3z">
