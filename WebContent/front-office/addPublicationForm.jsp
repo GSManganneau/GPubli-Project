@@ -17,12 +17,14 @@
 					<input type="text" class="form-control" name="title" id="label-title" placeholder="Titre de la publication" data-rule-required="true">
 				</div>
 			</div>
+			
 			<div class="form-group">
 				<label for="label-resume" class="col-sm-2 control-label">Résumé *</label>
 				<div class="col-sm-10">
 					<textarea class="form-control" rows="4" name="resume" id="label-resume" placeholder="Entrez un résumé de la publication" data-rule-required="true"></textarea>
 				</div>
 			</div>
+
 			<div class="form-group">
 				<label for="label-authors" class="col-sm-2 control-label">Co-auteur(s)</label>
 				<div class="col-sm-10">
@@ -33,6 +35,7 @@
 					</select>
 				</div>
 			</div>
+
 			<div class="form-group form-group-date">
 				<label for="label-date" class="col-sm-2 control-label">Date *</label>
 				<div class="col-sm-10">
@@ -42,6 +45,14 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="form-group">
+				<label for="label-file" class="col-sm-2 control-label">Fichier à joindre</label>
+				<div class="col-sm-10">
+					<input type="file" class="form-control" name="file" id="label-file">
+				</div>
+			</div>
+
 			<div class="form-group">
 				<label for="label-type" class="col-sm-2 control-label">Type *</label>
 				<div class="col-sm-10">
