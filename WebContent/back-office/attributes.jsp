@@ -1,3 +1,4 @@
+<jsp:directive.page contentType="text/html;charset=UTF-8" />
 <div class="row">
 	<div class="col-md-12">
 		<ol class="breadcrumb">
@@ -11,12 +12,12 @@
 	<div class="col-md-12">
 		<div class="alert alert-success alert-dismissible" role="alert">
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp; Ajout effectué avec succès !
+			<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp; Ajout effectuÃ© avec succÃ¨s !
 		</div>
 
 		<div class="alert alert-success alert-dismissible" role="alert">
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp; Modifications effectuées avec succès !
+			<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp; Modifications effectuÃ©es avec succÃ¨s !
 		</div>
 		
 		<form data-toggle="validator-form">
@@ -29,7 +30,7 @@
 						<thead>
 							<tr>
 								<th class="col-md-1" data-sort="int" data-alterable-type="id" data-alterable-name="id">Id &nbsp;<i class="fa fa-sort"></th>
-								<th class="col-md-8" data-sort="string" data-alterable-type="select-create" data-alterable-name="name" data-alterable-choose="Choisissez ou créez un nom d'attribut" data-alterable-value='[{"name":"Éditeur","value":1},{"name":"Pages","value":2},{"name":"Chapitres","value":3},{"name":"Catégorie","value":4}]' data-alterable-validate="required">Nom &nbsp;<i class="fa fa-sort"></th>
+								<th class="col-md-8" data-sort="string" data-alterable-type="select-create" data-alterable-name="name" data-alterable-choose="Choisissez ou crÃ©ez un nom d'attribut" data-alterable-value='[{"name":"Ãditeur","value":1},{"name":"Pages","value":2},{"name":"Chapitres","value":3},{"name":"CatÃ©gorie","value":4}]' data-alterable-validate="required">Nom &nbsp;<i class="fa fa-sort"></th>
 								<th class="col-md-2" data-sort="int" data-alterable-type="input" data-alterable-name="order" data-alterable-validate="required digits">Ordre &nbsp;<i class="fa fa-sort"></th>
 								<th class="col-md-1"><!-- Action --></th>
 							</tr>
@@ -37,7 +38,7 @@
 						<tbody>
 							<tr>
 								<td data-title="Id">1</td>
-								<td data-title="Nom" data-alterable-option="1">Éditeur</td>
+								<td data-title="Nom" data-alterable-option="1">Ãditeur</td>
 								<td data-title="Ordre">4</td>
 								<td data-title="Action" class="text-right">
 									<div class="btn-group">
@@ -97,11 +98,11 @@
 					<div class="form-group">
 						<label for="label-name" class="control-label">Nom</label>
 						<select class="form-control selectize-select-simple-create" id="label-name" name="name" data-rule-required="true">
-							<option value="">Choisissez ou créez un nom d'attribut</option>
-							<option value="1">Éditeur</option>
+							<option value="">Choisissez ou crÃ©ez un nom d'attribut</option>
+							<option value="1">Ãditeur</option>
 							<option value="2">Pages</option>
 							<option value="3">Chapitres</option>
-							<option value="4">Catégorie</option>
+							<option value="4">CatÃ©gorie</option>
 						</select>
 					</div>
 
