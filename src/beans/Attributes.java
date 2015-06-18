@@ -10,6 +10,7 @@ public class Attributes {
 	private int attributeId;
 	private String attributeName;
 	private String datas;
+	private String attributeNature;
 	
 	
 	public int getAttributeId() {
@@ -29,6 +30,12 @@ public class Attributes {
 	}
 	public void setDatas(String datas) {
 		this.datas = datas;
+	}
+	public String getAttributeNature() {
+		return attributeNature;
+	}
+	public void setAttributeNature(String attributeNature) {
+		this.attributeNature = attributeNature;
 	}
 
 }

@@ -13,6 +13,7 @@ public class Types {
 	private String typeName;
 	private List<Attributes> attributes = new ArrayList<Attributes>();
 	
+	
 	public List<Attributes> getAttributes() {
 		return attributes;
 	}
@@ -34,6 +35,8 @@ public class Types {
 		this.typeName=typeName;
 		
 	}
+
+	
 	
 	
 }

@@ -80,7 +80,9 @@ public class AddPublications extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		int typeId = Integer.parseInt(request.getParameter("type"));
+		System.out.println("typeId:"+typeId);
 		String date = request.getParameter("date");
+		System.out.println(date);
 		String resume = request.getParameter("resume");
 		String title = request.getParameter("title");
 		Types type = typeDao.find(typeId);
@@ -89,9 +91,17 @@ public class AddPublications extends HttpServlet {
 			String data = request.getParameter(attributeName);
 			type.getAttributes().get(i).setDatas(data);
 		}
-		String coAuthors= request.getParameter("authors");
-		//System.out.print(coAuthors);
 		Publications publication = new Publications();
+		if(request.getParameterValues("authors")!=null){
+			String[] coAuthors = request.getParameterValues("authors");
+			for(int i=0;i<coAuthors.length;i++){
+				if (coAuthors[i].matches("^[new]")){
+					
+				}
+			}
+		}
+		
+		
 		publication.setDate(date);
 		publication.setResume(resume);
 		publication.setTitle(title);
