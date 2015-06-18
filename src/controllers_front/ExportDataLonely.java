@@ -71,7 +71,6 @@ public class ExportDataLonely extends HttpServlet {
 		// TODO Auto-generated method stub
 		String field = request.getParameter("p");
 		int p = Integer.parseInt(field);
-		System.out.print(p);
 		List<Publications> publications = publicationsDao.listeLoneLy(p);
 		request.setAttribute("Publications", publications);
 		
