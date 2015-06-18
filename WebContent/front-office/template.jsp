@@ -116,11 +116,8 @@
 		<script src="front-office/libraries/jquery-validation-1.13.1/additional-methods.js"></script>
 		<script src="front-office/libraries/jquery-validation-1.13.1/localization/messages_fr.js"></script>
 		<script src="front-office/libraries/jquery.dotdotdot-1.7.3/jquery.dotdotdot.js"></script>
-
 		<script src="front-office/js/jquery-validation-checkform.js"></script>
 		<script src="front-office/js/main.js"></script>
-		<script src="front-office/js/addPublicationForm.js"></script>
-
 		<c:if test="${!empty jsContent }">
 			<script src="front-office/js/<c:out value="${jsContent}"/>"></script>
 		</c:if>

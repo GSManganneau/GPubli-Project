@@ -1,3 +1,4 @@
+<jsp:directive.page contentType="text/html;charset=UTF-8" />
 <div class="row">	
 	<div class="col-md-12">
 		<ol class="breadcrumb">
@@ -55,7 +56,7 @@
 				</div>
 			</div>
 			<div class="panel-body text-right">
-				Équipe(s)
+				Ãquipe(s)
 			</div>
 		</div>
 	</div>
