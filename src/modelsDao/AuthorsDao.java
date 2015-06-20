@@ -259,6 +259,36 @@ public class AuthorsDao extends Dao<Authors>{
 		}
 		return Author;
 	}
+	
+	public Authors countInTeam(int teamId) {
+		// TODO Auto-generated method stub
+		Authors Author = new Authors();
+		Connection connexion = null;
+        Statement statement = null;
+        ResultSet resultat = null;
+        int i;
+		try{
+			connexion=factory.getConnection();
+			String query = "SELECT COUNT(A.firstname) AS nombre FROM authors A JOIN teams T "
+					+ "ON A.teamId = T.teamId "
+					+ "WHERE teamId ="+teamId;
+			
+			statement = connexion.createStatement();
+	        resultat = statement.executeQuery(query);
+	        
+	        // Récupération des données
+            while (resultat.next()) {
+          	   String nombre = resultat.getString("nombre");
+          	  
+          	   i = Integer.parseInt(nombre); 
+          	   Author.setCount(i);        	   
+            }
+            
+		}catch (SQLException e) {
+            e.printStackTrace();
+		}
+		return Author;
+	}
 
 
 /*	@Override
