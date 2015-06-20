@@ -519,7 +519,7 @@ public class PublicationsDao extends Dao<Publications> {
 
 	}
 
-	public List<Publications> research(String reqPubliName, String reqDate, String reqResume, String reqAuthor) {
+	public List<Publications> research(String reqPubliName, String reqDate, String reqResume, Integer reqAuthor) {
 		List<Publications> Publications = new ArrayList<Publications>();
 		Connection connexion = null;
 		// Statement statement = null;
@@ -552,8 +552,11 @@ public class PublicationsDao extends Dao<Publications> {
 			 * }
 			 */
 
-			String requetePart1 = "SELECT * FROM publications";
+			String requetePart1_Normal = "SELECT * FROM publications";
+			String requetePart1_Author = "SELECT * FROM publications, repositories, authors";
 			String requetePart2 = " WHERE ";
+			String requetePreAuthor = "publications.publicationId = repositories.publicationId AND authors.authorId = repositories.authorId AND authors.authorId = ?";
+			String requeteAuthorId = "authors.authorId = ?";
 			String requeteDate = "date = ?";
 			String requeteName = "title LIKE ?";
 			String requeteResume = "resume LIKE ?";
@@ -561,9 +564,15 @@ public class PublicationsDao extends Dao<Publications> {
 			String requeteAnd = " AND ";
 			boolean and = false;
 			int i = 1;
+			String requeteToExecute = null;
+			
+			if (reqAuthor != null) {
+				requeteToExecute = requetePart1_Author + requetePart2;
+			} else {
+				requeteToExecute = requetePart1_Normal + requetePart2;
+			}
 
-			String requeteToExecute = requetePart1 + requetePart2;
-
+			
 			if (!reqDate.isEmpty()) {
 				if (and) {
 					requeteToExecute += requeteAnd;
@@ -590,6 +599,17 @@ public class PublicationsDao extends Dao<Publications> {
 
 			}
 
+			
+			
+			if (reqAuthor!=null) {
+				if (and) {
+					requeteToExecute += requeteAnd;
+				}
+				requeteToExecute += requetePreAuthor;
+				System.out.println(requeteToExecute);
+				and = true;				
+			}
+
 			preparedStatement = connexion.prepareStatement(requeteToExecute);
 
 			if (!reqDate.isEmpty()) {
@@ -604,6 +624,11 @@ public class PublicationsDao extends Dao<Publications> {
 
 			if (!reqResume.isEmpty()) {
 				preparedStatement.setString(i, "%" + reqResume + "%");
+				i++;
+			}
+			
+			if (reqAuthor!=null) {
+				preparedStatement.setInt(i, reqAuthor );
 				i++;
 			}
 

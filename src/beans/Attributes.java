@@ -11,6 +11,7 @@ public class Attributes {
 	private String attributeName;
 	private String datas;
 	private String attributeNature;
+	private boolean attributeRequired;
 	
 	
 	public int getAttributeId() {
@@ -36,6 +37,12 @@ public class Attributes {
 	}
 	public void setAttributeNature(String attributeNature) {
 		this.attributeNature = attributeNature;
+	}
+	public boolean isAttributeRequired() {
+		return attributeRequired;
+	}
+	public void setAttributeRequired(boolean attributeRequired) {
+		this.attributeRequired = attributeRequired;
 	}
 
 }
