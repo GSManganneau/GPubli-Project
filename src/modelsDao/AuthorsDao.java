@@ -46,6 +46,40 @@ public class AuthorsDao extends Dao<Authors>{
                author.setLastname(lastname);
                author.setLdapId(ldapId);
                author.setAuthorId(authorId);
+               author.getTeam().setTeamId(teamId);
+               
+                    
+            }
+		}catch (SQLException e) {
+            e.printStackTrace();
+		}
+		return author;
+	}
+	public Authors findWithId(int id) {
+		Connection connexion = null;
+        Statement statement = null;
+        ResultSet resultat = null;
+        Authors author=null;
+		// TODO Auto-generated method stub
+		try{
+			connexion=factory.getConnection();
+			String query= "SELECT * FROM Authors where authorId="+id;
+			statement = connexion.createStatement();
+	        resultat = statement.executeQuery(query);
+	     // Récupération des données
+            while (resultat.next()) {
+                String firstname = resultat.getString("firstname");
+                String lastname = resultat.getString("lastname");
+                int authorId=resultat.getInt("authorId");
+                int ldapId=resultat.getInt("ldapId");
+                int teamId= resultat.getInt("teamId");
+                
+               author = new Authors();
+               author.setFirstname(firstname);
+               author.setLastname(lastname);
+               author.setLdapId(ldapId);
+               author.setAuthorId(authorId);
+               author.getTeam().setTeamId(teamId);
                
                     
             }
@@ -60,6 +94,7 @@ public class AuthorsDao extends Dao<Authors>{
 	public boolean create(Authors object) {
 		// TODO Auto-generated method stub
 		Connection connexion = null;
+		int authorId=0;
         String firstname=object.getFirstname();
         String lastname=object.getLastname();
         int teamId=object.getTeam().getTeamId();
@@ -69,20 +104,54 @@ public class AuthorsDao extends Dao<Authors>{
         	            
         			connexion=factory.getConnection();
         			String query= "INSERT INTO  Authors (firstname,lastname,teamId,ldapId) VALUES (?,?,?,?)";
-        			PreparedStatement preparedStatement = connexion.prepareStatement(query);
+        			PreparedStatement preparedStatement = connexion.prepareStatement(
+        					query, Statement.RETURN_GENERATED_KEYS);
         			preparedStatement.setString(1,firstname);
     	            preparedStatement.setString(2,lastname);
     	            preparedStatement.setInt(3,teamId);
     	            preparedStatement.setInt(4,ldapId);
-    	           
     	            
     	            preparedStatement.executeUpdate();
+    	            ResultSet result = preparedStatement.getGeneratedKeys();
+    				result.next();
+    				authorId = result.getInt(1);
 
         		}catch(SQLException e){
         			e.printStackTrace();
         		}
         		
 		return true;
+	}
+	public int create(Authors object,boolean j) {
+		// TODO Auto-generated method stub
+		Connection connexion = null;
+		int authorId=0;
+        String firstname=object.getFirstname();
+        String lastname=object.getLastname();
+        int teamId=object.getTeam().getTeamId();
+        int ldapId=object.getLdapId();
+        		try{
+        			
+        	            
+        			connexion=factory.getConnection();
+        			String query= "INSERT INTO  Authors (firstname,lastname,teamId,ldapId) VALUES (?,?,?,?)";
+        			PreparedStatement preparedStatement = connexion.prepareStatement(
+        					query, Statement.RETURN_GENERATED_KEYS);
+        			preparedStatement.setString(1,firstname);
+    	            preparedStatement.setString(2,lastname);
+    	            preparedStatement.setInt(3,teamId);
+    	            preparedStatement.setInt(4,ldapId);
+    	            
+    	            preparedStatement.executeUpdate();
+    	            ResultSet result = preparedStatement.getGeneratedKeys();
+    				result.next();
+    				authorId = result.getInt(1);
+
+        		}catch(SQLException e){
+        			e.printStackTrace();
+        		}
+        		
+		return authorId;
 	}
 	
 	public List<Authors> lister() {

@@ -35,11 +35,13 @@ public class PublicationsDao extends Dao<Publications> {
 
 		int typeId = object.getType().getTypeId();
 		List<Attributes> attributes = object.getType().getAttributes();
+		List <Authors> coAuthors = object.getCoAuthors();
+		Authors author = object.getAuthor();
 		String date = object.getDate();
 		String resume = object.getResume();
 		String title = object.getTitle();
 		int publicationId = 0;
-
+		//coAuthors.add(author);
 		try {
 
 			connexion = factory.getConnection();
@@ -64,6 +66,15 @@ public class PublicationsDao extends Dao<Publications> {
 				pS2.setInt(3, attributes.get(i).getAttributeId());
 				pS2.setInt(4, typeId);
 				pS2.executeUpdate();
+
+			}
+			String query3 = "INSERT INTO Repositories (authorId,publicationId) Values (?,?)";
+			for (int i = 0; i < coAuthors.size(); i++) {
+				PreparedStatement pS3 = connexion.prepareStatement(query3);
+				System.out.print(coAuthors.get(i));
+				pS3.setInt(1, coAuthors.get(i).getAuthorId());
+				pS3.setInt(2, publicationId);
+				pS3.executeUpdate();
 
 			}
 		} catch (SQLException e) {
@@ -212,8 +223,7 @@ public class PublicationsDao extends Dao<Publications> {
 
 				}
 				String query2 = "select * from Repositories "
-						+ " natural join Authors where publicationId=" + id
-						+ " and  authorId <> " + authorId;
+						+ " natural join Authors where publicationId=" + id;
 				resultat3 = statement3.executeQuery(query2);
 				List<Authors> coAuthors = new ArrayList<Authors>();
 				while (resultat3.next()) {

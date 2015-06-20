@@ -17,7 +17,7 @@ $(function () {
 				$('#content .type-attributes').html('');
 
 				for(var i = 0, n = data.attributes.length ; i < n ; i++) {
-					$('#content .type-attributes').append('<div class="form-group"><label for="label-' + data.attributes[i].attributeName + '" class="col-sm-2 control-label">' + data.attributes[i].attributeName + ' *</label><div class="col-sm-10"><input type="text" class="form-control" name="' + data.attributes[i].attributeName + '" id="label-' + data.attributes[i].attributeName + '" data-rule-required="true"></div></div>');
+					$('#content .type-attributes').append('<div class="form-group"><label for="label-' + data.attributes[i].attributeName + '" class="col-sm-2 control-label">' + data.attributes[i].attributeName + ' *</label><div class="col-sm-10"><input type="text" class="form-control" name="attribute'+data.attributes[i].attributeId+ '" id="label-' + data.attributes[i].attributeName + '" data-rule-required="true"></div></div>');
 				}
 
 				$('#content form').attr('data-form', 'sendable');
