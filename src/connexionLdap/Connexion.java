@@ -28,7 +28,7 @@ public class Connexion extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
     private AuthorsDao authorDao;
-    public String content="connexion.jsp";
+   // public String content="connexion.jsp";
 
     public void init() throws ServletException {
     	 DAOFactory factory = DAOFactory.getInstance();
@@ -39,8 +39,8 @@ public class Connexion extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("content", content);
-		this.getServletContext().getRequestDispatcher("/front-office/template.jsp").include(request, response);
+		//request.setAttribute("content", content);
+		this.getServletContext().getRequestDispatcher("/front-office/authentification.jsp").include(request, response);
 
 	}
 

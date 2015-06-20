@@ -7,7 +7,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import javax.servlet.http.HttpSession;
 
 import beans.Publications;
@@ -23,7 +22,7 @@ public class Home extends HttpServlet {
 	// Definition du content à inclure au template, du style et du script.
 
 	public String cssContent = "publications.css";
-	public String content = "publications.jsp";
+	public String content = "home.jsp";
 	public String jsContent = "publications.js";
 
 	private PublicationsDao publicationDao;
@@ -49,7 +48,7 @@ public class Home extends HttpServlet {
 			Paginate paginate = new Paginate();
 
 			// On définit le nombre d'éléments par page
-			paginate.setElementsByPage(3);
+			paginate.setElementsByPage(7);
 			// on calcule le nombre de pages
 			int numberOfPages = publicationDao.countNumberPage(paginate
 					.getElementsByPage());
@@ -92,12 +91,14 @@ public class Home extends HttpServlet {
 									(paginate.getCurrentPageNumber() - 1)
 											* elementsByPage,
 									elementsByPage));
-					System.out.println(paginate.toString());
+					
 					// On envoi les données à la servlet
 					request.setAttribute("session", s);
+				
 					request.setAttribute("paginate", paginate);
 					request.setAttribute("content", content);
 					request.setAttribute("jsContent", jsContent);
+													
 					request.setAttribute("cssContent", cssContent);
 					this.getServletContext()
 							.getRequestDispatcher("/front-office/template.jsp")

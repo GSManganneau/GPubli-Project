@@ -55,8 +55,6 @@ public class Graphics extends HttpServlet {
 		request.setAttribute("Authors", authorsDao.search(search));
 		request.setAttribute("AuthorCount", authorsDao.count(search));
 		
-		request.setAttribute("Publications", publicationsDao.search(search));
-		request.setAttribute("PublicationCount", publicationsDao.count(search));
 		
 		request.setAttribute("Teams", teamsDao.search(search));
 		request.setAttribute("TeamCount", teamsDao.count(search));
