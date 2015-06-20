@@ -45,7 +45,7 @@
 				</div>
 				<ul class="nav navbar-right top-nav">
 					<li>
-						<a href="#"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp; DÃ©connexion</a>
+						<a href="#"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp; Déconnexion</a>
 					</li>
 				</ul>
 				<div class="collapse navbar-collapse" id="navbar-gpubli-admin">
@@ -57,7 +57,7 @@
 							<a href="?page=types"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>&nbsp; Types</a>
 						</li>
 						<li>
-							<a href="?page=teams"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>&nbsp; Ãquipes</a>
+							<a href="?page=teams"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>&nbsp; Équipes</a>
 						</li>
 						<li>
 							<a href="?page=users"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp; Utilisateurs</a>
