@@ -211,7 +211,7 @@ $(function () {
 
 	// Publications
 
-	$('.panel-publication .panel-body p.resume').dotdotdot({
+	$('.panel-publication .panel-body p.resume-ellipsis').dotdotdot({
 		ellipsis: '...',
 		height: 100,
 		watch: 'window'
@@ -221,7 +221,7 @@ $(function () {
 		event.preventDefault();
 
 		var publication = $(this).closest('.panel-publication');
-		publication.find('p.resume').trigger('destroy');
+		publication.find('p.resume-ellipsis').trigger('destroy');
 		publication.find('table').show();
 		publication.find('.detail').remove();
 	});

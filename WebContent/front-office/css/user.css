@@ -1,0 +1,29 @@
+/* ---- CONTENT ---- */
+
+#content .panel-profile > .panel-heading {
+	position: relative;
+	padding: 0;
+	padding-top: 85px;
+}
+
+#content .panel-profile > .panel-heading > h3 {
+	padding: 0 15px 10px 15px;
+}
+
+#content .profile-picture {
+	position: absolute;
+	text-align: center;
+	z-index: 1;
+	top: -75px;
+	width: 100%;
+}
+
+#content .profile-picture > .thumbnail {
+	display: inline-block;
+	max-width: 151px;
+	margin-bottom: 0;
+}
+
+#content .panel-profile {
+	margin-top: 75px;
+}
