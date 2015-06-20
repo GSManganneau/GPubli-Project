@@ -59,7 +59,7 @@ public class TeamsDao extends Dao<Teams>{
             resultat  = statement.executeQuery("SELECT * FROM teams");
 
             while (resultat.next()) {
-                String name = resultat.getString("name");
+                String name = resultat.getString("teamName");
                 /*String author_firstname = resultat.getString("firstname");
                 String author_lastname = resultat.getString("lastname");*/
                 
@@ -99,7 +99,7 @@ public class TeamsDao extends Dao<Teams>{
                           
             	//Données de la table team
                 String teamName = resultat.getString("teamName");          
-                
+                System.out.print(teamName);
                 Teams Team = new Teams();
                 Team.setTeamName(teamName);
                 

@@ -6,13 +6,13 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="front-office/libraries/bootstrap-3.3.4/css/bootstrap.css">
-		<link rel="stylesheet" href="front-office/libraries/font-awesome-4.3/css/font-awesome.css">
-		<link rel="stylesheet" href="front-office/libraries/fontawesome-iconpicker/css/fontawesome-iconpicker.css">
-		<link rel="stylesheet" href="front-office/libraries/selectize-0.12.1/css/selectize.bootstrap3.css">
+		<link rel="stylesheet" href="back-office/libraries/bootstrap-3.3.4/css/bootstrap.css">
+		<link rel="stylesheet" href="back-office/libraries/font-awesome-4.3/css/font-awesome.css">
+		<link rel="stylesheet" href="back-office/libraries/fontawesome-iconpicker/css/fontawesome-iconpicker.css">
+		<link rel="stylesheet" href="back-office/libraries/selectize-0.12.1/css/selectize.bootstrap3.css">
 
-		<link rel="stylesheet" href="front-office/css/main.css">
-		<!-- <link rel="stylesheet" href="front-office/css/{{content}}.css"> -->
+		<link rel="stylesheet" href="back-office/css/main.css">
+		<!-- <link rel="stylesheet" href="back-office/css/{{content}}.css"> -->
 
 		<!--[if lt IE 9]>
 			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -45,7 +45,7 @@
 				</div>
 				<ul class="nav navbar-right top-nav">
 					<li>
-						<a href="#"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp; DÃ©connexion</a>
+						<a href="#"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp; Déconnexion</a>
 					</li>
 				</ul>
 				<div class="collapse navbar-collapse" id="navbar-gpubli-admin">
@@ -57,7 +57,7 @@
 							<a href="?page=types"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>&nbsp; Types</a>
 						</li>
 						<li>
-							<a href="?page=teams"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>&nbsp; Ãquipes</a>
+							<a href="?page=teams"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>&nbsp; Équipes</a>
 						</li>
 						<li>
 							<a href="?page=users"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp; Utilisateurs</a>
@@ -73,17 +73,17 @@
 			</div>
 		</div>
 
-		<script src="front-office/libraries/jquery-1.11.3/jquery-1.11.3.js"></script>
-		<script src="front-office/libraries/bootstrap-3.3.4/js/bootstrap.js"></script>
-		<script src="front-office/libraries/selectize-0.12.1/js/standalone/selectize.js"></script>
-		<script src="front-office/libraries/stupidtable/stupidtable.js"></script>
-		<script src="front-office/libraries/fontawesome-iconpicker/js/fontawesome-iconpicker.js"></script>
-		<script src="front-office/libraries/jquery-validation-1.13.1/jquery.validate.js"></script>
-		<script src="front-office/libraries/jquery-validation-1.13.1/additional-methods.js"></script>
-		<script src="front-office/libraries/jquery-validation-1.13.1/localization/messages_fr.js"></script>
+		<script src="back-office/libraries/jquery-1.11.3/jquery-1.11.3.js"></script>
+		<script src="back-office/libraries/bootstrap-3.3.4/js/bootstrap.js"></script>
+		<script src="back-office/libraries/selectize-0.12.1/js/standalone/selectize.js"></script>
+		<script src="back-office/libraries/stupidtable/stupidtable.js"></script>
+		<script src="back-office/libraries/fontawesome-iconpicker/js/fontawesome-iconpicker.js"></script>
+		<script src="back-office/libraries/jquery-validation-1.13.1/jquery.validate.js"></script>
+		<script src="back-office/libraries/jquery-validation-1.13.1/additional-methods.js"></script>
+		<script src="back-office/libraries/jquery-validation-1.13.1/localization/messages_fr.js"></script>
 
-		<script src="front-office/js/jquery-validation-checkform.js"></script>
-		<script src="front-office/js/main.js"></script>
-		<!-- <script src="front-office/js/{{content}}.js"></script> -->
+		<script src="back-office/js/jquery-validation-checkform.js"></script>
+		<script src="back-office/js/main.js"></script>
+		<!-- <script src="back-office/js/{{content}}.js"></script> -->
 	</body>
 </html>
