@@ -41,8 +41,8 @@ public class Listing_team extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.setAttribute("Teams", TeamsDao.lister());
-        getServletContext().getRequestDispatcher("/list_team.jsp").include(request, response);
+		request.setAttribute("teams", TeamsDao.lister());
+        getServletContext().getRequestDispatcher("/front-office/listTeam.jsp").include(request, response);
 	}
 
 	/**
