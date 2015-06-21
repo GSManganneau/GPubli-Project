@@ -37,6 +37,7 @@ public class AuthorsDao extends Dao<Authors>{
             while (resultat.next()) {
                 String firstname = resultat.getString("firstname");
                 String lastname = resultat.getString("lastname");
+                String login=resultat.getString("login");
                 int authorId=resultat.getInt("authorId");
                 int ldapId=resultat.getInt("ldapId");
                 int teamId= resultat.getInt("teamId");
@@ -44,6 +45,7 @@ public class AuthorsDao extends Dao<Authors>{
                author = new Authors();
                author.setFirstname(firstname);
                author.setLastname(lastname);
+               author.setLogin(login);
                author.setLdapId(ldapId);
                author.setAuthorId(authorId);
                author.getTeam().setTeamId(teamId);
@@ -97,19 +99,21 @@ public class AuthorsDao extends Dao<Authors>{
 		int authorId=0;
         String firstname=object.getFirstname();
         String lastname=object.getLastname();
+        String login = object.getLogin();
         int teamId=object.getTeam().getTeamId();
         int ldapId=object.getLdapId();
         		try{
         			
         	            
         			connexion=factory.getConnection();
-        			String query= "INSERT INTO  Authors (firstname,lastname,teamId,ldapId) VALUES (?,?,?,?)";
+        			String query= "INSERT INTO  Authors (firstname,lastname,teamId,ldapId,login) VALUES (?,?,?,?,?)";
         			PreparedStatement preparedStatement = connexion.prepareStatement(
         					query, Statement.RETURN_GENERATED_KEYS);
         			preparedStatement.setString(1,firstname);
     	            preparedStatement.setString(2,lastname);
     	            preparedStatement.setInt(3,teamId);
     	            preparedStatement.setInt(4,ldapId);
+    	            preparedStatement.setString(5,login);
     	            
     	            preparedStatement.executeUpdate();
     	            ResultSet result = preparedStatement.getGeneratedKeys();
@@ -128,19 +132,21 @@ public class AuthorsDao extends Dao<Authors>{
 		int authorId=0;
         String firstname=object.getFirstname();
         String lastname=object.getLastname();
+        String login = object.getLogin();
         int teamId=object.getTeam().getTeamId();
         int ldapId=object.getLdapId();
         		try{
         			
         	            
         			connexion=factory.getConnection();
-        			String query= "INSERT INTO  Authors (firstname,lastname,teamId,ldapId) VALUES (?,?,?,?)";
+        			String query= "INSERT INTO  Authors (firstname,lastname,teamId,ldapId,login) VALUES (?,?,?,?,?)";
         			PreparedStatement preparedStatement = connexion.prepareStatement(
         					query, Statement.RETURN_GENERATED_KEYS);
         			preparedStatement.setString(1,firstname);
     	            preparedStatement.setString(2,lastname);
     	            preparedStatement.setInt(3,teamId);
     	            preparedStatement.setInt(4,ldapId);
+    	            preparedStatement.setString(5,login);
     	            
     	            preparedStatement.executeUpdate();
     	            ResultSet result = preparedStatement.getGeneratedKeys();
@@ -169,13 +175,16 @@ public class AuthorsDao extends Dao<Authors>{
             	String teamName= resultat.getString("teamName");
                 String firstname = resultat.getString("firstname");
                 String lastname = resultat.getString("lastname");
+                String login=resultat.getString("login");
                 int authorId = resultat.getInt("authorId");
+                
                 
 
                 Authors Author = new Authors();
                 Author.setAuthorId(authorId);
                 Author.setFirstname(firstname);
                 Author.setLastname(lastname);
+                Author.setLogin(login);
                 Author.getTeam().setTeamName(teamName);
 
                 Authors.add(Author);
@@ -217,11 +226,13 @@ public class AuthorsDao extends Dao<Authors>{
                           
             	//Données de la table team
                 String firstname = resultat.getString("firstname");   
-                String lastname = resultat.getString("lastname");  
+                String lastname = resultat.getString("lastname");
+                String login= resultat.getString("login");
                 
                 Authors Author = new Authors();
                 Author.setFirstname(firstname);
                 Author.setLastname(lastname);
+                Author.setLogin(login);
                 
                 Authors.add(Author);
             }

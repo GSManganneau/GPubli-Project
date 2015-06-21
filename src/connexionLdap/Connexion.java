@@ -52,8 +52,8 @@ public class Connexion extends HttpServlet {
 		HttpSession s;
 		String l = request.getParameter("login");
 		String p = request.getParameter("password");
-		/*LDAPObject reponse =null;
-		try {
+		LDAPObject reponse =null;
+		/*try {
 			 reponse =LDAPaccess.LDAPget(l, p);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -68,6 +68,7 @@ public class Connexion extends HttpServlet {
 				String firstname = reponse.getNom().split(" ")[0];
 				nwAuthor.setFirstname(firstname);
 				nwAuthor.setLastname(reponse.getNomFamille());
+				nwAuthor.setLogin(reponse.getLogin());
 				authorDao.create(nwAuthor);
 				s = request.getSession();
 				Authors createSessionAuthor= authorDao.find(nwAuthor.getLdapId());
@@ -75,8 +76,8 @@ public class Connexion extends HttpServlet {
 				s.setAttribute("ldapId",createSessionAuthor.getLdapId() );
 				s.setAttribute("firstname",createSessionAuthor.getFirstname()); 
 				s.setAttribute("name", createSessionAuthor.getLastname());
-			}*/
-		//	else{
+			}
+		//	else{*/
 		int id =8329;
 		Authors author= authorDao.find(id);
 				s = request.getSession();
@@ -85,6 +86,7 @@ public class Connexion extends HttpServlet {
 				s.setAttribute("ldapId", author.getLdapId());
 				s.setAttribute("firstname", author.getFirstname());
 				s.setAttribute("name", author.getLastname());
+				s.setAttribute("login", author.getLogin());
 				 
 				
 			//}

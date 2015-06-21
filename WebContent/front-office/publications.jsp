@@ -1,7 +1,6 @@
 <jsp:directive.page contentType="text/html;charset=UTF-8" />
-
+<c:forEach var="publication" items="${publications}">
 <div class="publications">
-	<c:forEach var="publication" items="${publications}">
 		<div class="panel panel-default panel-publication">
 			<div class="panel-heading">
 				<div class="row">
@@ -17,8 +16,11 @@
 								<li><a href="ExportDataLonely?p=<c:out value="${publication.publicationId}" />&export=text"><span class="glyphicon glyphicon-text-size" aria-hidden="true"></span>&nbsp; Export Texte</a></li>
 								<li><a href="OnePublication?p=<c:out value="${publication.publicationId}" />"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>&nbsp; Visualiser</a></li>
 								<li class="divider"></li>
-								<li><a href="=<c:out value="${publication.publicationId}" />"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;<c:out value="${paginate.servlet}" /> Modifier la publication</a></li>
-								<li><a href="#<c:out value="${publication.publicationId}" />"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp; Supprimer la publication</a></li>
+								<c:set var="sessionId"  value="${session.getAttribute(\"authorId\")}"/>
+							<c:if test="${ publication.author.authorId == sessionId }">
+							<li><a href="deletepublication?publicationId=<c:out value="${publication.publicationId}" />"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;Modifier la publication</a></li>
+							<li><a href="updatepublication?publicationId=<c:out value="${publication.publicationId}" />"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp; Supprimer la publication</a></li>
+							</c:if>
 							</ul>
 						</div>
 					</div>
@@ -54,5 +56,5 @@
 				</c:forEach>
 			</table>
 		</div>
-	</c:forEach>
 </div>
+</c:forEach>
