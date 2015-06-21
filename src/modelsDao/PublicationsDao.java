@@ -792,14 +792,24 @@ public class PublicationsDao extends Dao<Publications> {
 				String resume = resultat.getString("resume");
 				String title = resultat.getString("title");
 				String date = resultat.getString("date");
+				//String author = resultat.getString("author");
+				int authorId = resultat.getInt("authorId");
+				String firstName = resultat.getString("firstName");
+				String lastName = resultat.getString("lastName");
 				// int typeId = resultat.getInt("typeId");
 				//String url = resultat.getString("url");
+				
+				Authors author = new Authors();
+				author.setAuthorId(authorId);
+				author.setFirstname(firstName);
+				author.setLastname(lastName);
 
 				Publications Publication = new Publications();
 				Publication.setId(publicationId);
 				Publication.setDate(date);
 				Publication.setResume(resume);
 				Publication.setTitle(title);
+				Publication.setAuthor(author);
 				// Publication.setType(typeId);
 				//Publication.setUrl(url);
 

@@ -55,9 +55,12 @@ public class AdvancedResearch extends HttpServlet {
 		String publiName = request.getParameter("publiName");
 		String date = request.getParameter("date");
 		String resume = request.getParameter("resume");
-		int author = Integer.parseInt(request.getParameter("author"));
+		
+		String author = request.getParameter("author");
+		int authorInt = Integer.parseInt(author);
+		System.out.println(author);
 		//String type = request.getParameter("type");
-        request.setAttribute("Publications", PublicationsDao.research(publiName,date,resume,author));
+        request.setAttribute("Publications", PublicationsDao.research(publiName,date,resume,authorInt));
         getServletContext().getRequestDispatcher("/resultResearch.jsp").include(request, response);
 		
 	}
