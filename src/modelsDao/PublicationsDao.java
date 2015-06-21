@@ -173,6 +173,7 @@ public class PublicationsDao extends Dao<Publications> {
 				int authorId = resultat.getInt("authorId");
 				String firstName = resultat.getString("firstName");
 				String lastName = resultat.getString("lastName");
+				int ldapId= resultat.getInt("ldapId");
 
 				String query = "select * from DataPublications "
 						+ "DP join TypeHasAttributes "
@@ -254,6 +255,7 @@ public class PublicationsDao extends Dao<Publications> {
 				int authorId = resultat.getInt("authorId");
 				String firstName = resultat.getString("firstName");
 				String lastName = resultat.getString("lastName");
+				int ldapId= resultat.getInt("ldapId");
 
 				String query = "select * from DataPublications "
 						+ "DP join TypeHasAttributes "
@@ -285,10 +287,12 @@ public class PublicationsDao extends Dao<Publications> {
 					
 					String coAuthorFirstName = resultat3.getString("firstName");
 					String coAuthorLastName = resultat3.getString("lastName");	
+					int coldapId= resultat3.getInt("ldapId");
 					Authors coAuthor = new Authors();
 					coAuthor.setAuthorId(coAuthorId);
 					coAuthor.setFirstname(coAuthorFirstName);
 					coAuthor.setLastname(coAuthorLastName);
+					coAuthor.setLdapId(coldapId);
 					coAuthors.add(coAuthor);
 
 				}
@@ -301,6 +305,7 @@ public class PublicationsDao extends Dao<Publications> {
 				author.setAuthorId(authorId);
 				author.setFirstname(firstName);
 				author.setLastname(lastName);
+				author.setLdapId(ldapId);
 
 				Publications publication = new Publications();
 				publication.setId(id);
@@ -340,7 +345,7 @@ public class PublicationsDao extends Dao<Publications> {
 					+ " natural join Publications "
 					+ " natural join Authors "
 					+ "natural join Types where authorId <> 0 "
-					//+ "and coAuthorId = 0 "
+					+ "and coAuthorId = 0 "
 					+ "AND ldapId="+ldapId
 					+ " ORDER BY publicationId DESC "
 					+ "LIMIT " + i + " , " + j;
@@ -355,6 +360,7 @@ public class PublicationsDao extends Dao<Publications> {
 				int authorId = resultat.getInt("authorId");
 				String firstName = resultat.getString("firstName");
 				String lastName = resultat.getString("lastName");
+				int LdapId= resultat.getInt("ldapId");
 
 				String query = "select * from DataPublications "
 						+ "DP join TypeHasAttributes "
@@ -377,8 +383,8 @@ public class PublicationsDao extends Dao<Publications> {
 
 				}
 				String query2 = "select * from Repositories R,"
-						+ " Authors  A where R.publicationId=" + id;
-						//+ " and R.coAuthorId = A.authorId";
+						+ " Authors  A where R.publicationId=" + id
+						+ " and R.coAuthorId = A.authorId";
 				resultat3 = statement3.executeQuery(query2);
 				List<Authors> coAuthors = new ArrayList<Authors>();
 				while (resultat3.next()) {
@@ -386,10 +392,12 @@ public class PublicationsDao extends Dao<Publications> {
 					
 					String coAuthorFirstName = resultat3.getString("firstName");
 					String coAuthorLastName = resultat3.getString("lastName");	
+					int coLdapId= resultat3.getInt("ldapId");
 					Authors coAuthor = new Authors();
 					coAuthor.setAuthorId(coAuthorId);
 					coAuthor.setFirstname(coAuthorFirstName);
 					coAuthor.setLastname(coAuthorLastName);
+					coAuthor.setLdapId(coLdapId);
 					coAuthors.add(coAuthor);
 
 				}
@@ -402,6 +410,7 @@ public class PublicationsDao extends Dao<Publications> {
 				author.setAuthorId(authorId);
 				author.setFirstname(firstName);
 				author.setLastname(lastName);
+				author.setLdapId(LdapId);
 
 				Publications publication = new Publications();
 				publication.setId(id);
@@ -420,7 +429,7 @@ public class PublicationsDao extends Dao<Publications> {
 		}
 		return publications;
 	}
-
+//pour la page home
 	public boolean checkNextPage(int currentPage, int elementsByPage) {
 		Connection connexion = null;
 		Statement statement = null;
@@ -430,7 +439,6 @@ public class PublicationsDao extends Dao<Publications> {
 			connexion = factory.getConnection();
 			statement = connexion.createStatement();
 			String query = "SELECT * FROM  Publications "
-					+ "natural join Types ORDER BY publicationId DESC "
 					+ "LIMIT " + currentPage * elementsByPage + " , "
 					+ elementsByPage * (currentPage + 1);
 			resultat = statement.executeQuery(query);
@@ -443,6 +451,32 @@ public class PublicationsDao extends Dao<Publications> {
 		}
 		return nextPage;
 	}
+	//pour la page user
+	public boolean checkNextPage(int currentPage, int elementsByPage,int i) {
+		Connection connexion = null;
+		Statement statement = null;
+		ResultSet resultat = null;
+		boolean nextPage = false;
+		try {
+			connexion = factory.getConnection();
+			statement = connexion.createStatement();
+			String query = "SELECT * FROM  Repositories "
+					+ "natural join Authors"
+					+ " natural join Publications"
+					+ " where ldapId="+i
+					+ " LIMIT " + currentPage * elementsByPage + " , "
+					+ elementsByPage * (currentPage + 1);
+			resultat = statement.executeQuery(query);
+			if (resultat.next())
+				nextPage = true;
+			else
+				nextPage = false;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return nextPage;
+	}
+	//pour les résultats de recherche
 	public boolean checkNextPage(int currentPage, int elementsByPage,String s) {
 		Connection connexion = null;
 		Statement statement = null;
@@ -483,6 +517,29 @@ public class PublicationsDao extends Dao<Publications> {
 			connexion = factory.getConnection();
 			statement = connexion.createStatement();
 			String query = "SELECT COUNT(*) FROM Publications";
+			resultat = statement.executeQuery(query);
+			resultat.next();
+			int numberOfResults = resultat.getInt(1);
+			if (numberOfResults % elementsByPage > 0)
+				numberOfPage = ((int) (numberOfResults / elementsByPage)) + 1;
+			else
+				numberOfPage = ((int) (numberOfResults / elementsByPage));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return numberOfPage;
+
+	}public int countNumberPage(int elementsByPage,int i) {
+		Connection connexion = null;
+		Statement statement = null;
+		ResultSet resultat = null;
+		int numberOfPage = 0;
+		try {
+			connexion = factory.getConnection();
+			statement = connexion.createStatement();
+			String query = "SELECT COUNT(*) FROM Repositories natural join Authors"
+					+ " natural join Publications"
+					+ " where ldapId="+ i;
 			resultat = statement.executeQuery(query);
 			resultat.next();
 			int numberOfResults = resultat.getInt(1);

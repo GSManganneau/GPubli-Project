@@ -10,7 +10,9 @@
 		<link rel="stylesheet" href="back-office/libraries/font-awesome-4.3/css/font-awesome.css">
 		<link rel="stylesheet" href="back-office/libraries/fontawesome-iconpicker/css/fontawesome-iconpicker.css">
 		<link rel="stylesheet" href="back-office/libraries/selectize-0.12.1/css/selectize.bootstrap3.css">
-
+		<c:if test="${!empty cssContent }">
+			<link rel="stylesheet" href="front-office/css/<c:out value="${cssContent}"/>">
+		</c:if>
 		<link rel="stylesheet" href="back-office/css/main.css">
 		<!-- <link rel="stylesheet" href="back-office/css/{{content}}.css"> -->
 
@@ -81,7 +83,9 @@
 		<script src="back-office/libraries/jquery-validation-1.13.1/jquery.validate.js"></script>
 		<script src="back-office/libraries/jquery-validation-1.13.1/additional-methods.js"></script>
 		<script src="back-office/libraries/jquery-validation-1.13.1/localization/messages_fr.js"></script>
-
+		<c:if test="${!empty jsContent }">
+			<script src="front-office/js/<c:out value="${jsContent}"/>"></script>
+		</c:if>
 		<script src="back-office/js/jquery-validation-checkform.js"></script>
 		<script src="back-office/js/main.js"></script>
 		<!-- <script src="back-office/js/{{content}}.js"></script> -->

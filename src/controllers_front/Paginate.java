@@ -56,6 +56,7 @@ public class Paginate {
 	private int nextPageNumber;
 	private int numberOfPages;
 	private String servlet;
+	private int parameter;
 
 	@Override
 	public String toString() {
@@ -64,6 +65,14 @@ public class Paginate {
 				+ ", previousPageNumber=" + previousPageNumber
 				+ ", nextPageNumber=" + nextPageNumber + ", numberOfPages="
 				+ numberOfPages + ", servlet=" + servlet + "]";
+	}
+
+	public int getParameter() {
+		return parameter;
+	}
+
+	public void setParameter(int parameter) {
+		this.parameter = parameter;
 	}
 
 }

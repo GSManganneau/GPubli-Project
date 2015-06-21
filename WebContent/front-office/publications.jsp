@@ -31,9 +31,14 @@
 					<p class="authors col-lg-10 col-sm-9">
 						<span class="glyphicon glyphicon-user" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Auteur(s)"></span>&nbsp;
 						
-						<a href="#"><c:out value="${publication.author.firstname}" /> <c:out value="${publication.author.lastname}" /></a>
+						<a href="userpage?ldapId=<c:out value="${ coAuthor.ldapId}"/>"><c:out value="${publication.author.firstname}" /> <c:out value="${publication.author.lastname}" /></a>
 						<c:forEach var="coAuthor" items="${publication.coAuthors}">
-							<a href="#">| <c:out value="${coAuthor.firstname}" /> <c:out value="${coAuthor.lastname}" /></a>
+						<c:if test="${ coAuthor.ldapId != 0}">
+							<a href="userpage?ldapId=<c:out value="${ coAuthor.ldapId}"/>"> | <c:out value="${coAuthor.firstname}" /> <c:out value="${coAuthor.lastname}" /></a>
+						</c:if>
+						<c:if test="${ coAuthor.ldapId == 0 }">
+							| <c:out value="${coAuthor.firstname}" /> <c:out value="${coAuthor.lastname}" />
+						</c:if>
 						</c:forEach>
 					</p>
 

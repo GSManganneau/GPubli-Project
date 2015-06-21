@@ -45,9 +45,9 @@
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>&nbsp; Outils <span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
-									<li><a href="?page=add-publication"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Ajouter une publication</a></li>
-									<li><a href="?page=advanced-search"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp; Recherche avancée</a></li>
-									<li><a href="?page=statistics"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span>&nbsp; Statistiques</a></li>
+									<li><a href="addpublication"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Ajouter une publication</a></li>
+									<li><a href="advanced-search"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp; Recherche avancée</a></li>
+									<li><a href="statistics"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span>&nbsp; Statistiques</a></li>
 								</ul>
 							</li>
 
