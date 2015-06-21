@@ -41,7 +41,6 @@ public class PublicationsDao extends Dao<Publications> {
 		String resume = object.getResume();
 		String title = object.getTitle();
 		int publicationId = 0;
-		//coAuthors.add(author);
 		try {
 
 			connexion = factory.getConnection();
@@ -68,15 +67,23 @@ public class PublicationsDao extends Dao<Publications> {
 				pS2.executeUpdate();
 
 			}
-			String query3 = "INSERT INTO Repositories (authorId,publicationId) Values (?,?)";
+			String query3 = "INSERT INTO Repositories (authorId,publicationId,coAuthorId) Values (?,?,?)";
+			PreparedStatement pS3 = connexion.prepareStatement(query3);
+			pS3.setInt(1, author.getAuthorId());
+			pS3.setInt(2, publicationId);
+			pS3.setInt(3,0);
+			pS3.executeUpdate();
 			for (int i = 0; i < coAuthors.size(); i++) {
-				PreparedStatement pS3 = connexion.prepareStatement(query3);
-				System.out.print(coAuthors.get(i));
-				pS3.setInt(1, coAuthors.get(i).getAuthorId());
+				pS3 = connexion.prepareStatement(query3);
+				pS3.setInt(1,0);
 				pS3.setInt(2, publicationId);
+				pS3.setInt(3, coAuthors.get(i).getAuthorId());
 				pS3.executeUpdate();
 
 			}
+			
+
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -187,8 +194,10 @@ public class PublicationsDao extends Dao<Publications> {
 			statement2 = connexion.createStatement();
 			statement3 = connexion.createStatement();
 			String queri = "SELECT * FROM  Repositories"
-					+ " natural join Publications " + " natural join Authors "
-					+ "natural join Types ORDER BY publicationId DESC "
+					+ " natural join Publications "
+					+ " natural join Authors "
+					+ "natural join Types where authorId <> 0 and coAuthorId = 0 "
+					+ " ORDER BY publicationId DESC "
 					+ "LIMIT " + i + " , " + j;
 			resultat = statement.executeQuery(queri);
 			while (resultat.next()) {
@@ -222,14 +231,16 @@ public class PublicationsDao extends Dao<Publications> {
 					attributes.add(attribute);
 
 				}
-				String query2 = "select * from Repositories "
-						+ " natural join Authors where publicationId=" + id;
+				String query2 = "select * from Repositories R,"
+						+ " Authors  A where R.publicationId=" + id
+						+ " and R.coAuthorId = A.authorId";
 				resultat3 = statement3.executeQuery(query2);
 				List<Authors> coAuthors = new ArrayList<Authors>();
 				while (resultat3.next()) {
-					int coAuthorId = resultat.getInt("authorId");
-					String coAuthorFirstName = resultat.getString("firstName");
-					String coAuthorLastName = resultat.getString("lastName");
+					int coAuthorId = resultat3.getInt("authorId");
+					
+					String coAuthorFirstName = resultat3.getString("firstName");
+					String coAuthorLastName = resultat3.getString("lastName");	
 					Authors coAuthor = new Authors();
 					coAuthor.setAuthorId(coAuthorId);
 					coAuthor.setFirstname(coAuthorFirstName);
