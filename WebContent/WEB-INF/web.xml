@@ -77,7 +77,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>Gadmin</servlet-name>
-    <servlet-class>controllers_back.AdminDashboard</servlet-class>
+    <servlet-class>controllers_back.Dashboard</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Gadmin</servlet-name>
