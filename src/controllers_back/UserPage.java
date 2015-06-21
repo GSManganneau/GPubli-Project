@@ -33,17 +33,17 @@ public class UserPage extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-    private TeamsDao TeamsDao;
-    private PublicationsDao PublicationsDao;
-    private AuthorsDao AuthorsDao;
-    private TypeDao TypeDao;
+    private TeamsDao teamDao;
+    private PublicationsDao publicationDao;
+    private AuthorsDao authorDao;
+    private TypeDao typeDao;
 
     public void init() throws ServletException {
     	 DAOFactory factory = DAOFactory.getInstance();
-         this.TeamsDao = factory.getTeams();
-         this.PublicationsDao = factory.getPublications();
-         this.AuthorsDao = factory.getAuthors();
-         this.TypeDao = factory.getType();
+         this.teamDao = factory.getTeams();
+         this.publicationDao = factory.getPublications();
+         this.authorDao = factory.getAuthors();
+         this.typeDao = factory.getType();
     }
     
     
@@ -54,6 +54,11 @@ public class UserPage extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession s = request.getSession();
 		
+		String connected = (String) s.getAttribute("connected");
+		if (connected == null) {
+			response.sendRedirect("/GPubli-Project/connexion");
+		} else {
+		
 		request.setAttribute("session", s);
 		
 		String ldapId = request.getParameter("ldapId");
@@ -61,14 +66,19 @@ public class UserPage extends HttpServlet {
 		request.setAttribute("content", content);
 		request.setAttribute("ldapId", i);
 		
+		request.setAttribute("publications",publicationDao.listPublicationAuthor(3, 3, i));
+		
+		
 		//Chiffres-clés
-		request.setAttribute("team", TeamsDao.teamOfAuthor(i));
-		request.setAttribute("teamCount", TeamsDao.countAll());
-		request.setAttribute("pubCount", PublicationsDao.countAll());
-		request.setAttribute("authorCount", AuthorsDao.countAll());
-		request.setAttribute("typeCount", TypeDao.countAll());
+		request.setAttribute("team", teamDao.teamOfAuthor(i));
+		request.setAttribute("teamCount", teamDao.countAll());
+		request.setAttribute("pubCount", publicationDao.countAll());
+		request.setAttribute("authorCount", authorDao.countAll());
+		request.setAttribute("typeCount", typeDao.countAll());
 		
         getServletContext().getRequestDispatcher("/front-office/template.jsp").include(request, response);
+        
+		}
 	}
 
 	/**

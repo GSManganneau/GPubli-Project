@@ -26,10 +26,16 @@ public class Home extends HttpServlet {
 	public String jsContent = "publications.js";
 
 	private PublicationsDao publicationDao;
+	private AuthorsDao authorDao;
+	private TeamsDao teamDao;
+	private TypeDao typeDao;
 
 	public void init() throws ServletException {
 		DAOFactory factory = DAOFactory.getInstance();
 		this.publicationDao = factory.getPublications();
+		this.authorDao = factory.getAuthors();
+		this.typeDao = factory.getType();
+		this.teamDao = factory.getTeams();
 
 	}
 
@@ -98,6 +104,12 @@ public class Home extends HttpServlet {
 					request.setAttribute("paginate", paginate);
 					request.setAttribute("content", content);
 					request.setAttribute("jsContent", jsContent);
+					
+					//Chiffres-clés
+					request.setAttribute("teamCount", teamDao.countAll());
+					request.setAttribute("pubCount", publicationDao.countAll());
+					request.setAttribute("authorCount", authorDao.countAll());
+					request.setAttribute("typeCount", typeDao.countAll());
 													
 					request.setAttribute("cssContent", cssContent);
 					this.getServletContext()

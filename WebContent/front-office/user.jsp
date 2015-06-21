@@ -26,7 +26,7 @@
 				</div>
 				<div class="list-group">
 					<div class="list-group-item"><span class="glyphicon glyphicon-lock" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Login ISEP"></span>&nbsp; mpuibara</div>
-					<a href="?page=team" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Équipe"></span>&nbsp; <c:out value="${ team.teamName }"/></a>
+					<a href="TeamPage" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Équipe"></span>&nbsp; <c:out value="${ team.teamName }"/></a>
 				</div>
 			</div>
 
@@ -47,7 +47,7 @@
 	<div class="col-md-9">
 		<jsp:include page="actionInformation.jsp"/>
 		<jsp:include page="toolbar.jsp"/>
-		<jsp:include page="publications.jsp"/>
+		<jsp:include page="publicationsUser.jsp"/>
 		<jsp:include page="pagination.jsp"/>
 	</div>
 </div>
