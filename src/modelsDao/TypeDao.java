@@ -9,6 +9,7 @@ import java.util.List;
 
 import beans.Attributes;
 import beans.Authors;
+import beans.Teams;
 import beans.Types;
 
 public class TypeDao extends Dao<Types>{
@@ -111,5 +112,35 @@ public class TypeDao extends Dao<Types>{
         }
         return types;
 		
+	}
+	
+	public Types countAll() {
+		// TODO Auto-generated method stub
+		Types Type = new Types();
+		Connection connexion = null;
+        Statement statement = null;
+        ResultSet resultat = null;
+        int i;
+        
+		try{
+			connexion=factory.getConnection();
+			String query = "SELECT COUNT(typeName) AS nombre FROM types";
+			
+			statement = connexion.createStatement();
+	        resultat = statement.executeQuery(query);
+	        
+	        // Récupération des données
+            while (resultat.next()) {
+          	   String nombre = resultat.getString("nombre");
+          	   
+          	   i = Integer.parseInt(nombre); 
+          	 Type.setCount(i);
+          	    	   
+            }
+            
+		}catch (SQLException e) {
+            e.printStackTrace();
+		}
+		return Type;
 	}
 }

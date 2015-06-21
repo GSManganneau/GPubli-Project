@@ -4,7 +4,7 @@
 	<div class="col-md-12">
 		<ol class="breadcrumb">
 			<li><a href="?page=index">Accueil</a></li>
-			<li class="active">Utilisateur : Matthieu Puibaraud</li>
+			<li class="active">Utilisateur : <c:out value="${ session.getAttribute(\"firstname\") }"/> <c:out value="${ session.getAttribute(\"name\")}"/></li>
 		</ol>
 		<hr>
 	</div>
@@ -17,16 +17,16 @@
 				<div class="panel-heading">
 					<div class="profile-picture">
 						<div class="thumbnail">
-							<a href="img/profile-example.jpg" target="_blank">
-								<img src="img/profile-example.jpg" alt="profile-example">
+							<a href="front-office/img/profile-example.jpg" target="_blank">
+								<img src="front-office/img/profile-example.jpg" alt="profile-example">
 							</a>
 						</div>
 					</div>
-					<h3 class="panel-title text-center">Matthieu Puibaraud</h3>
+					<h3 class="panel-title text-center"><c:out value="${ session.getAttribute(\"firstname\") }"/> <c:out value="${ session.getAttribute(\"name\")}"/></h3>
 				</div>
 				<div class="list-group">
 					<div class="list-group-item"><span class="glyphicon glyphicon-lock" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Login ISEP"></span>&nbsp; mpuibara</div>
-					<a href="?page=team" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Équipe"></span>&nbsp; Informatique</a>
+					<a href="?page=team" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Équipe"></span>&nbsp; <c:out value="${ team.teamName }"/></a>
 				</div>
 			</div>
 
@@ -35,10 +35,10 @@
 					<h3 class="panel-title">Chiffres-clés</h3>
 				</div>
 				<ul class="list-group">
-					<li class="list-group-item"><span class="badge">147</span><span class="glyphicon glyphicon-book" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nombre de publications"></span>&nbsp; Publication(s)</li>
-					<li class="list-group-item"><span class="badge">23</span><span class="glyphicon glyphicon-user" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Auteurs de ces publications"></span>&nbsp; Auteur(s)</li>
-					<li class="list-group-item"><span class="badge">3</span><span class="glyphicon glyphicon-list-alt" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Équipes de ces publications"></span>&nbsp; Équipe(s)</li>
-					<li class="list-group-item"><span class="badge">4</span><span class="glyphicon glyphicon-asterisk" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Types de ces publications"></span>&nbsp; Type(s)</li>
+					<li class="list-group-item"><span class="badge"><c:out value="${ pubCount.count }"/></span><span class="glyphicon glyphicon-book" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nombre de publications"></span>&nbsp; Publication(s)</li>
+					<li class="list-group-item"><span class="badge"><c:out value="${ authorCount.count }"/></span><span class="glyphicon glyphicon-user" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Auteurs de ces publications"></span>&nbsp; Auteur(s)</li>
+					<li class="list-group-item"><span class="badge"><c:out value="${ teamCount.count }"/></span><span class="glyphicon glyphicon-list-alt" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Équipes de ces publications"></span>&nbsp; Équipe(s)</li>
+					<li class="list-group-item"><span class="badge"><c:out value="${ typeCount.count }"/></span><span class="glyphicon glyphicon-asterisk" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Types de ces publications"></span>&nbsp; Type(s)</li>
 				</ul>
 			</div>
 		</nav>

@@ -154,38 +154,6 @@ public class AuthorsDao extends Dao<Authors>{
 		return authorId;
 	}
 	
-	public List<Authors> lister() {
-        List<Authors> Authors = new ArrayList<Authors>();
-        Connection connexion = null;
-        Statement statement = null;
-        ResultSet resultat = null;
-
-        try {
-            connexion =factory.getConnection();
-            statement = connexion.createStatement();
-            resultat = statement.executeQuery("SELECT * FROM Authors natural join Teams");
-
-            while (resultat.next()) {
-            	String teamName= resultat.getString("teamName");
-                String firstname = resultat.getString("firstname");
-                String lastname = resultat.getString("lastname");
-                int authorId = resultat.getInt("authorId");
-                
-
-                Authors Author = new Authors();
-                Author.setAuthorId(authorId);
-                Author.setFirstname(firstname);
-                Author.setLastname(lastname);
-                Author.getTeam().setTeamName(teamName);
-
-                Authors.add(Author);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return Authors;
-    }
-	
 	public List<Authors> lister(int i) {
         List<Authors> Authors = new ArrayList<Authors>();
         Connection connexion = null;
@@ -274,6 +242,34 @@ public class AuthorsDao extends Dao<Authors>{
 		try{
 			connexion=factory.getConnection();
 			String query = "SELECT COUNT(*) AS nombre FROM authors WHERE firstname like '%"+field+"%' OR lastname like '%"+field+"%'";
+			
+			statement = connexion.createStatement();
+	        resultat = statement.executeQuery(query);
+	        
+	        // Récupération des données
+            while (resultat.next()) {
+          	   String nombre = resultat.getString("nombre");
+          	  
+          	   i = Integer.parseInt(nombre); 
+          	   Author.setCount(i);        	   
+            }
+            
+		}catch (SQLException e) {
+            e.printStackTrace();
+		}
+		return Author;
+	}
+	
+	public Authors countAll() {
+		// TODO Auto-generated method stub
+		Authors Author = new Authors();
+		Connection connexion = null;
+        Statement statement = null;
+        ResultSet resultat = null;
+        int i;
+		try{
+			connexion=factory.getConnection();
+			String query = "SELECT COUNT(*) AS nombre FROM authors";
 			
 			statement = connexion.createStatement();
 	        resultat = statement.executeQuery(query);

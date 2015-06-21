@@ -11,6 +11,7 @@ public class Types {
 	}
 	private int typeId;
 	private String typeName;
+	private int count;
 	private List<Attributes> attributes = new ArrayList<Attributes>();
 	
 	
@@ -34,6 +35,12 @@ public class Types {
 		// TODO Auto-generated method stub
 		this.typeName=typeName;
 		
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
 	}
 
 	

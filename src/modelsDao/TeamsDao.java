@@ -141,5 +141,63 @@ public class TeamsDao extends Dao<Teams>{
 		}
 		return Team;
 	}
+	
+	public Teams countAll() {
+		// TODO Auto-generated method stub
+		Teams Team = new Teams();
+		Connection connexion = null;
+        Statement statement = null;
+        ResultSet resultat = null;
+        int i;
+        
+		try{
+			connexion=factory.getConnection();
+			String query = "SELECT COUNT(teamName) AS nombre FROM teams";
+			
+			statement = connexion.createStatement();
+	        resultat = statement.executeQuery(query);
+	        
+	        // Récupération des données
+            while (resultat.next()) {
+          	   String nombre = resultat.getString("nombre");
+          	   
+          	   i = Integer.parseInt(nombre); 
+          	   Team.setCount(i);
+          	    	   
+            }
+            
+		}catch (SQLException e) {
+            e.printStackTrace();
+		}
+		return Team;
+	}
+	
+	public Teams teamOfAuthor(int ldapId) {
+		Teams Team = new Teams();
+		Connection connexion = null;
+        Statement statement = null;
+        ResultSet resultat = null;
+        
+		try{
+			connexion=factory.getConnection();
+			String query = "SELECT T.teamName FROM Teams T JOIN Authors A "
+					+ "ON T.teamId = A.teamId "
+					+ "AND A.ldapId ="+ldapId;
+			
+			statement = connexion.createStatement();
+	        resultat = statement.executeQuery(query);
+	        
+	        // Récupération des données
+            while (resultat.next()) {
+          	   String teamName = resultat.getString("teamName");
+          	   Team.setTeamName(teamName);
+          	    	   
+            }
+            
+		}catch (SQLException e) {
+            e.printStackTrace();
+		}
+		return Team;
+	}
 
 }
