@@ -539,6 +539,37 @@ public class PublicationsDao extends Dao<Publications> {
 		return Publication;
 
 	}
+	
+	public Publications countAll() {
+		// TODO Auto-generated method stub
+		Publications Publication = new Publications();
+		Connection connexion = null;
+		Statement statement = null;
+		ResultSet resultat = null;
+		int i;
+
+		try {
+			connexion = factory.getConnection();
+			String query = "SELECT COUNT(*) AS nombre FROM publications";
+
+			statement = connexion.createStatement();
+			resultat = statement.executeQuery(query);
+
+			// Récupération des données
+			while (resultat.next()) {
+				String nombre = resultat.getString("nombre");
+
+				i = Integer.parseInt(nombre);
+				Publication.setCount(i);
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return Publication;
+
+	}
 
 	public List<Publications> research(String reqPubliName, String reqDate, String reqResume, Integer reqAuthor) {
 		List<Publications> Publications = new ArrayList<Publications>();
