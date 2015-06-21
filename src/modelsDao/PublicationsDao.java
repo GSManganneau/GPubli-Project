@@ -340,7 +340,7 @@ public class PublicationsDao extends Dao<Publications> {
 					+ " natural join Publications "
 					+ " natural join Authors "
 					+ "natural join Types where authorId <> 0 "
-					//+ "and coAuthorId = 0 "
+					+ "and coAuthorId = 0 "
 					+ "AND ldapId="+ldapId
 					+ " ORDER BY publicationId DESC "
 					+ "LIMIT " + i + " , " + j;
@@ -377,8 +377,8 @@ public class PublicationsDao extends Dao<Publications> {
 
 				}
 				String query2 = "select * from Repositories R,"
-						+ " Authors  A where R.publicationId=" + id;
-						//+ " and R.coAuthorId = A.authorId";
+						+ " Authors  A where R.publicationId=" + id
+						+ " and R.coAuthorId = A.authorId";
 				resultat3 = statement3.executeQuery(query2);
 				List<Authors> coAuthors = new ArrayList<Authors>();
 				while (resultat3.next()) {

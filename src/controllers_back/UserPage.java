@@ -24,6 +24,7 @@ public class UserPage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	public String content = "user.jsp";
+	public String cssContent = "user.css";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -63,6 +64,7 @@ public class UserPage extends HttpServlet {
 		
 		String ldapId = request.getParameter("ldapId");
 		int i = Integer.parseInt(ldapId);
+		request.setAttribute("cssContent", cssContent);
 		request.setAttribute("content", content);
 		request.setAttribute("ldapId", i);
 		
