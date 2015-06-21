@@ -24,6 +24,7 @@ public class UserPage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public String content = "user.jsp";
+    public String cssContent = "user.css";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -45,6 +46,7 @@ public class UserPage extends HttpServlet {
 		this.authorDao = factory.getAuthors();
 		this.typeDao = factory.getType();
 	}
+
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -137,6 +139,7 @@ public class UserPage extends HttpServlet {
 				response.sendRedirect("/GPubli-Project/userpage?page=1&ldapId="
 						+ i);
 			}
+
 		}
 	}
 

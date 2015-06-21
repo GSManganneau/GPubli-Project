@@ -10,9 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import beans.Teams;
+import modelsDao.AuthorsDao;
 import modelsDao.TeamsDao;
 import modelsDao.DAOFactory;
 import modelsDao.PublicationsDao;
+import modelsDao.TypeDao;
 
 /**
  * Servlet implementation class Listing_author
@@ -32,10 +34,16 @@ public class TeamPage extends HttpServlet {
     }
 
     private TeamsDao teamDao;
+    private PublicationsDao publicationDao;
+    private AuthorsDao authorDao;
+    private TypeDao typeDao;
 
     public void init() throws ServletException {
     	 DAOFactory factory = DAOFactory.getInstance();
          this.teamDao = factory.getTeams();
+         this.publicationDao = factory.getPublications();
+         this.authorDao = factory.getAuthors();
+         this.typeDao = factory.getType();
     }
     
     
@@ -51,11 +59,24 @@ public class TeamPage extends HttpServlet {
 			response.sendRedirect("/GPubli-Project/connexion");
 		} else {
 			
+			String ldapId = request.getParameter("ldapId");
+			//int i = Integer.parseInt(ldapId);
+			
 			String teamName = request.getParameter("team");
+			request.setAttribute("teamName", teamName);
 			request.setAttribute("session", s);
 			request.setAttribute("content", content);
 			
-			request.setAttribute("teams", teamDao.listContentTeam(teamName));
+			//request.setAttribute("publications",publicationDao.listPublicationAuthor(3, 3, i));
+			
+			//Chiffres-clés
+			request.setAttribute("teamCount", teamDao.countAll());
+			request.setAttribute("pubCount", publicationDao.countAll());
+			request.setAttribute("authorCount", authorDao.countAll());
+			request.setAttribute("typeCount", typeDao.countAll());
+			
+			request.setAttribute("authors", teamDao.listContentTeam(teamName));
+			request.setAttribute("countAuthorTeam", teamDao.countAuthorTeam(teamName));
 	        getServletContext().getRequestDispatcher("/front-office/template.jsp").include(request, response);
 		
 		}

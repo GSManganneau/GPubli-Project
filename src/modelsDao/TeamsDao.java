@@ -210,9 +210,13 @@ public class TeamsDao extends Dao<Teams>{
         try {
             connexion = factory.getConnection();
             statement = connexion.createStatement();
-            resultat  = statement.executeQuery("SELECT * FROM authors a JOIN Teams t "
-            		+ "ON a.teamId = T.teamId "
-            		+ "AND teamName ="+teamName);
+            
+            String query = "SELECT * FROM authors a JOIN teams t "
+            		+ "ON a.teamId = t.teamId "
+            		+ "AND t.teamName ='"+teamName+"'";
+            
+            
+            resultat  = statement.executeQuery(query);
 
             while (resultat.next()) {
                 String firstname = resultat.getString("firstname");
@@ -228,6 +232,35 @@ public class TeamsDao extends Dao<Teams>{
             e.printStackTrace();
         }
 		return Authors;
+	}
+	
+	public Authors countAuthorTeam(String teamName) {
+		// TODO Auto-generated method stub
+		Authors author = new Authors();
+        Connection connexion = null;
+        Statement statement = null;
+        ResultSet resultat = null;
+
+        try {
+            connexion = factory.getConnection();
+            statement = connexion.createStatement();
+            
+            String query = "SELECT COUNT(*) AS nombre FROM authors a JOIN teams t "
+            		+ "ON a.teamId = t.teamId "
+            		+ "AND t.teamName ='"+teamName+"'";
+            
+            
+            resultat  = statement.executeQuery(query);
+
+            while (resultat.next()) {
+                int nombre = Integer.parseInt(resultat.getString("nombre"));
+           
+                author.setCount(nombre);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+		return author;
 	}
 
 }
