@@ -1,4 +1,5 @@
 <jsp:directive.page contentType="text/html;charset=UTF-8" />
+
 <div class="row">
 	<div class="col-md-12">
 		<ol class="breadcrumb">
@@ -8,6 +9,7 @@
 		<hr>
 	</div>
 </div>
+
 <div class="row">
 	<div class="col-sm-12">
 		<form  class="form-horizontal" data-toggle="validator" data-form="not-sendable" action="addpublications" method="post">
@@ -30,7 +32,9 @@
 				<div class="col-sm-10">
 					<select class="form-control selectize-select-multiple-create-user" name="authors" id="label-authors" placeholder="Choisissez un ou plusieurs co-auteurs" multiple>
 						<c:forEach var="author" items="${authors}">
-							<option value=<c:out value="${author.authorId}"/>> <c:out value="${author.firstname}"/>  <c:out value="${author.lastname}"/>	</option> 
+							<option value=<c:out value="${author.authorId}"/>>
+								<c:out value="${author.firstname}"/> <c:out value="${author.lastname}"/>
+							</option> 
 						</c:forEach>
 					</select>
 				</div>
@@ -59,6 +63,13 @@
 			</div>
 
 			<div class="type-attributes"></div>
+
+			<div class="form-group">
+				<label for="label-file" class="col-sm-2 control-label">Fichier</label>
+				<div class="col-sm-10">
+					<input type="file" class="form-control" name="file" id="label-file">
+				</div>
+			</div>
 			
 			<div class="form-group form-group-submit">
 				<div class="col-sm-10 col-sm-offset-2">

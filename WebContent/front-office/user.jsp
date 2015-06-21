@@ -3,7 +3,8 @@
 <div class="row">
 	<div class="col-md-12">
 		<ol class="breadcrumb">
-			<li class="active">Accueil</li>
+			<li><a href="?page=index">Accueil</a></li>
+			<li class="active">Utilisateur : Matthieu Puibaraud</li>
 		</ol>
 		<hr>
 	</div>
@@ -12,6 +13,23 @@
 <div class="row">
 	<div class="col-md-3">
 		<nav>
+			<div class="panel panel-default panel-profile">
+				<div class="panel-heading">
+					<div class="profile-picture">
+						<div class="thumbnail">
+							<a href="img/profile-example.jpg" target="_blank">
+								<img src="img/profile-example.jpg" alt="profile-example">
+							</a>
+						</div>
+					</div>
+					<h3 class="panel-title text-center">Matthieu Puibaraud</h3>
+				</div>
+				<div class="list-group">
+					<div class="list-group-item"><span class="glyphicon glyphicon-lock" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Login ISEP"></span>&nbsp; mpuibara</div>
+					<a href="?page=team" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Équipe"></span>&nbsp; Informatique</a>
+				</div>
+			</div>
+
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">Chiffres-clés</h3>
@@ -22,17 +40,6 @@
 					<li class="list-group-item"><span class="badge">3</span><span class="glyphicon glyphicon-list-alt" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Équipes de ces publications"></span>&nbsp; Équipe(s)</li>
 					<li class="list-group-item"><span class="badge">4</span><span class="glyphicon glyphicon-asterisk" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Types de ces publications"></span>&nbsp; Type(s)</li>
 				</ul>
-			</div>
-
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">Équipes</h3>
-				</div>
-				<div class="list-group">
-					<a href="?page=team" class="list-group-item"><i class="fa fa-desktop"></i>&nbsp; Informatique</a>
-					<a href="?page=team" class="list-group-item"><i class="fa fa-wifi"></i>&nbsp; Télécom</a>
-					<a href="?page=team" class="list-group-item"><i class="fa fa-plug"></i>&nbsp; Électronique</a>
-				</div>
 			</div>
 		</nav>
 	</div>

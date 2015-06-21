@@ -1,3 +1,5 @@
+<jsp:directive.page contentType="text/html;charset=UTF-8" />
+
 <div class="row">
 	<div class="col-md-12">
 		<ol class="breadcrumb">
@@ -17,12 +19,14 @@
 					<select class="form-control selectize-select-multiple-create" id="label-keywords" placeholder="Inscrivez un ou plusieurs mots-clés séparés par une virgule" multiple></select>
 				</div>
 			</div>
+
 			<div class="form-group">
 				<label for="label-title" class="col-sm-2 control-label">Titre</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" id="label-title" placeholder="Titre de la publication">
 				</div>
 			</div>
+
 			<div class="form-group">
 				<label for="label-authors" class="col-sm-2 control-label">Auteur(s)</label>
 				<div class="col-sm-10">
@@ -34,6 +38,7 @@
 					</select>
 				</div>
 			</div>
+
 			<div class="form-group">
 				<label for="label-teams" class="col-sm-2 control-label">Équipe(s)</label>
 				<div class="col-sm-10">
@@ -44,6 +49,7 @@
 					</select>
 				</div>
 			</div>
+
 			<div class="form-group">
 				<label for="label-type" class="col-sm-2 control-label">Type</label>
 				<div class="col-sm-10">
@@ -56,6 +62,7 @@
 					</select>
 				</div>
 			</div>
+
 			<div class="form-group form-group-date">
 				<label class="col-sm-2 control-label">Date</label>
 				<div class="col-sm-5">
@@ -71,6 +78,7 @@
 					</div>
 				</div>
 			</div>
+			
 			<div class="form-group form-group-submit">
 				<div class="col-sm-10 col-sm-offset-2">
 					<hr>

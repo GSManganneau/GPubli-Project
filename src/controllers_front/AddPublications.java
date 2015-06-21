@@ -2,6 +2,7 @@ package controllers_front;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -60,8 +61,9 @@ public class AddPublications extends HttpServlet {
 			response.sendRedirect("/GPubli-Project/connexion");
 			}
 		else{
+		int id = (int)s.getAttribute("authorId");
 		List<Types> types = typeDao.lister();
-		List<Authors> authors = authorDao.lister();
+		List<Authors> authors = authorDao.lister(id);
 		request.setAttribute("session", s);
         request.setAttribute("content",content);
         request.setAttribute("jsContent", jsContent);
@@ -80,28 +82,41 @@ public class AddPublications extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		int typeId = Integer.parseInt(request.getParameter("type"));
-		System.out.println("typeId:"+typeId);
 		String date = request.getParameter("date");
-		System.out.println(date);
 		String resume = request.getParameter("resume");
 		String title = request.getParameter("title");
 		Types type = typeDao.find(typeId);
 		for (int i = 0; i < type.getAttributes().size(); i++) {
-			String attributeName=type.getAttributes().get(i).getAttributeName();
-			String data = request.getParameter(attributeName);
+			int attributeId=type.getAttributes().get(i).getAttributeId();
+			String data = request.getParameter("attribute"+attributeId);
 			type.getAttributes().get(i).setDatas(data);
 		}
 		Publications publication = new Publications();
+		//récupère les coAuteurs
+		List <Authors> coAuteurs = new ArrayList <Authors>();
 		if(request.getParameterValues("authors")!=null){
 			String[] coAuthors = request.getParameterValues("authors");
 			for(int i=0;i<coAuthors.length;i++){
-				if (coAuthors[i].matches("^[new]")){
+				Authors coAuthor = new Authors();
+				if (coAuthors[i].startsWith("[")){
+					
+					coAuthor.setLastname(coAuthors[i].split("]")[1].split("/")[0]);
+					coAuthor.setFirstname(coAuthors[i].split("]")[1].split("/")[1]);
+					coAuthor.setAuthorId(authorDao.create(coAuthor, false));
+					}
+				else{
+					coAuthor=authorDao.findWithId(Integer.parseInt(coAuthors[i]));
 					
 				}
+				coAuteurs.add(coAuthor);
 			}
+			
 		}
-		
-		
+		HttpSession s = request.getSession();
+		int authorId = (int)(s.getAttribute("authorId"));
+		Authors author=authorDao.findWithId(authorId);
+		publication.setAuthor(author);
+		publication.setCoAuthors(coAuteurs);
 		publication.setDate(date);
 		publication.setResume(resume);
 		publication.setTitle(title);

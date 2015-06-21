@@ -1,3 +1,5 @@
+<jsp:directive.page contentType="text/html;charset=UTF-8" />
+
 <div class="row">
 	<div class="col-md-12">
 		<ol class="breadcrumb">
@@ -10,7 +12,7 @@
 
 <div class="row">
 	<div class="col-sm-12">
-		<form class="form-horizontal" data-toggle="validator" data-form="not-sendable">
+		<form class="form-horizontal" data-toggle="validator" data-form="not-sendable" enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="label-title" class="col-sm-2 control-label">Titre *</label>
 				<div class="col-sm-10">
@@ -73,6 +75,13 @@
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="Url" id="label-Url" data-rule-required="true" value="L'url de la publication">
 					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="label-file" class="col-sm-2 control-label">Fichier</label>
+				<div class="col-sm-10">
+					<input type="file" class="form-control" name="file" id="label-file">
 				</div>
 			</div>
 			
