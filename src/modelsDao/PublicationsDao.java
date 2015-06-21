@@ -25,7 +25,31 @@ public class PublicationsDao extends Dao<Publications> {
 	@Override
 	public Publications find(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		Connection connexion = null;
+		Statement statement = null;
+		ResultSet resultat = null;
+		Publications publication = new Publications();
+
+		try {
+			connexion = factory.getConnection();
+			statement = connexion.createStatement();
+			String queri = "SELECT * FROM  Repositories"
+					+ " natural join Publications "
+					+ " natural join Authors "
+					+ "natural join Types where publicationId ="+id
+					+" and coAuthorId = 0 ";
+			resultat = statement.executeQuery(queri);
+			while(resultat.next()){
+				int authorId = resultat.getInt("authorId");
+				publication.getAuthor().setAuthorId(authorId);
+			}
+			
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+
+		return publication;
 	}
 
 	@Override
@@ -100,6 +124,26 @@ public class PublicationsDao extends Dao<Publications> {
 	@Override
 	public boolean delete(Publications object) {
 		// TODO Auto-generated method stub
+		Connection connexion = null;
+		Statement statement = null;
+		Statement statement2 = null;
+		Statement statement3 = null;
+		String query = "DELETE FROM Publications where publicationId ="+ object.getPublicationId();
+		String query2 = "DELETE FROM DatasPublications where publicationId="+object.getPublicationId();
+		String query3 = "DELETE FROM Repositories where publicationId="+object.getPublicationId();
+		try{
+			connexion = factory.getConnection();
+			statement = connexion.createStatement();
+			statement2 = connexion.createStatement();
+			statement3= connexion.createStatement();
+			statement.executeQuery(query);
+			statement2.executeQuery(query2);
+			statement3.executeQuery(query3);
+		}
+		catch(SQLException e){
+			
+		}
+		
 		return false;
 	}
 

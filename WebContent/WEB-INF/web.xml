@@ -83,6 +83,15 @@
     <servlet-name>Gadmin</servlet-name>
     <url-pattern>/Gadmin</url-pattern>
   </servlet-mapping>
+   <servlet>
+    <servlet-name>DeletePublication</servlet-name>
+    <servlet-class>controllers_front.DeletePublication</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeletePublication</servlet-name>
+    <url-pattern>/deletepublication</url-pattern>
+  </servlet-mapping>
+  
   <display-name>GPubli-Project</display-name>
   <welcome-file-list>
     <welcome-file>connexion</welcome-file>
