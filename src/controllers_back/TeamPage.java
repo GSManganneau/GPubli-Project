@@ -51,10 +51,11 @@ public class TeamPage extends HttpServlet {
 			response.sendRedirect("/GPubli-Project/connexion");
 		} else {
 			
+			String teamName = request.getParameter("team");
 			request.setAttribute("session", s);
 			request.setAttribute("content", content);
 			
-			request.setAttribute("teams", teamDao.lister());
+			request.setAttribute("teams", teamDao.listContentTeam(teamName));
 	        getServletContext().getRequestDispatcher("/front-office/template.jsp").include(request, response);
 		
 		}

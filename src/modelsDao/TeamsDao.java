@@ -199,5 +199,35 @@ public class TeamsDao extends Dao<Teams>{
 		}
 		return Team;
 	}
+	
+	public List<Authors> listContentTeam(String teamName) {
+		// TODO Auto-generated method stub
+        List<Authors> Authors = new ArrayList<Authors>();
+        Connection connexion = null;
+        Statement statement = null;
+        ResultSet resultat = null;
+
+        try {
+            connexion = factory.getConnection();
+            statement = connexion.createStatement();
+            resultat  = statement.executeQuery("SELECT * FROM authors a JOIN Teams t "
+            		+ "ON a.teamId = T.teamId "
+            		+ "AND teamName ="+teamName);
+
+            while (resultat.next()) {
+                String firstname = resultat.getString("firstname");
+                String lastname = resultat.getString("lastname");
+                
+                Authors author = new Authors();
+                author.setFirstname(firstname);
+                author.setLastname(lastname);
+
+                Authors.add(author);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+		return Authors;
+	}
 
 }

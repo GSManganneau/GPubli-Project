@@ -17,6 +17,7 @@ import modelsDao.PublicationsDao;
 /**
  * Servlet implementation class DeletePublication
  */
+@WebServlet("/DeletePublication")
 public class DeletePublication extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
