@@ -6,7 +6,6 @@ public class Authors {
 	private String firstname;
 	private String lastname;
 	private int count;
-	private int countInTeam;
 	private Teams team = new Teams();
 
 	public int getLdapId() {
@@ -56,13 +55,4 @@ public class Authors {
 	public void setCount(int count) {
 		this.count = count;
 	}
-
-	public int getCountInTeam() {
-		return countInTeam;
-	}
-
-	public void setCountInTeam(int countInTeam) {
-		this.countInTeam = countInTeam;
-	}
-
 }
