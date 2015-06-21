@@ -64,6 +64,8 @@ $(function () {
 
 		$(this).find('th').eq(data.column).addClass('sort-active').find('i').removeClass().addClass('fa fa-sort-' + arrow);
 	});
+	
+	$('table').find('th').eq(0).stupidsort();
 
 
 
@@ -108,7 +110,7 @@ $(function () {
 				data: {
 					'field': $.trim(this.input.val())
 				},
-				url: 'json/autocomplete.json'
+				url: 'autocomplete'
 			});
 
 			request.done($.proxy(function (data) {
@@ -211,7 +213,7 @@ $(function () {
 
 	// Publications
 
-	$('.panel-publication .panel-body p.resume').dotdotdot({
+	$('.panel-publication .panel-body p.resume-ellipsis').dotdotdot({
 		ellipsis: '...',
 		height: 100,
 		watch: 'window'
@@ -221,7 +223,7 @@ $(function () {
 		event.preventDefault();
 
 		var publication = $(this).closest('.panel-publication');
-		publication.find('p.resume').trigger('destroy');
+		publication.find('p.resume-ellipsis').trigger('destroy');
 		publication.find('table').show();
 		publication.find('.detail').remove();
 	});

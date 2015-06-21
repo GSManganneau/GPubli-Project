@@ -3,7 +3,8 @@
 <div class="row">
 	<div class="col-md-12">
 		<ol class="breadcrumb">
-			<li class="active">Accueil</li>
+			<li><a href="?page=index">Accueil</a></li>
+			<li class="active">Équipe : Informatique</li>
 		</ol>
 		<hr>
 	</div>
@@ -12,6 +13,28 @@
 <div class="row">
 	<div class="col-md-3">
 		<nav>
+			<div class="panel-group" role="tablist">
+				<div class="panel panel-default">
+					<div class="panel-heading" role="tab" id="collapseHeading">
+						<h3 class="panel-title">
+							<i class="fa fa-desktop"></i>&nbsp; 
+							<a class="collapsed" role="button" data-toggle="collapse" href="#collapseMembers" aria-expanded="false" aria-controls="collapseMembers">
+								Informatique
+							</a>
+							<span class="badge" style="float: right;" data-toggle="tooltip" data-placement="bottom" title="Membre(s)">4 <span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+						</h3>
+					</div>
+					<div id="collapseMembers" class="panel-collapse collapse" role="tabpanel" aria-labelledby="collapseHeading" aria-expanded="false" style="height: 0px;">
+						<div class="list-group">
+							<a href="?page=user" class="list-group-item">Aboubacar Bessenga</a>
+							<a href="?page=user" class="list-group-item">Roland Basset-Chercot</a>
+							<a href="?page=user" class="list-group-item">Guy-Stéphane Manganneau</a>
+							<a href="?page=user" class="list-group-item">Matthieu Puibaraud</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">Chiffres-clés</h3>
@@ -23,17 +46,6 @@
 					<li class="list-group-item"><span class="badge">4</span><span class="glyphicon glyphicon-asterisk" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Types de ces publications"></span>&nbsp; Type(s)</li>
 				</ul>
 			</div>
-
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">Équipes</h3>
-				</div>
-				<div class="list-group">
-					<a href="?page=team" class="list-group-item"><i class="fa fa-desktop"></i>&nbsp; Informatique</a>
-					<a href="?page=team" class="list-group-item"><i class="fa fa-wifi"></i>&nbsp; Télécom</a>
-					<a href="?page=team" class="list-group-item"><i class="fa fa-plug"></i>&nbsp; Électronique</a>
-				</div>
-			</div>
 		</nav>
 	</div>
 
@@ -41,7 +53,7 @@
 		<jsp:include page="actionInformation.jsp"/>
 		<jsp:include page="toolbar.jsp"/>
 		<jsp:include page="publications.jsp"/>
-		<jsp:include page="pagination.jsp"/>
+		<jsp:include page="pagination.jsp" />
 	</div>
 </div>
 

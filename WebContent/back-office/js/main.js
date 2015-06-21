@@ -18,6 +18,8 @@ $(function() {
 
 		$(this).find('th').eq(data.column).addClass('sort-active').find('i').removeClass().addClass('fa fa-sort-' + arrow);
 	});
+	
+	$('table').find('th').eq(0).stupidsort();
 
 
 

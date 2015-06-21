@@ -43,6 +43,10 @@ header .navbar-form span.glyphicon {
 	color: #777;
 }
 
+header .navbar-form button[type="submit"] {
+	border-right: 0;
+}
+
 header .navbar-form input {
 	border-radius: 0 4px 4px 0 !important;
 }
@@ -97,6 +101,10 @@ header .navbar-form .input-group {
 
 #content .form-group-without-margin {
 	margin: 0;
+}
+
+#content .list-group {
+	color: #555;
 }
 
 /* ---- CONTENT / toolbar ---- */
