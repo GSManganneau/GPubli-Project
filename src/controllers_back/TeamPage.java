@@ -59,10 +59,15 @@ public class TeamPage extends HttpServlet {
 			response.sendRedirect("/GPubli-Project/connexion");
 		} else {
 			
+			String ldapId = request.getParameter("ldapId");
+			//int i = Integer.parseInt(ldapId);
+			
 			String teamName = request.getParameter("team");
 			request.setAttribute("teamName", teamName);
 			request.setAttribute("session", s);
 			request.setAttribute("content", content);
+			
+			//request.setAttribute("publications",publicationDao.listPublicationAuthor(3, 3, i));
 			
 			//Chiffres-clés
 			request.setAttribute("teamCount", teamDao.countAll());
