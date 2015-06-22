@@ -1,6 +1,6 @@
 <jsp:directive.page contentType="text/html;charset=UTF-8" />
-<c:forEach var="publication" items="${publications}">
 <div class="publications">
+<c:forEach var="publication" items="${publications}">
 		<div class="panel panel-default panel-publication">
 			<div class="panel-heading">
 				<div class="row">
@@ -19,7 +19,7 @@
 								<c:set var="sessionId"  value="${session.getAttribute(\"authorId\")}"/>
 							<c:if test="${ publication.author.authorId == sessionId }">
 							<li><a href="updatepublication?publicationId=<c:out value="${publication.publicationId}" />"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;Modifier la publication</a></li>
-							<li><a href="deletepublication?publicationId=<c:out value="${publication.publicationId}" />"data-toggle="modal" data-target="delete-modal.jsp"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp; Supprimer la publication</a></li>
+							<li><a href="deletepublication?publicationId=<c:out value="${publication.publicationId}" />"data-toggle="modal" data-target="#delete-modal"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp; Supprimer la publication</a></li>
 							</c:if>
 							</ul>
 						</div>
@@ -31,7 +31,7 @@
 					<p class="authors col-lg-10 col-sm-9">
 						<span class="glyphicon glyphicon-user" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Auteur(s)"></span>&nbsp;
 						
-						<a href="userpage?ldapId=<c:out value="${ coAuthor.ldapId}"/>"><c:out value="${publication.author.firstname}" /> <c:out value="${publication.author.lastname}" /></a>
+						<a href="userpage?ldapId=<c:out value="${ publication.author.ldapId}"/>"><c:out value="${publication.author.firstname}" /> <c:out value="${publication.author.lastname}" /></a>
 						<c:forEach var="coAuthor" items="${publication.coAuthors}">
 						<c:if test="${ coAuthor.ldapId != 0}">
 							<a href="userpage?ldapId=<c:out value="${ coAuthor.ldapId}"/>"> | <c:out value="${coAuthor.firstname}" /> <c:out value="${coAuthor.lastname}" /></a>
@@ -61,6 +61,6 @@
 				</c:forEach>
 			</table>
 		</div>
-</div>
-<jsp:include page="delete-modal.jsp"/>
 </c:forEach>
+
+</div>

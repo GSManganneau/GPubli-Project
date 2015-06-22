@@ -3,7 +3,7 @@
 <div class="row">
 	<div class="col-md-12">
 		<ol class="breadcrumb">
-			<li><a href="?page=index">Accueil</a></li>
+			<li><a href="?">Accueil</a></li>
 			<li class="active">Modifier la publication &laquo; <em>Titre de la publication</em> &raquo;</li>
 		</ol>
 		<hr>
@@ -16,14 +16,14 @@
 			<div class="form-group">
 				<label for="label-title" class="col-sm-2 control-label">Titre *</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" name="title" id="label-title" placeholder="Titre de la publication" data-rule-required="true" value="Le titre de la publication">
+					<input type="text" class="form-control" name="title" id="label-title" placeholder="Titre de la publication" data-rule-required="true" value="<c:out value="${publication.title}"/>">
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label for="label-resume" class="col-sm-2 control-label">Résumé *</label>
 				<div class="col-sm-10">
-					<textarea class="form-control" rows="4" name="resume" id="label-resume" placeholder="Entrez un résumé de la publication" data-rule-required="true">Le résumé de la publication</textarea>
+					<textarea class="form-control" rows="4" name="resume" id="label-resume" placeholder="Entrez un résumé de la publication" data-rule-required="true"><c:out value="${publication.resume}"/></textarea>
 				</div>
 			</div>
 
@@ -31,10 +31,9 @@
 				<label for="label-authors" class="col-sm-2 control-label">Co-auteur(s)</label>
 				<div class="col-sm-10">
 					<select class="form-control selectize-select-multiple-create-user" name="authors" id="label-authors" placeholder="Choisissez un ou plusieurs co-auteurs" multiple>
-						<option value="1" selected>Guy-Stéphane Manganneau</option>
-						<option value="2" selected>Roland Basset-Chercot</option>
-						<option value="3">Aboubacar Bessenga-Diallo</option>
-						<option value="4">Matthieu Puibaraud</option>
+						<c:forEach var="coAuthor" items="${publication.coAuthors }">
+						<option value="<c:out value="${coAuthor.authorId}"/>" selected><c:out value="${coAuthor.firstname} ${coAuthor.lastname}"/></option>
+						</c:forEach>
 					</select>
 				</div>
 			</div>
@@ -43,7 +42,7 @@
 				<label for="label-date" class="col-sm-2 control-label">Date *</label>
 				<div class="col-sm-10">
 					<div class="input-group date datetimepicker-input-date">
-						<input type="text" class="form-control" name="date" id="label-date" placeholder="Date de la publication" data-rule-required="true" value="2015-02-09">
+						<input type="text" class="form-control" name="date" id="label-date" placeholder="Date de la publication" data-rule-required="true" value="<c:out value="${publication.date }"/>">
 						<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 					</div>
 				</div>
@@ -54,28 +53,29 @@
 				<div class="col-sm-10">
 					<select class="form-control selectize-select-simple" name="type" id="label-type" data-rule-required="true">
 						<option value="">Choisissez un type</option>
-						<option value="1" selected>Livre</option>
-						<option value="2">Article</option>
-						<option value="3">Conférence</option>
-						<option value="4">Cours</option>
+						<c:forEach var="type" items="${types }">
+						<option value="<c:out value="${type.typeId }"/>" 
+						<c:if test="${type.typeId == publication.type.typeId }"> 
+						selected 
+						</c:if>>
+						<c:out value="${type.typeName }"/>
+						</option>
+						</c:forEach>
 					</select>
 				</div>
 			</div>
 
 			<div class="type-attributes">
+				
+				<c:forEach var="attribute" items="${publication.type.attributes}">
 				<div class="form-group">
-					<label for="label-Éditeur" class="col-sm-2 control-label">Éditeur *</label>
+					<label for="label-attribute<c:out value="${attribute.attributeId }"/>" class="col-sm-2 control-label"><c:out value="${attribute.attributeName }"/> *</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" name="Éditeur" id="label-Éditeur" data-rule-required="true" value="L'éditeur de la publication">
+						<input type="text" class="form-control" name="attribute<c:out value="${attribute.attributeId }"/>" id="label-attribute<c:out value="${attribute.attributeId }"/>" data-rule-required="true" value="<c:out value="${attribute.datas }"/>">
 					</div>
 				</div>
+				</c:forEach>
 
-				<div class="form-group">
-					<label for="label-Url" class="col-sm-2 control-label">Url *</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" name="Url" id="label-Url" data-rule-required="true" value="L'url de la publication">
-					</div>
-				</div>
 			</div>
 
 			<div class="form-group">

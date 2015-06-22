@@ -1,7 +1,7 @@
 package controllers_front;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,31 +11,40 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import beans.Publications;
+import beans.Types;
+import modelsDao.AuthorsDao;
 import modelsDao.DAOFactory;
 import modelsDao.PublicationsDao;
+import modelsDao.TeamsDao;
+import modelsDao.TypeDao;
 
 /**
- * Servlet implementation class DeletePublication
+ * Servlet implementation class UpdatePublication
  */
-@WebServlet("/deletepublication")
-public class DeletePublication extends HttpServlet {
+@WebServlet("/updatepublication")
+public class UpdatePublication extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-	public String cssContent = "";
-	public String content = "";
-	public String jsContent = "";
+	public String content = "updatePublication.jsp";
+	public String jsContent = "addPublicationForm.js";
 
 	private PublicationsDao publicationDao;
+	private AuthorsDao authorDao;
+	private TeamsDao teamDao;
+	private TypeDao typeDao;
 
 	public void init() throws ServletException {
 		DAOFactory factory = DAOFactory.getInstance();
 		this.publicationDao = factory.getPublications();
+		this.authorDao = factory.getAuthors();
+		this.typeDao = factory.getType();
+		this.teamDao = factory.getTeams();
 
 	}
-    public DeletePublication() {
+    public UpdatePublication() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -54,20 +63,24 @@ public class DeletePublication extends HttpServlet {
 		if (connected == null) {
 			response.sendRedirect("/GPubli-Project/connexion");
 		} else {
-			int id = Integer.parseInt(request.getParameter("publicationId"));
-			Publications publication = publicationDao.find(id);
-			int userId = (int)s.getAttribute("authorId");
-			if(publication.getAuthor().getAuthorId() == userId){
-				publicationDao.delete(publication);
-				response.sendRedirect("/GPubli-Project/home");
+			if(request.getParameter("publicationId")!=null){
+				int publicationId = Integer.parseInt((String)request.getParameter("publicationId"));
+				Publications publication = publicationDao.find(publicationId);
+				int authorId = publication.getAuthor().getAuthorId();
+				if(authorId==(int)s.getAttribute("authorId")){
+					request.setAttribute("publication", publication);
+					request.setAttribute("types",typeDao.lister());
+					request.setAttribute("session", s);
+					request.setAttribute("content",content);
+					request.setAttribute("jsContent",jsContent);
+					this.getServletContext().getRequestDispatcher("/front-office/template.jsp").forward(request, response);
+				}
 			}
-		/*	else{
-				String messageError = "You can't delete this publication!!!";
-				PrintWriter out =response.getWriter();
-				out.write(messageError);
-			}*/
+			else{
+				response.sendRedirect("/GPubli-Project/home");
 			
-		}
+			}
+	}
 	}
 
 	/**

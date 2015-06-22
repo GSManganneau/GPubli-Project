@@ -38,7 +38,6 @@
 	</div>
 
 	<div class="col-md-9">
-		<jsp:include page="actionInformation.jsp"/>
 		<jsp:include page="toolbar.jsp"/>
 		<jsp:include page="publications.jsp"/>
 		<jsp:include page="pagination.jsp"/>
