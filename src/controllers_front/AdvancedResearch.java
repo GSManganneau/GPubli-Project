@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import beans.Authors;
+import beans.Publications;
 import beans.Types;
 import beans.Teams;
 import modelsDao.AuthorsDao;
@@ -38,7 +39,7 @@ public class AdvancedResearch extends HttpServlet {
     }
     
     public String template= "publication.jsp";
-    private PublicationsDao PublicationsDao;
+    private PublicationsDao publicationsDao;
     private AuthorsDao authorDao;
     private TypeDao typeDao;
     private TeamsDao teamsDao;
@@ -46,7 +47,7 @@ public class AdvancedResearch extends HttpServlet {
 
     public void init() throws ServletException {
     	 DAOFactory factory = DAOFactory.getInstance();
-         this.PublicationsDao = factory.getPublications();
+         this.publicationsDao = factory.getPublications();
          this.authorDao = factory.getAuthors();
          this.typeDao = factory.getType();
          this.teamsDao = factory.getTeams();
@@ -75,9 +76,8 @@ public class AdvancedResearch extends HttpServlet {
 	@SuppressWarnings("null")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.setContentType("text/html");
-		
-		System.out.println("roland");
+	
+		this.content = "publications.jsp";
 		//request.setAttribute("Publications", PublicationsDao.research("rola",null,null,2));
 		String publiName = null;
 		String keyWords[];
@@ -136,9 +136,15 @@ public class AdvancedResearch extends HttpServlet {
 		
 		//System.out.println(date.length);
 		//String type = request.getParameter("type");
-        request.setAttribute("publicationsId", PublicationsDao.research(publiName,dateFrom,dateTo,resume,authorsInt,typeInt,teamInt,keyWords));
-        
-        getServletContext().getRequestDispatcher("/resultResearch.jsp").include(request, response);
+        List<Integer> publicationsId = publicationsDao.research(publiName,dateFrom,dateTo,resume,authorsInt,typeInt,teamInt,keyWords);
+        List <Publications> publications = new ArrayList<Publications>();
+        for(int i =0; i < publicationsId.size(); i++){
+        	Publications publication = publicationsDao.find(publicationsId.get(i));
+        	publications.add(publication);
+        }
+        request.setAttribute("publications", publications);
+        request.setAttribute("content",content);
+        getServletContext().getRequestDispatcher("/front-office/template.jsp").include(request, response);
 		
 	}
 

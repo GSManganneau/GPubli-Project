@@ -915,7 +915,7 @@ int id = resultat.getInt("publicationId");
 
 			String requetePart1_Normal = "SELECT * FROM publications";
 			String requetePart1_Author = "SELECT DISTINCT publications.publicationId FROM publications, repositories, authors";
-			String requetePart2 = " WHERE ";
+			String requetePart2 = " WHERE publications.publicationId = repositories.publicationId AND authors.authorId = repositories.authorId AND ";
 			String requeteKeyWords = "(title LIKE ? OR resume LIKE ?)";
 			String requetePreAuthor = "publications.publicationId = repositories.publicationId AND authors.authorId = repositories.authorId";
 			String requeteFirstAuthor = " repositories.authorId = ?";
@@ -927,7 +927,6 @@ int id = resultat.getInt("publicationId");
 			String requeteResume = "resume LIKE ?";
 			String requeteType = "typeId=?";
 			String requeteTeam = "teamId=?";
-			// String requete_type = "typeId = '"+req_type+"'";
 			String requeteAnd = " AND ";
 			String requeteOr = " OR ";
 			boolean and = false;
@@ -955,8 +954,7 @@ int id = resultat.getInt("publicationId");
 				and = true;
 
 			}
-			System.out.println("date");
-			System.out.println(reqDateFrom);
+
 			if (reqDateFrom!=null && !reqDateFrom.isEmpty()) {
 				if (and) {
 					requeteToExecute += requeteAnd;
@@ -964,7 +962,7 @@ int id = resultat.getInt("publicationId");
 				requeteToExecute += requeteDateFrom;
 				and = true;
 			}
-			System.out.println(reqDateTo);
+
 			if (reqDateTo!=null && !reqDateTo.isEmpty()) {
 				if (and) {
 					requeteToExecute += requeteAnd;
@@ -977,10 +975,9 @@ int id = resultat.getInt("publicationId");
 				if (and) {
 					requeteToExecute += requeteAnd;
 				}
-				requeteToExecute += requetePreAuthor;
+				//requeteToExecute += requetePreAuthor;
 				and = true;
 				
-				requeteToExecute += requeteAnd;	
 				requeteToExecute += requeteFirstAuthor;
 				
 				for(int j=1;j<reqAuthors.length;j++){					
@@ -1081,6 +1078,7 @@ int id = resultat.getInt("publicationId");
 			
 			System.out.println(requeteToExecute);
 			System.out.println(preparedStatement);
+			
 			ResultSet resultat = preparedStatement.executeQuery();
 
 			

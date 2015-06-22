@@ -43,7 +43,7 @@
 			<div class="form-group">
 				<label for="label-teams" class="col-sm-2 control-label">Équipe(s)</label>
 				<div class="col-sm-10">
-					<select name="team" class="form-control selectize-select-multiple" id="label-teams" placeholder="Choisissez une ou plusieurs équipes" multiple>
+					<select name="team" class="form-control selectize-select-multiple" id="label-teams" placeholder="Choisissez une équipe" multiple>
 						<c:forEach var="team" items="${teams}">
 						<option value=<c:out value="${team.teamId}"/>><c:out value="${team.teamName}"/></option> 
 						</c:forEach>
