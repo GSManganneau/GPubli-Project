@@ -12,7 +12,7 @@
 
 <div class="row">
 	<div class="col-sm-12">
-		<form class="form-horizontal" method="POST" action="AdvancedResearch">
+		<form class="form-horizontal" method="POST" action="ResultResearch">
 			<div class="form-group">
 				<label for="label-keywords" class="col-sm-2 control-label">Mot(s)-clé(s)</label>
 				<div class="col-sm-10">
