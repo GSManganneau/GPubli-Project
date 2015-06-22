@@ -1,11 +1,16 @@
 package controllers_back;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import modelsDao.DAOFactory;
+import modelsDao.TeamsDao;
+import modelsDao.TypeDao;
 
 /**
  * Servlet implementation class Types
@@ -13,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/Types")
 public class Types extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	public String content = "types.jsp";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -21,12 +28,23 @@ public class Types extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
+    
+    private TypeDao typeDao;
+    
+    public void init() throws ServletException {
+      	 DAOFactory factory = DAOFactory.getInstance();
+           this.typeDao = factory.getType();
+      }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setAttribute("teams", typeDao.lister());
+		request.setAttribute("content", content);
+		
+		getServletContext().getRequestDispatcher("/back-office/template.jsp").include(request, response);
 	}
 
 	/**
