@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import beans.Authors;
 import beans.Publications;
+import modelsDao.AuthorsDao;
 import modelsDao.DAOFactory;
 import modelsDao.PublicationsDao;
 
@@ -29,10 +31,12 @@ public class DeletePublication extends HttpServlet {
 	public String jsContent = "";
 
 	private PublicationsDao publicationDao;
+	private AuthorsDao authorsDao;
 
 	public void init() throws ServletException {
 		DAOFactory factory = DAOFactory.getInstance();
 		this.publicationDao = factory.getPublications();
+		this.authorsDao = factory.getAuthors();
 
 	}
     public DeletePublication() {
@@ -57,6 +61,8 @@ public class DeletePublication extends HttpServlet {
 			int id = Integer.parseInt(request.getParameter("publicationId"));
 			Publications publication = publicationDao.find(id);
 			int userId = (int)s.getAttribute("authorId");
+			Authors author= authorsDao.findWithId(userId);
+			publication.getAuthors().
 			if(publication.getAuthor().getAuthorId() == userId){
 				publicationDao.delete(publication);
 				response.sendRedirect("/GPubli-Project/home");

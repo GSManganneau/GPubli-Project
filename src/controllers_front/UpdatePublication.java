@@ -66,6 +66,7 @@ public class UpdatePublication extends HttpServlet {
 			if(request.getParameter("publicationId")!=null){
 				int publicationId = Integer.parseInt((String)request.getParameter("publicationId"));
 				Publications publication = publicationDao.find(publicationId);
+				System.out.print(publication.toString());
 				int authorId = publication.getAuthor().getAuthorId();
 				if(authorId==(int)s.getAttribute("authorId")){
 					request.setAttribute("publication", publication);
@@ -88,6 +89,8 @@ public class UpdatePublication extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		
 	}
 
 }
