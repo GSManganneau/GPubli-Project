@@ -83,8 +83,6 @@
     <servlet-name>Gadmin</servlet-name>
     <url-pattern>/Gadmin</url-pattern>
   </servlet-mapping>
-   
-  
   <display-name>GPubli-Project</display-name>
   <welcome-file-list>
     <welcome-file>connexion</welcome-file>

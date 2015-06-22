@@ -75,20 +75,24 @@ public class TeamsDao extends Dao<Teams>{
         try {
             connexion = factory.getConnection();
             statement = connexion.createStatement();
-            resultat  = statement.executeQuery("SELECT * FROM teams");
+            resultat  = statement.executeQuery("SELECT t.teamName,t.teamId,t.thumbnail, COUNT(a.firstName) nombre FROM teams t JOIN authors a "
+            		+ "ON t.teamId = a.teamId "
+            		+ "group BY teamName");
 
             while (resultat.next()) {
                 String name = resultat.getString("teamName");
-                String thumb=resultat.getString("thumbnail");
-                int teamId = resultat.getInt("teamId");
+
+                int teamId = Integer.parseInt(resultat.getString("teamId"));
+                String thumbnail = resultat.getString("thumbnail");
+                int effectif = Integer.parseInt(resultat.getString("nombre"));
                 
-                Teams Team = new Teams();
-                Team.setTeamName(name);
-                Team.setTeamId(teamId);
-                Team.setThumbnail(thumb);
+                Teams team = new Teams();
+                team.setCount(effectif);
+                team.setTeamId(teamId);
+                team.setTeamName(name);
+                team.setThumbnail(thumbnail);
 
-
-                Teams.add(Team);
+                Teams.add(team);
             }
         } catch (SQLException e) {
             e.printStackTrace();

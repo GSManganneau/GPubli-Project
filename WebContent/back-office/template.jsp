@@ -31,7 +31,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="?page=index">
+					<a class="navbar-brand" href="AdminHome">
 						<svg version="1.1" id="logo-gadmin" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" height="30px" fill="#777" viewBox="0 0 907.1 907.1" enable-background="new 0 0 907.1 907.1" xml:space="preserve">
 							<path stroke="#000000" stroke-miterlimit="10" d="M400.5,636.6c-29-0.3-53,23-53.3,52c-0.3,29,23,53,52,53.3c29,0.3,53-23,53.3-52
 								C452.9,660.8,429.6,636.9,400.5,636.6z"/>
@@ -53,16 +53,16 @@
 				<div class="collapse navbar-collapse" id="navbar-gpubli-admin">
 					<ul class="nav navbar-nav side-nav">
 						<li>
-							<a href="?page=index"><span class="glyphicon glyphicon-signal" aria-hidden="true"></span>&nbsp; Dashboard</a>
+							<a href="AdminHome"><span class="glyphicon glyphicon-signal" aria-hidden="true"></span>&nbsp; Dashboard</a>
 						</li>
 						<li>
 							<a href="?page=types"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>&nbsp; Types</a>
 						</li>
 						<li>
-							<a href="?page=teams"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>&nbsp; Équipes</a>
+							<a href="Teams"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>&nbsp; Équipes</a>
 						</li>
 						<li>
-							<a href="?page=users"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp; Utilisateurs</a>
+							<a href="Users"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp; Utilisateurs</a>
 						</li>
 					</ul>
 				</div>

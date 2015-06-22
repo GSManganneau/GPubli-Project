@@ -195,6 +195,41 @@ public class AuthorsDao extends Dao<Authors>{
         return Authors;
     }
 	
+	public List<Authors> lister() {
+        List<Authors> Authors = new ArrayList<Authors>();
+        Connection connexion = null;
+        Statement statement = null;
+        ResultSet resultat = null;
+
+        try {
+            connexion =factory.getConnection();
+            statement = connexion.createStatement();
+            resultat = statement.executeQuery("SELECT * FROM Authors natural join Teams");
+
+            while (resultat.next()) {
+            	String teamName= resultat.getString("teamName");
+                String firstname = resultat.getString("firstname");
+                String lastname = resultat.getString("lastname");
+                String login=resultat.getString("login");
+                int authorId = resultat.getInt("authorId");
+                
+                
+
+                Authors Author = new Authors();
+                Author.setAuthorId(authorId);
+                Author.setFirstname(firstname);
+                Author.setLastname(lastname);
+                Author.setLogin(login);
+                Author.getTeam().setTeamName(teamName);
+
+                Authors.add(Author);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return Authors;
+    }
+	
 	@Override
 	public boolean update(Authors object) {
 		// TODO Auto-generated method stub
