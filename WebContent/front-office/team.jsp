@@ -4,7 +4,7 @@
 <div class="row">
 	<div class="col-md-12">
 		<ol class="breadcrumb">
-			<li><a href="?page=index">Accueil</a></li>
+			<li><a href="home">Accueil</a></li>
 			<li class="active">Équipe : <c:out value="${ teamName }"/></li>
 		</ol>
 		<hr>

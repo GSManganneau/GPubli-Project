@@ -1,6 +1,6 @@
 <jsp:directive.page contentType="text/html;charset=UTF-8" />
-<c:forEach var="publication" items="${publications}">
 <div class="publications">
+<c:forEach var="publication" items="${publications}">
 		<div class="panel panel-default panel-publication">
 			<div class="panel-heading">
 				<div class="row">
@@ -15,12 +15,15 @@
 								<li><a href="ExportDataLonely?p=<c:out value="${publication.publicationId}" />&export=bibTeX"><span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span>&nbsp; Export Bibtex</a></li>
 								<li><a href="ExportDataLonely?p=<c:out value="${publication.publicationId}" />&export=text"><span class="glyphicon glyphicon-text-size" aria-hidden="true"></span>&nbsp; Export Texte</a></li>
 								<li><a href="OnePublication?p=<c:out value="${publication.publicationId}" />"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>&nbsp; Visualiser</a></li>
-								<li class="divider"></li>
+								
 								<c:set var="sessionId"  value="${session.getAttribute(\"authorId\")}"/>
-							<c:if test="${ publication.author.authorId == sessionId }">
+							<c:forEach var="author" items="${publication.authors }">
+							<c:if test="${ author.authorId == sessionId }"> 
+							<li class="divider"></li>
 							<li><a href="updatepublication?publicationId=<c:out value="${publication.publicationId}" />"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;Modifier la publication</a></li>
-							<li><a href="deletepublication?publicationId=<c:out value="${publication.publicationId}" />"data-toggle="modal" data-target="delete-modal.jsp"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp; Supprimer la publication</a></li>
-							</c:if>
+							<li><a href="deletepublication?publicationId=<c:out value="${publication.publicationId}" />"data-toggle="modal" data-target="#delete-modal"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp; Supprimer la publication</a></li>
+							 </c:if> 
+							</c:forEach>
 							</ul>
 						</div>
 					</div>
@@ -31,13 +34,13 @@
 					<p class="authors col-lg-10 col-sm-9">
 						<span class="glyphicon glyphicon-user" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Auteur(s)"></span>&nbsp;
 						
-						<a href="userpage?ldapId=<c:out value="${ coAuthor.ldapId}"/>"><c:out value="${publication.author.firstname}" /> <c:out value="${publication.author.lastname}" /></a>
-						<c:forEach var="coAuthor" items="${publication.coAuthors}">
-						<c:if test="${ coAuthor.ldapId != 0}">
-							<a href="userpage?ldapId=<c:out value="${ coAuthor.ldapId}"/>"> | <c:out value="${coAuthor.firstname}" /> <c:out value="${coAuthor.lastname}" /></a>
+						
+						<c:forEach var="author" items="${publication.authors}">
+						<c:if test="${ author.ldapId != 0}">
+							<a href="userpage?ldapId=<c:out value="${ author.ldapId}"/>"> | <c:out value="${author.firstname}" /> <c:out value="${author.lastname}" /></a>
 						</c:if>
-						<c:if test="${ coAuthor.ldapId == 0 }">
-							| <c:out value="${coAuthor.firstname}" /> <c:out value="${coAuthor.lastname}" />
+						<c:if test="${ author.ldapId == 0 }">
+							| <c:out value="${author.firstname}" /> <c:out value="${author.lastname}" />
 						</c:if>
 						</c:forEach>
 					</p>
@@ -61,6 +64,6 @@
 				</c:forEach>
 			</table>
 		</div>
-</div>
-<jsp:include page="delete-modal.jsp"/>
 </c:forEach>
+
+</div>

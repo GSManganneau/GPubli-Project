@@ -27,29 +27,109 @@ public class PublicationsDao extends Dao<Publications> {
 		// TODO Auto-generated method stub
 		Connection connexion = null;
 		Statement statement = null;
+		Statement statement2 = null;
 		ResultSet resultat = null;
+		ResultSet resultat2 = null;
+		Statement statement3 = null;
+		ResultSet resultat3 = null;
+		Statement statement4 = null;
+		ResultSet resultat4 = null;
 		Publications publication = new Publications();
+
 
 		try {
 			connexion = factory.getConnection();
 			statement = connexion.createStatement();
-			String queri = "SELECT * FROM  Repositories"
+			statement2 = connexion.createStatement();
+			statement3 = connexion.createStatement();
+			statement4 = connexion.createStatement();
+			String queri = "SELECT DISTINCT publicationId FROM  Repositories"
 					+ " natural join Publications "
 					+ " natural join Authors "
-					+ "natural join Types where publicationId ="+id
-					+" and coAuthorId = 0 ";
+					+ " natural join Types where publicationId="+id;
 			resultat = statement.executeQuery(queri);
-			while(resultat.next()){
-				int authorId = resultat.getInt("authorId");
-				publication.getAuthor().setAuthorId(authorId);
-				publication.setPublicationId(id);
+			while (resultat.next()) {
+				
+				String req= "SELECT * FROM Publications "
+						+ "natural join Types where "
+						+ "publicationId ="+ id ;
+				
+				String typeName="";
+				String resume="";
+				String date="";
+				String title="";
+				int typeId=0;
+				
+				resultat4 = statement4.executeQuery(req);
+				while(resultat4.next()){
+				typeName = resultat4.getString("typeName");
+				typeId = resultat4.getInt("typeId");
+				resume = resultat4.getString("resume");
+				date = resultat4.getString("date");
+				title = resultat4.getString("title");
+				}
+				String query = "select * from DataPublications "
+						+ "DP join TypeHasAttributes "
+						+ "T on (DP.typeId=T.typeId "
+						+ "and DP.attributeId=T.attributeId) "
+						+ "join Attributes A on "
+						+ "(T.attributeId=A.attributeId) "
+						+ "where publicationId = " + id;
+
+				resultat2 = statement2.executeQuery(query);
+				List<Attributes> attributes = new ArrayList<Attributes>();
+				while (resultat2.next()) {
+					String attributeName = resultat2.getString("attributeName");
+					String data = resultat2.getString("datas");
+					Attributes attribute = new Attributes();
+
+					attribute.setAttributeName(attributeName);
+					attribute.setDatas(data);
+					attributes.add(attribute);
+
+				}
+				String query2 = "select * from Repositories R,"
+						+ " Authors  A where R.publicationId=" + id
+						+ " and R.authorId = A.authorId";
+				resultat3 = statement3.executeQuery(query2);
+				List<Authors> authors = new ArrayList<Authors>();
+				while (resultat3.next()) {
+					int authorId = resultat3.getInt("authorId");
+					
+					String authorFirstName = resultat3.getString("firstName");
+					String authorLastName = resultat3.getString("lastName");	
+					int ldapId= resultat3.getInt("ldapId");
+					String authorLogin = resultat3.getString("login");
+					Authors author = new Authors();
+					author.setAuthorId(authorId);
+					author.setFirstname(authorFirstName);
+					author.setLastname(authorLastName);
+					author.setLdapId(ldapId);
+					author.setLogin(authorLogin);
+					authors.add(author);
+
+				}
+				Types type = new Types();
+				type.setTypeId(typeId);
+				type.setTypeName(typeName);
+				type.setAttributes(attributes);
+
+				
+
+
+				publication.setId(id);
+				publication.setType(type);
+				publication.setAuthors(authors);
+				publication.setResume(resume);
+				publication.setDate(date);
+				publication.setTitle(title);
+
+				
+
 			}
-			
-		}
-		catch(SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		return publication;
 	}
 
@@ -60,8 +140,7 @@ public class PublicationsDao extends Dao<Publications> {
 
 		int typeId = object.getType().getTypeId();
 		List<Attributes> attributes = object.getType().getAttributes();
-		List <Authors> coAuthors = object.getCoAuthors();
-		Authors author = object.getAuthor();
+		List <Authors> authors = object.getAuthors();
 		String date = object.getDate();
 		String resume = object.getResume();
 		String title = object.getTitle();
@@ -92,17 +171,12 @@ public class PublicationsDao extends Dao<Publications> {
 				pS2.executeUpdate();
 
 			}
-			String query3 = "INSERT INTO Repositories (authorId,publicationId,coAuthorId) Values (?,?,?)";
+			String query3 = "INSERT INTO Repositories (authorId,publicationId) Values (?,?)";
 			PreparedStatement pS3 = connexion.prepareStatement(query3);
-			pS3.setInt(1, author.getAuthorId());
-			pS3.setInt(2, publicationId);
-			pS3.setInt(3,0);
-			pS3.executeUpdate();
-			for (int i = 0; i < coAuthors.size(); i++) {
+			for (int i = 0; i < authors.size(); i++) {
 				pS3 = connexion.prepareStatement(query3);
-				pS3.setInt(1,0);
+				pS3.setInt(1,authors.get(i).getAuthorId());
 				pS3.setInt(2, publicationId);
-				pS3.setInt(3, coAuthors.get(i).getAuthorId());
 				pS3.executeUpdate();
 
 			}
@@ -140,7 +214,6 @@ public class PublicationsDao extends Dao<Publications> {
 			statement.executeUpdate(query);
 			statement2.executeUpdate(query2);
 			statement3.executeUpdate(query3);
-			System.out.print("supprimée");
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -151,76 +224,6 @@ public class PublicationsDao extends Dao<Publications> {
 
 	public List<Publications> lister() {
 		List<Publications> publications = new ArrayList<Publications>();
-
-		Connection connexion = null;
-		Statement statement = null;
-		Statement statement2 = null;
-		ResultSet resultat = null;
-		ResultSet resultat2 = null;
-
-		try {
-			connexion = factory.getConnection();
-			statement = connexion.createStatement();
-			statement2 = connexion.createStatement();
-			resultat = statement.executeQuery("SELECT * FROM  Repositories"
-					+ " natural join Publications " + " natural join Authors "
-					+ "natural join Types ORDER BY publicationId DESC");
-			while (resultat.next()) {
-				String resume = resultat.getString("resume");
-				String date = resultat.getString("date");
-				String title = resultat.getString("title");
-				int id = resultat.getInt("publicationId");
-				String typeName = resultat.getString("typeName");
-				int typeId = resultat.getInt("typeId");
-				int authorId = resultat.getInt("authorId");
-				String firstName = resultat.getString("firstName");
-				String lastName = resultat.getString("lastName");
-				int ldapId= resultat.getInt("ldapId");
-
-				String query = "select * from DataPublications "
-						+ "DP join TypeHasAttributes "
-						+ "T on (DP.typeId=T.typeId "
-						+ "and DP.attributeId=T.attributeId) "
-						+ "join Attributes A on "
-						+ "(T.attributeId=A.attributeId) "
-						+ "where publicationId = " + id;
-
-				resultat2 = statement2.executeQuery(query);
-				List<Attributes> attributes = new ArrayList<Attributes>();
-				while (resultat2.next()) {
-					String attributeName = resultat2.getString("attributeName");
-					String data = resultat2.getString("datas");
-					Attributes attribute = new Attributes();
-
-					attribute.setAttributeName(attributeName);
-					attribute.setDatas(data);
-					attributes.add(attribute);
-
-				}
-
-				Types type = new Types();
-				type.setTypeId(typeId);
-				type.setTypeName(typeName);
-				type.setAttributes(attributes);
-
-				Authors author = new Authors();
-				author.setAuthorId(authorId);
-				author.setFirstname(firstName);
-				author.setLastname(lastName);
-
-				Publications publication = new Publications();
-				publication.setType(type);
-				publication.setAuthor(author);
-				publication.setResume(resume);
-				publication.setDate(date);
-				publication.setTitle(title);
-
-				publications.add(publication);
-
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 		return publications;
 	}
 
@@ -234,31 +237,44 @@ public class PublicationsDao extends Dao<Publications> {
 		ResultSet resultat2 = null;
 		Statement statement3 = null;
 		ResultSet resultat3 = null;
+		Statement statement4= null;
+		ResultSet resultat4 = null;
 
 		try {
 			connexion = factory.getConnection();
 			statement = connexion.createStatement();
 			statement2 = connexion.createStatement();
 			statement3 = connexion.createStatement();
-			String queri = "SELECT * FROM  Repositories"
+			statement4=  connexion.createStatement();
+			String queri = "SELECT DISTINCT publicationId FROM  Repositories"
 					+ " natural join Publications "
 					+ " natural join Authors "
-					+ "natural join Types where authorId <> 0 and coAuthorId = 0 "
+					+ "natural join Types  "
 					+ " ORDER BY publicationId DESC "
 					+ "LIMIT " + i + " , " + j;
 			resultat = statement.executeQuery(queri);
 			while (resultat.next()) {
-				String resume = resultat.getString("resume");
-				String date = resultat.getString("date");
-				String title = resultat.getString("title");
+				
 				int id = resultat.getInt("publicationId");
-				String typeName = resultat.getString("typeName");
-				int typeId = resultat.getInt("typeId");
-				int authorId = resultat.getInt("authorId");
-				String firstName = resultat.getString("firstName");
-				String lastName = resultat.getString("lastName");
-				int ldapId= resultat.getInt("ldapId");
-
+				
+				String req= "SELECT * FROM Publications "
+						+ "natural join Types where "
+						+ "publicationId ="+ id ;
+				
+				String typeName="";
+				String resume="";
+				String date="";
+				String title="";
+				int typeId=0;
+				
+				resultat4 = statement4.executeQuery(req);
+				while(resultat4.next()){
+				typeName = resultat4.getString("typeName");
+				typeId = resultat4.getInt("typeId");
+				resume = resultat4.getString("resume");
+				date = resultat4.getString("date");
+				title = resultat4.getString("title");
+				}
 				String query = "select * from DataPublications "
 						+ "DP join TypeHasAttributes "
 						+ "T on (DP.typeId=T.typeId "
@@ -281,21 +297,23 @@ public class PublicationsDao extends Dao<Publications> {
 				}
 				String query2 = "select * from Repositories R,"
 						+ " Authors  A where R.publicationId=" + id
-						+ " and R.coAuthorId = A.authorId";
+						+ " and R.authorId = A.authorId";
 				resultat3 = statement3.executeQuery(query2);
-				List<Authors> coAuthors = new ArrayList<Authors>();
+				List<Authors> authors = new ArrayList<Authors>();
 				while (resultat3.next()) {
-					int coAuthorId = resultat3.getInt("authorId");
+					int authorId = resultat3.getInt("authorId");
 					
-					String coAuthorFirstName = resultat3.getString("firstName");
-					String coAuthorLastName = resultat3.getString("lastName");	
-					int coldapId= resultat3.getInt("ldapId");
-					Authors coAuthor = new Authors();
-					coAuthor.setAuthorId(coAuthorId);
-					coAuthor.setFirstname(coAuthorFirstName);
-					coAuthor.setLastname(coAuthorLastName);
-					coAuthor.setLdapId(coldapId);
-					coAuthors.add(coAuthor);
+					String authorFirstName = resultat3.getString("firstName");
+					String authorLastName = resultat3.getString("lastName");	
+					int ldapId= resultat3.getInt("ldapId");
+					String authorLogin = resultat3.getString("login");
+					Authors author = new Authors();
+					author.setAuthorId(authorId);
+					author.setFirstname(authorFirstName);
+					author.setLastname(authorLastName);
+					author.setLdapId(ldapId);
+					author.setLogin(authorLogin);
+					authors.add(author);
 
 				}
 				Types type = new Types();
@@ -303,17 +321,12 @@ public class PublicationsDao extends Dao<Publications> {
 				type.setTypeName(typeName);
 				type.setAttributes(attributes);
 
-				Authors author = new Authors();
-				author.setAuthorId(authorId);
-				author.setFirstname(firstName);
-				author.setLastname(lastName);
-				author.setLdapId(ldapId);
+				
 
 				Publications publication = new Publications();
 				publication.setId(id);
 				publication.setType(type);
-				publication.setAuthor(author);
-				publication.setCoAuthors(coAuthors);
+				publication.setAuthors(authors);
 				publication.setResume(resume);
 				publication.setDate(date);
 				publication.setTitle(title);
@@ -337,33 +350,44 @@ public class PublicationsDao extends Dao<Publications> {
 		ResultSet resultat2 = null;
 		Statement statement3 = null;
 		ResultSet resultat3 = null;
+		Statement statement4= null;
+		ResultSet resultat4 = null;
 
 		try {
 			connexion = factory.getConnection();
 			statement = connexion.createStatement();
 			statement2 = connexion.createStatement();
 			statement3 = connexion.createStatement();
-			String queri = "SELECT * FROM  Repositories"
+			statement4 = connexion.createStatement();
+			String queri = "SELECT DISTINCT publicationId FROM  Repositories"
 					+ " natural join Publications "
 					+ " natural join Authors "
-					+ "natural join Types where authorId <> 0 "
-					+ "and coAuthorId = 0 "
-					+ "AND ldapId="+ldapId
+					+ "natural join Types where "
+					+ " ldapId="+ldapId
 					+ " ORDER BY publicationId DESC "
 					+ "LIMIT " + i + " , " + j;
 			resultat = statement.executeQuery(queri);
 			while (resultat.next()) {
-				String resume = resultat.getString("resume");
-				String date = resultat.getString("date");
-				String title = resultat.getString("title");
-				int id = resultat.getInt("publicationId");
-				String typeName = resultat.getString("typeName");
-				int typeId = resultat.getInt("typeId");
-				int authorId = resultat.getInt("authorId");
-				String firstName = resultat.getString("firstName");
-				String lastName = resultat.getString("lastName");
-				int LdapId= resultat.getInt("ldapId");
-
+int id = resultat.getInt("publicationId");
+				
+				String req= "SELECT * FROM Publications "
+						+ "natural join Types where "
+						+ "publicationId ="+ id ;
+				
+				String typeName="";
+				String resume="";
+				String date="";
+				String title="";
+				int typeId=0;
+				
+				resultat4 = statement4.executeQuery(req);
+				while(resultat4.next()){
+				typeName = resultat4.getString("typeName");
+				typeId = resultat4.getInt("typeId");
+				resume = resultat4.getString("resume");
+				date = resultat4.getString("date");
+				title = resultat4.getString("title");
+				}
 				String query = "select * from DataPublications "
 						+ "DP join TypeHasAttributes "
 						+ "T on (DP.typeId=T.typeId "
@@ -386,21 +410,21 @@ public class PublicationsDao extends Dao<Publications> {
 				}
 				String query2 = "select * from Repositories R,"
 						+ " Authors  A where R.publicationId=" + id
-						+ " and R.coAuthorId = A.authorId";
+						+ " and R.authorId = A.authorId";
 				resultat3 = statement3.executeQuery(query2);
-				List<Authors> coAuthors = new ArrayList<Authors>();
+				List<Authors> authors = new ArrayList<Authors>();
 				while (resultat3.next()) {
-					int coAuthorId = resultat3.getInt("authorId");
+					int authorId = resultat3.getInt("authorId");
 					
-					String coAuthorFirstName = resultat3.getString("firstName");
-					String coAuthorLastName = resultat3.getString("lastName");	
-					int coLdapId= resultat3.getInt("ldapId");
-					Authors coAuthor = new Authors();
-					coAuthor.setAuthorId(coAuthorId);
-					coAuthor.setFirstname(coAuthorFirstName);
-					coAuthor.setLastname(coAuthorLastName);
-					coAuthor.setLdapId(coLdapId);
-					coAuthors.add(coAuthor);
+					String authorFirstName = resultat3.getString("firstName");
+					String authorLastName = resultat3.getString("lastName");	
+					int aldapId= resultat3.getInt("ldapId");
+					Authors author = new Authors();
+					author.setAuthorId(authorId);
+					author.setFirstname(authorFirstName);
+					author.setLastname(authorLastName);
+					author.setLdapId(aldapId);
+					authors.add(author);
 
 				}
 				Types type = new Types();
@@ -408,21 +432,16 @@ public class PublicationsDao extends Dao<Publications> {
 				type.setTypeName(typeName);
 				type.setAttributes(attributes);
 
-				Authors author = new Authors();
-				author.setAuthorId(authorId);
-				author.setFirstname(firstName);
-				author.setLastname(lastName);
-				author.setLdapId(LdapId);
+				
 
 				Publications publication = new Publications();
 				publication.setId(id);
 				publication.setType(type);
-				publication.setAuthor(author);
-				publication.setCoAuthors(coAuthors);
+				publication.setAuthors(authors);
 				publication.setResume(resume);
 				publication.setDate(date);
 				publication.setTitle(title);
-				
+
 				publications.add(publication);
 
 			}
@@ -431,6 +450,7 @@ public class PublicationsDao extends Dao<Publications> {
 		}
 		return publications;
 	}
+	
 	public List<Publications> listPublicationTeam(int i, int j, int teamId) {
 		List<Publications> publications = new ArrayList<Publications>();
 
@@ -441,13 +461,16 @@ public class PublicationsDao extends Dao<Publications> {
 		ResultSet resultat2 = null;
 		Statement statement3 = null;
 		ResultSet resultat3 = null;
+		Statement statement4 = null;
+		ResultSet resultat4 = null;
 
 		try {
 			connexion = factory.getConnection();
 			statement = connexion.createStatement();
 			statement2 = connexion.createStatement();
 			statement3 = connexion.createStatement();
-			String queri = "SELECT * FROM  Repositories"
+			statement4 = connexion.createStatement();
+			String queri = "SELECT DISTINCT publicationId FROM  Repositories"
 					+ " natural join Publications "
 					+ " natural join Authors "
 					+ " natural join Types "
@@ -456,17 +479,26 @@ public class PublicationsDao extends Dao<Publications> {
 					+ "LIMIT " + i + " , " + j;
 			resultat = statement.executeQuery(queri);
 			while (resultat.next()) {
-				String resume = resultat.getString("resume");
-				String date = resultat.getString("date");
-				String title = resultat.getString("title");
 				int id = resultat.getInt("publicationId");
-				String typeName = resultat.getString("typeName");
-				int typeId = resultat.getInt("typeId");
-				int authorId = resultat.getInt("authorId");
-				String firstName = resultat.getString("firstName");
-				String lastName = resultat.getString("lastName");
-				int LdapId= resultat.getInt("ldapId");
-
+				
+				String req= "SELECT * FROM Publications "
+						+ "natural join Types where "
+						+ "publicationId ="+ id ;
+				
+				String typeName="";
+				String resume="";
+				String date="";
+				String title="";
+				int typeId=0;
+				
+				resultat4 = statement4.executeQuery(req);
+				while(resultat4.next()){
+				typeName = resultat4.getString("typeName");
+				typeId = resultat4.getInt("typeId");
+				resume = resultat4.getString("resume");
+				date = resultat4.getString("date");
+				title = resultat4.getString("title");
+				}
 				String query = "select * from DataPublications "
 						+ "DP join TypeHasAttributes "
 						+ "T on (DP.typeId=T.typeId "
@@ -489,21 +521,21 @@ public class PublicationsDao extends Dao<Publications> {
 				}
 				String query2 = "select * from Repositories R,"
 						+ " Authors  A where R.publicationId=" + id
-						+ " and R.coAuthorId = A.authorId";
+						+ " and R.authorId = A.authorId";
 				resultat3 = statement3.executeQuery(query2);
-				List<Authors> coAuthors = new ArrayList<Authors>();
+				List<Authors> authors = new ArrayList<Authors>();
 				while (resultat3.next()) {
-					int coAuthorId = resultat3.getInt("authorId");
+					int authorId = resultat3.getInt("authorId");
 					
-					String coAuthorFirstName = resultat3.getString("firstName");
-					String coAuthorLastName = resultat3.getString("lastName");	
-					int coLdapId= resultat3.getInt("ldapId");
-					Authors coAuthor = new Authors();
-					coAuthor.setAuthorId(coAuthorId);
-					coAuthor.setFirstname(coAuthorFirstName);
-					coAuthor.setLastname(coAuthorLastName);
-					coAuthor.setLdapId(coLdapId);
-					coAuthors.add(coAuthor);
+					String authorFirstName = resultat3.getString("firstName");
+					String authorLastName = resultat3.getString("lastName");	
+					int ldapId= resultat3.getInt("ldapId");
+					Authors author = new Authors();
+					author.setAuthorId(authorId);
+					author.setFirstname(authorFirstName);
+					author.setLastname(authorLastName);
+					author.setLdapId(ldapId);
+					authors.add(author);
 
 				}
 				Types type = new Types();
@@ -511,21 +543,16 @@ public class PublicationsDao extends Dao<Publications> {
 				type.setTypeName(typeName);
 				type.setAttributes(attributes);
 
-				Authors author = new Authors();
-				author.setAuthorId(authorId);
-				author.setFirstname(firstName);
-				author.setLastname(lastName);
-				author.setLdapId(LdapId);
+				
 
 				Publications publication = new Publications();
 				publication.setId(id);
 				publication.setType(type);
-				publication.setAuthor(author);
-				publication.setCoAuthors(coAuthors);
+				publication.setAuthors(authors);
 				publication.setResume(resume);
 				publication.setDate(date);
 				publication.setTitle(title);
-				
+
 				publications.add(publication);
 
 			}
@@ -710,7 +737,7 @@ public class PublicationsDao extends Dao<Publications> {
 			statement = connexion.createStatement();
 			statement2 = connexion.createStatement();
 			statement3 = connexion.createStatement();
-			String queri = "SELECT * FROM  Repositories"
+			String queri = "SELECT DISTINCT * FROM  Repositories"
 					+ " natural join Publications " + " natural join Authors "
 					+ "natural join Types " + "WHERE title like '%" + s + "%'"
 					+ " ORDER BY publicationId DESC " + "LIMIT " + i + " , "
@@ -724,9 +751,7 @@ public class PublicationsDao extends Dao<Publications> {
 				int id = resultat.getInt("publicationId");
 				String typeName = resultat.getString("typeName");
 				int typeId = resultat.getInt("typeId");
-				int authorId = resultat.getInt("authorId");
-				String firstName = resultat.getString("firstName");
-				String lastName = resultat.getString("lastName");
+			
 
 				String query = "select * from DataPublications "
 						+ "DP join TypeHasAttributes "
@@ -749,19 +774,18 @@ public class PublicationsDao extends Dao<Publications> {
 
 				}
 				String query2 = "select * from Repositories "
-						+ " natural join Author where publicationId=" + id
-						+ " and  authorId <> " + authorId;
+						+ " natural join Author where publicationId=" + id;
 				resultat3 = statement3.executeQuery(query2);
-				List<Authors> coAuthors = new ArrayList<Authors>();
+				List<Authors> authors = new ArrayList<Authors>();
 				while (resultat3.next()) {
-					int coAuthorId = resultat.getInt("authorId");
-					String coAuthorFirstName = resultat.getString("firstName");
-					String coAuthorLastName = resultat.getString("lastName");
-					Authors coAuthor = new Authors();
-					coAuthor.setAuthorId(coAuthorId);
-					coAuthor.setFirstname(coAuthorFirstName);
-					coAuthor.setLastname(coAuthorLastName);
-					coAuthors.add(coAuthor);
+					int authorId = resultat.getInt("authorId");
+					String authorFirstName = resultat.getString("firstName");
+					String authorLastName = resultat.getString("lastName");
+					Authors author = new Authors();
+					author.setAuthorId(authorId);
+					author.setFirstname(authorFirstName);
+					author.setLastname(authorLastName);
+					authors.add(author);
 
 				}
 				Types type = new Types();
@@ -769,16 +793,12 @@ public class PublicationsDao extends Dao<Publications> {
 				type.setTypeName(typeName);
 				type.setAttributes(attributes);
 
-				Authors author = new Authors();
-				author.setAuthorId(authorId);
-				author.setFirstname(firstName);
-				author.setLastname(lastName);
+	
 
 				Publications publication = new Publications();
 				publication.setId(id);
 				publication.setType(type);
-				publication.setAuthor(author);
-				publication.setCoAuthors(coAuthors);
+				publication.setAuthors(authors);
 				publication.setResume(resume);
 				publication.setDate(date);
 				publication.setTitle(title);
