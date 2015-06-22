@@ -2,7 +2,7 @@
 <div class="row">
 	<div class="col-md-12">
 		<ol class="breadcrumb">
-			<li><a href="?page=index">Dashboard</a></li>
+			<li><a href="AdminHome">Dashboard</a></li>
 			<li class="active">Types</li>
 		</ol>
 		<hr>
@@ -36,16 +36,17 @@
 							</tr>
 						</thead>
 						<tbody>
+						<c:forEach var="type" items="${types}">
 							<tr>
-								<td data-title="Id">1</td>
-								<td data-title="Nom">Livre</td>
-								<td data-title="Icône"><i class="fa fa-book"></i></td>
-								<td data-title="Attributs">4</td>
+								<td data-title="Id"><c:out value="${ type.typeId }"/></td>
+								<td data-title="Nom"><c:out value="${ type.typeName }"/></td>
+								<td data-title="Icône"><i class="fa <c:out value="${ type.iconName }"/>"></i></td>
+								<td data-title="Attributs"><c:out value="${ type.count }"/></td>
 								<td data-title="Action" class="text-right">
 									<div class="btn-group">
 										<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></button>
 										<ul class="dropdown-menu dropdown-menu-right" role="menu">
-											<li><a href="?page=attributes"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp; Voir en détail</a></li>
+											<li><a href="Attributes?typeId=<c:out value="${ type.typeId }"/>"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp; Voir en détail</a></li>
 											<li class="divider"></li>
 											<li><a href="#" class="update"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp; Modifier</a></li>
 											<li><a href="#delete-url" data-toggle="modal" data-target="#delete-modal"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp; Supprimer</a></li>
@@ -53,74 +54,7 @@
 									</div>
 								</td>
 							</tr>
-							<tr>
-								<td data-title="Id">2</td>
-								<td data-title="Nom">Article</td>
-								<td data-title="Icône"><i class="fa fa-newspaper-o"></i></td>
-								<td data-title="Attributs">7</td>
-								<td data-title="Action" class="text-right">
-									<div class="btn-group">
-										<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></button>
-										<ul class="dropdown-menu dropdown-menu-right" role="menu">
-											<li><a href="?page=attributes"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp; Voir en détail</a></li>
-											<li class="divider"></li>
-											<li><a href="#" class="update"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp; Modifier</a></li>
-											<li><a href="#delete-url" data-toggle="modal" data-target="#delete-modal"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp; Supprimer</a></li>
-										</ul>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td data-title="Id">3</td>
-								<td data-title="Nom">Conférence</td>
-								<td data-title="Icône"><i class="fa fa-calendar"></i></td>
-								<td data-title="Attributs">3</td>
-								<td data-title="Action" class="text-right">
-									<div class="btn-group">
-										<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></button>
-										<ul class="dropdown-menu dropdown-menu-right" role="menu">
-											<li><a href="?page=attributes"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp; Voir en détail</a></li>
-											<li class="divider"></li>
-											<li><a href="#" class="update"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp; Modifier</a></li>
-											<li><a href="#delete-url" data-toggle="modal" data-target="#delete-modal"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp; Supprimer</a></li>
-										</ul>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td data-title="Id">4</td>
-								<td data-title="Nom">Musique</td>
-								<td data-title="Icône"><i class="fa fa-headphones"></i></td>
-								<td data-title="Attributs">5</td>
-								<td data-title="Action" class="text-right">
-									<div class="btn-group">
-										<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></button>
-										<ul class="dropdown-menu dropdown-menu-right" role="menu">
-											<li><a href="?page=attributes"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp; Voir en détail</a></li>
-											<li class="divider"></li>
-											<li><a href="#" class="update"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp; Modifier</a></li>
-											<li><a href="#delete-url" data-toggle="modal" data-target="#delete-modal"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp; Supprimer</a></li>
-										</ul>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td data-title="Id">5</td>
-								<td data-title="Nom">Interview</td>
-								<td data-title="Icône"><i class="fa fa-microphone"></i></td>
-								<td data-title="Attributs">9</td>
-								<td data-title="Action" class="text-right">
-									<div class="btn-group">
-										<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></button>
-										<ul class="dropdown-menu dropdown-menu-right" role="menu">
-											<li><a href="?page=attributes"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp; Voir en détail</a></li>
-											<li class="divider"></li>
-											<li><a href="#" class="update"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp; Modifier</a></li>
-											<li><a href="#delete-url" data-toggle="modal" data-target="#delete-modal"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp; Supprimer</a></li>
-										</ul>
-									</div>
-								</td>
-							</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 				</div>

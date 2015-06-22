@@ -5,7 +5,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
+
+import org.json.JSONObject;
+
+import com.DataSource.mysql.DataSource;
 
 import beans.Authors;
 import beans.Publications;
@@ -99,7 +104,7 @@ public class TeamsDao extends Dao<Teams>{
         }
 		return Teams;
 	}
-	
+
 	public List<Teams> search(String field) {
 		List<Teams> Teams = new ArrayList<Teams>();
 		Connection connexion = null;

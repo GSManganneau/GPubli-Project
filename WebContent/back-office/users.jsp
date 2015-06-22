@@ -2,7 +2,7 @@
 <div class="row">
 	<div class="col-md-12">
 		<ol class="breadcrumb">
-			<li><a href="?page=index">Dashboard</a></li>
+			<li><a href="AdminHome">Dashboard</a></li>
 			<li class="active">Utilisateurs</li>
 		</ol>
 		<hr>
@@ -25,11 +25,11 @@
 					<table class="table table-hover">
 						<thead>
 							<tr>
-								<th class="col-md-1" data-sort="int">Id &nbsp;<i class="fa fa-sort"></i></th>
+								<th class="col-md-1" data-sort="int" data-alterable-type="id" data-alterable-name="id">Id &nbsp;<i class="fa fa-sort"></i></th>
 								<th class="col-md-2" data-sort="string">Pseudo &nbsp;<i class="fa fa-sort"></i></th>
 								<th class="col-md-2" data-sort="string">Prénom &nbsp;<i class="fa fa-sort"></i></th>
 								<th class="col-md-3" data-sort="string">Nom &nbsp;<i class="fa fa-sort"></i></th>
-								<th class="col-md-3" data-sort="string" data-alterable-type="select" data-alterable-name="team" data-alterable-choose="Choisir une équipe" data-alterable-value='[{"name":"Informatique","value":1},{"name":"Télécom","value":2},{"name":"Électronique","value":3},{"name":"Commerce","value":4}]' data-alterable-validate="required">Équipe &nbsp;<i class="fa fa-sort"></i></th>
+								<th class="col-md-3" data-sort="string" data-alterable-type="select" data-alterable-name="team" data-alterable-choose="Choisir une équipe" data-alterable-value='<c:out value="${ json }"/>' data-alterable-validate="required">Équipe &nbsp;<i class="fa fa-sort"></i></th>
 								<th class="col-md-1"><!-- Action --></th>
 							</tr>
 						</thead>					
@@ -40,7 +40,7 @@
 								<td data-title="Pseudo"><c:out value="${ author.login }"/></td>
 								<td data-title="Prénom"><c:out value="${ author.firstname }"/></td>
 								<td data-title="Nom"><c:out value="${ author.lastname }"/></td>
-								<td data-title="Équipe" data-alterable-option="1"><c:out value="${ author.getTeam().getTeamName() }"/></td>
+								<td data-title="Équipe" data-alterable-option="<c:out value="${ author.getTeam().getTeamId() }"/>"><c:out value="${ author.getTeam().getTeamName() }"/></td>
 								<td data-title="Action" class="text-right">
 									<div class="btn-group">
 										<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></button>
