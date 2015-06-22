@@ -32,7 +32,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="?page=index">
+						<a class="navbar-brand" href="home">
 							<svg version="1.1" id="logo-gpubli" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" height="30px" fill="#777" viewBox="0 0 1112.6 1112.6" enable-background="new 0 0 1112.6 1112.6" xml:space="preserve">
 								<path d="M556.3,0C249.1,0,0,249.1,0,556.3s249.1,556.3,556.3,556.3s556.3-249.1,556.3-556.3S863.5,0,556.3,0z M194.3,825.3l87-479l63,12l-71,393l378,157L194.3,825.3z M335.3,721.3l85-476l72,29l-72,403l264,190L335.3,721.3z M477.3,645.3l86-475l66,48l-75,414l194.5,209L477.3,645.3z M834,855.3l-221-234l84-468l219,257L834,855.3z">
 							</svg>
@@ -52,9 +52,9 @@
 							</li>
 
 							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;<c:out value="${ session.getAttribute(\"firstname\")}"/> <c:out value="${ session.getAttribute(\"name\") }"/> <span class="caret"></span></a>
+								<a href="userpage" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;<c:out value="${ session.getAttribute(\"firstname\")}"/> <c:out value="${ session.getAttribute(\"name\") }"/> <span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
-									<li><a href="UserPage?ldapId=<c:out value="${ session.getAttribute(\"ldapId\")}"/>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp; Profil</a></li>
+									<li><a href="userpage"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp; Profil</a></li>
 									<li><a href="?page=parameters-profile"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp; Paramètres</a></li>
 									<li class="divider"></li>
 									<li><a href="#"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp; Déconnexion</a></li>

@@ -1,8 +1,5 @@
 <jsp:directive.page contentType="text/html;charset=UTF-8" />
 
-<%-- <c:forEach var="team" items="${teams}">
-	<c:out value="${ team.teamName }"></c:out><br/>	
-</c:forEach> --%>
 
 <div class="row">
 	<div class="col-md-12">
@@ -31,7 +28,7 @@
 					<div id="collapseMembers" class="panel-collapse collapse" role="tabpanel" aria-labelledby="collapseHeading" aria-expanded="false" style="height: 0px;">
 						<div class="list-group">
 							<c:forEach var="author" items="${authors}">
-								<a href="?page=user" class="list-group-item"><c:out value="${ author.firstname }"/> <c:out value="${ author.lastname }"/></a>	
+								<a href="userpage?ldapId=<c:out value="${ author.ldapId }"/>" class="list-group-item"><c:out value="${ author.firstname }"/> <c:out value="${ author.lastname }"/></a>	
 							</c:forEach>
 						</div>
 					</div>
@@ -53,7 +50,6 @@
 	</div>
 
 	<div class="col-md-9">
-		<jsp:include page="actionInformation.jsp"/>
 		<jsp:include page="toolbar.jsp"/>
 		<jsp:include page="publications.jsp"/>
 		<jsp:include page="pagination.jsp" />

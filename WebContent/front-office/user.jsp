@@ -3,8 +3,8 @@
 <div class="row">
 	<div class="col-md-12">
 		<ol class="breadcrumb">
-			<li><a href="?page=index">Accueil</a></li>
-			<li class="active">Utilisateur : <c:out value="${ session.getAttribute(\"firstname\") }"/> <c:out value="${ session.getAttribute(\"name\")}"/></li>
+			<li><a href="home">Accueil</a></li>
+			<li class="active">Utilisateur : <c:out value="${ author.firstname }"/> <c:out value="${ author.lastname}"/></li>
 		</ol>
 		<hr>
 	</div>
@@ -22,11 +22,11 @@
 							</a>
 						</div>
 					</div>
-					<h3 class="panel-title text-center"><c:out value="${ session.getAttribute(\"firstname\") }"/> <c:out value="${ session.getAttribute(\"name\")}"/></h3>
+					<h3 class="panel-title text-center"><c:out value="${ author.firstname }"/> <c:out value="${ author.lastname}"/></h3>
 				</div>
 				<div class="list-group">
-					<div class="list-group-item"><span class="glyphicon glyphicon-lock" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Login ISEP"></span>&nbsp; mpuibara</div>
-					<a href="TeamPage?team=<c:out value="${ team.teamName }"/>" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Équipe"></span>&nbsp; <c:out value="${ team.teamName }"/></a>
+					<div class="list-group-item"><span class="glyphicon glyphicon-lock" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Login ISEP"></span>&nbsp;<c:out value="${ author.login}"/></div>
+					<a href="teampage?teamId=<c:out value="${ team.teamId }"/>" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Équipe"></span>&nbsp; <c:out value="${ team.teamName }"/></a>
 				</div>
 			</div>
 

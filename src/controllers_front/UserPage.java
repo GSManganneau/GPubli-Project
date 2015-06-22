@@ -1,4 +1,4 @@
-package controllers_back;
+package controllers_front;
 
 import java.io.IOException;
 
@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import controllers_front.Paginate;
 import modelsDao.AuthorsDao;
 import modelsDao.PublicationsDao;
 import modelsDao.TeamsDao;
@@ -76,7 +75,7 @@ public class UserPage extends HttpServlet {
 			paginate.setElementsByPage(7);
 			// on calcule le nombre de pages
 			int numberOfPages = publicationDao.countNumberPage(
-					paginate.getElementsByPage(), i);
+					paginate.getElementsByPage(),"ldapId", i);
 			int pageId = 0;
 
 			if (request.getParameter("page") != null) {
@@ -97,7 +96,7 @@ public class UserPage extends HttpServlet {
 
 					// On défint la page suivante
 					if (publicationDao.checkNextPage(page,
-							paginate.getElementsByPage(), i))
+							paginate.getElementsByPage(),"ldapId", i))
 						paginate.setNextPageNumber(page + 1);
 					else
 						paginate.setNextPageNumber(0);
@@ -107,7 +106,7 @@ public class UserPage extends HttpServlet {
 
 					// On définit la servlet
 					paginate.setServlet("userpage");
-					paginate.setParameter(i);
+					paginate.setParameter("ldapId");
 
 					// On récupère les données
 					int elementsByPage = paginate.getElementsByPage();
@@ -119,8 +118,9 @@ public class UserPage extends HttpServlet {
 
 					request.setAttribute("session", s);
 					request.setAttribute("content", content);
-					request.setAttribute("ldapId", i);
+					request.setAttribute("parameterValue", i);
 					request.setAttribute("paginate", paginate);
+					request.setAttribute("author", authorDao.find(i));
 
 					// Chiffres-clés
 					request.setAttribute("team", teamDao.teamOfAuthor(i));

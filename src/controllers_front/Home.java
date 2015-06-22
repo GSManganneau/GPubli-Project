@@ -100,7 +100,7 @@ public class Home extends HttpServlet {
 					
 					// On envoi les données à la servlet
 					request.setAttribute("session", s);
-				
+					request.setAttribute("teams", teamDao.lister());
 					request.setAttribute("paginate", paginate);
 					request.setAttribute("content", content);
 					request.setAttribute("jsContent", jsContent);

@@ -18,8 +18,8 @@
 								<li class="divider"></li>
 								<c:set var="sessionId"  value="${session.getAttribute(\"authorId\")}"/>
 							<c:if test="${ publication.author.authorId == sessionId }">
-							<li><a href="deletepublication?publicationId=<c:out value="${publication.publicationId}" />"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;Modifier la publication</a></li>
-							<li><a href="updatepublication?publicationId=<c:out value="${publication.publicationId}" />"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp; Supprimer la publication</a></li>
+							<li><a href="updatepublication?publicationId=<c:out value="${publication.publicationId}" />"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;Modifier la publication</a></li>
+							<li><a href="deletepublication?publicationId=<c:out value="${publication.publicationId}" />"data-toggle="modal" data-target="delete-modal.jsp"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp; Supprimer la publication</a></li>
 							</c:if>
 							</ul>
 						</div>
@@ -62,4 +62,5 @@
 			</table>
 		</div>
 </div>
+<jsp:include page="delete-modal.jsp"/>
 </c:forEach>

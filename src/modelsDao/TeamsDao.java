@@ -22,8 +22,27 @@ public class TeamsDao extends Dao<Teams>{
 
 	@Override
 	public Teams find(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		   Connection connexion = null;
+	        Statement statement = null;
+	        ResultSet resultat = null;
+	        Teams Team = new Teams();
+	        try {
+	            connexion = factory.getConnection();
+	            statement = connexion.createStatement();
+	            resultat  = statement.executeQuery("SELECT * FROM teams where teamId="+id);
+
+	            while (resultat.next()) {
+	                String name = resultat.getString("teamName");
+	                String thumb = resultat.getString("thumbnail");
+	                
+	                Team.setTeamName(name);
+	                Team.setTeamId(id);
+	                Team.setThumbnail(thumb);
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	        return Team;
 	}
 
 	
@@ -60,17 +79,14 @@ public class TeamsDao extends Dao<Teams>{
 
             while (resultat.next()) {
                 String name = resultat.getString("teamName");
-                /*String author_firstname = resultat.getString("firstname");
-                String author_lastname = resultat.getString("lastname");*/
+                String thumb=resultat.getString("thumbnail");
+                int teamId = resultat.getInt("teamId");
                 
                 Teams Team = new Teams();
                 Team.setTeamName(name);
-                
-/*                //Nom des auteurs
-                Authors author = new Authors();
-                author.setFirstname(author_firstname);
-                author.setLastname(author_lastname);  
-                author.getTeam().setName(team_name);*/
+                Team.setTeamId(teamId);
+                Team.setThumbnail(thumb);
+
 
                 Teams.add(Team);
             }
@@ -180,7 +196,7 @@ public class TeamsDao extends Dao<Teams>{
         
 		try{
 			connexion=factory.getConnection();
-			String query = "SELECT T.teamName FROM Teams T JOIN Authors A "
+			String query = "SELECT * FROM Teams T JOIN Authors A "
 					+ "ON T.teamId = A.teamId "
 					+ "AND A.ldapId ="+ldapId;
 			
@@ -190,8 +206,11 @@ public class TeamsDao extends Dao<Teams>{
 	        // Récupération des données
             while (resultat.next()) {
           	   String teamName = resultat.getString("teamName");
+          	   int teamId=resultat.getInt("teamId");
+          	   String thumb = resultat.getString("thumbnail");
           	   Team.setTeamName(teamName);
-          	    	   
+          	   Team.setTeamId(teamId);
+          	   Team.setThumbnail(thumb);
             }
             
 		}catch (SQLException e) {
@@ -221,10 +240,12 @@ public class TeamsDao extends Dao<Teams>{
             while (resultat.next()) {
                 String firstname = resultat.getString("firstname");
                 String lastname = resultat.getString("lastname");
+                int ldapId=resultat.getInt("ldapId");
                 
                 Authors author = new Authors();
                 author.setFirstname(firstname);
                 author.setLastname(lastname);
+                author.setLdapId(ldapId);
 
                 Authors.add(author);
             }

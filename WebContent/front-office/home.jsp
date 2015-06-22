@@ -29,9 +29,9 @@
 					<h3 class="panel-title">Équipes</h3>
 				</div>
 				<div class="list-group">
-					<a href="?page=team" class="list-group-item"><i class="fa fa-desktop"></i>&nbsp; Informatique</a>
-					<a href="?page=team" class="list-group-item"><i class="fa fa-wifi"></i>&nbsp; Télécom</a>
-					<a href="?page=team" class="list-group-item"><i class="fa fa-plug"></i>&nbsp; Électronique</a>
+				<c:forEach var="team" items="${teams}">
+					<a href="teampage?teamId=<c:out value="${team.teamId} "/>" class="list-group-item"><i class="fa <c:out value="${team.thumbnail} "/> "></i>&nbsp; <c:out value="${team.teamName} "/></a>
+				</c:forEach>
 				</div>
 			</div>
 		</nav>
