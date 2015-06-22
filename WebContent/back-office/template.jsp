@@ -56,7 +56,7 @@
 							<a href="AdminHome"><span class="glyphicon glyphicon-signal" aria-hidden="true"></span>&nbsp; Dashboard</a>
 						</li>
 						<li>
-							<a href="?page=types"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>&nbsp; Types</a>
+							<a href="Types"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>&nbsp; Types</a>
 						</li>
 						<li>
 							<a href="Teams"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>&nbsp; Équipes</a>

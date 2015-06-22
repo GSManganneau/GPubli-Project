@@ -100,9 +100,12 @@ public class TypeDao extends Dao<Types>{
         	while(resultat.next()){
         		int typeId= resultat.getInt("typeId");
         		String typeName = resultat.getString("typeName");
+        		String iconName = resultat.getString("iconName");
+        		
         		Types type = new Types();
         		type.setTypeName(typeName);
         		type.setTypeId(typeId);
+ 
         		types.add(type);
         	}
         	
