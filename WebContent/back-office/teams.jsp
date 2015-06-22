@@ -36,11 +36,12 @@
 							</tr>
 						</thead>
 						<tbody>
+						<c:forEach var="team" items="${teams}">
 							<tr>
-								<td data-title="Id">1</td>
-								<td data-title="Nom">Informatique</td>
-								<td data-title="Icône"><i class="fa fa-desktop"></i></td>
-								<td data-title="Effectif">8</td>
+								<td data-title="Id"><c:out value="${ team.teamId }"/></td>
+								<td data-title="Nom"><c:out value="${ team.teamName }"/></td>
+								<td data-title="Icône"><i class="fa fa-desktop"></i><c:out value="${ team.thumbnail }"/></td>
+								<td data-title="Effectif"><c:out value="${ team.count }"/></td>
 								<td data-title="Action" class="text-right">
 									<div class="btn-group">
 										<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></button>
@@ -51,36 +52,7 @@
 									</div>
 								</td>
 							</tr>
-							<tr>
-								<td data-title="Id">2</td>
-								<td data-title="Nom">Télécom</td>
-								<td data-title="Icône"><i class="fa fa-wifi"></i></td>
-								<td data-title="Effectif">6</td>
-								<td data-title="Action" class="text-right">
-									<div class="btn-group">
-										<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></button>
-										<ul class="dropdown-menu dropdown-menu-right" role="menu">
-											<li><a href="#" class="update"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp; Modifier</a></li>
-											<li><a href="#delete-url" data-toggle="modal" data-target="#delete-modal"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp; Supprimer</a></li>
-										</ul>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td data-title="Id">3</td>
-								<td data-title="Nom">Électronique</td>
-								<td data-title="Icône"><i class="fa fa-plug"></i></td>
-								<td data-title="Effectif">7</td>
-								<td data-title="Action" class="text-right">
-									<div class="btn-group">
-										<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></button>
-										<ul class="dropdown-menu dropdown-menu-right" role="menu">
-											<li><a href="#" class="update"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp; Modifier</a></li>
-											<li><a href="#delete-url" data-toggle="modal" data-target="#delete-modal"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp; Supprimer</a></li>
-										</ul>
-									</div>
-								</td>
-							</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 				</div>

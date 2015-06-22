@@ -17,7 +17,7 @@
 						<i class="fa fa-book fa-5x"></i>
 					</div>
 					<div class="col-xs-9 text-right">
-						<h1>348</h1>
+						<h1><c:out value="${ pubCount.count }"/></h1>
 					</div>
 				</div>
 			</div>
@@ -34,7 +34,7 @@
 						<i class="fa fa-user fa-5x"></i>
 					</div>
 					<div class="col-xs-9 text-right">
-						<h1>28</h1>
+						<h1><c:out value="${ authorCount.count }"/></h1>
 					</div>
 				</div>
 			</div>
@@ -51,12 +51,12 @@
 						<i class="fa fa-users fa-5x"></i>
 					</div>
 					<div class="col-xs-9 text-right">
-						<h1>3</h1>
+						<h1><c:out value="${ teamCount.count }"/></h1>
 					</div>
 				</div>
 			</div>
 			<div class="panel-body text-right">
-				Ãquipe(s)
+				Équipe(s)
 			</div>
 		</div>
 	</div>
@@ -68,7 +68,7 @@
 						<i class="fa fa-asterisk fa-5x"></i>
 					</div>
 					<div class="col-xs-9 text-right">
-						<h1>12</h1>
+						<h1><c:out value="${ typeCount.count }"/></h1>
 					</div>
 				</div>
 			</div>
