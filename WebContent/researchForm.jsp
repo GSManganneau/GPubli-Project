@@ -7,9 +7,16 @@
 	<form method="POST" action="AdvancedResearch">
 		<p>Nom de la publi: <input type="text" name="publiName"></p>
 		<p>Resume: <input type="text" name="resume"></p>
-		<p>Date: <input type="date" name="date"></p>
+		<p>Date from: <input type="date" name="dateFrom"></p>
+		<p>Date to: <input type="date" name="dateTo"></p>
+		 Auteurs:<select multiple name="authors">
+		 	 <option value="1">1</option>
+		 	 <option value="2">2</option>
+		 	 <option value="3">3</option>
+			 <option value="4">4</option>
+		</select> 
 		<p>Type: <input type="number" name="type"></p>
-		<p>Auteur: <input type="number" name="author"></p>
+		<p>Team: <input type="number" name="team"></p>
 		<input type="submit">			
 	</form>
 </body>
