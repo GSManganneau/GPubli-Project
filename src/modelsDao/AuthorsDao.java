@@ -212,6 +212,7 @@ public class AuthorsDao extends Dao<Authors>{
                 String lastname = resultat.getString("lastname");
                 String login=resultat.getString("login");
                 int authorId = resultat.getInt("authorId");
+                int teamId = resultat.getInt("teamId");
                 
                 
 
@@ -221,6 +222,7 @@ public class AuthorsDao extends Dao<Authors>{
                 Author.setLastname(lastname);
                 Author.setLogin(login);
                 Author.getTeam().setTeamName(teamName);
+                Author.getTeam().setTeamId(teamId);
 
                 Authors.add(Author);
             }

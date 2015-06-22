@@ -41,7 +41,7 @@ public class Types extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.setAttribute("teams", typeDao.lister());
+		request.setAttribute("types", typeDao.lister());
 		request.setAttribute("content", content);
 		
 		getServletContext().getRequestDispatcher("/back-office/template.jsp").include(request, response);

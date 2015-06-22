@@ -12,6 +12,7 @@ public class Attributes {
 	private String datas;
 	private String attributeNature;
 	private boolean attributeRequired;
+	private int count;
 	
 	
 	public int getAttributeId() {
@@ -43,6 +44,12 @@ public class Attributes {
 	}
 	public void setAttributeRequired(boolean attributeRequired) {
 		this.attributeRequired = attributeRequired;
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
 	}
 
 }

@@ -35,6 +35,9 @@ public class DAOFactory {
 	public AuthorsDao getAuthors() {
 			return new AuthorsDao(this);
 		}
+	public AttributesDao getAttributes() {
+		return new AttributesDao(this);
+	}
 	public PublicationsDao getPublications() {
 		return new PublicationsDao(this);
 	}

@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.Hashtable;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,50 +12,28 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import com.DataSource.mysql.DataSource;
 
-import modelsDao.AuthorsDao;
-import modelsDao.DAOFactory;
-import modelsDao.TeamsDao;
-
 /**
- * Servlet implementation class Teams
+ * Servlet implementation class TreatmentAttribute
  */
-@WebServlet("/Teams")
-public class Teams extends HttpServlet {
+@WebServlet("/TreatmentAttribute")
+public class TreatmentAttribute extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	public String content = "teams.jsp";
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Teams() {
+    public TreatmentAttribute() {
         super();
         // TODO Auto-generated constructor stub
     }
-    
-    private TeamsDao teamDao;
-    
-    public void init() throws ServletException {
-      	 DAOFactory factory = DAOFactory.getInstance();
-           this.teamDao = factory.getTeams();
-      }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-
-		request.setAttribute("teams", teamDao.lister());
-		request.setAttribute("content", content);
-		
-		getServletContext().getRequestDispatcher("/back-office/template.jsp").include(request, response);
 	}
 
 	/**
@@ -65,6 +41,33 @@ public class Teams extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		int typeId = Integer.parseInt(request.getParameter("typeId"));
+		String[] name = request.getParameterValues("name[]");
+		
+		for (int i=0, n = name.length ; i<n ; i++) {
+			try {
+				DataSource ds = DataSource.getInstace();
+				Connection conn = ds.getConnection();
+				Statement stmtrsListTeam = conn.createStatement();
+		
+				// Requête
+				String sqlTeams = "UPDATE Attributes SET attributeId="+name[i];
+				
+		
+				// Résultats de la requête
+				stmtrsListTeam.executeUpdate(sqlTeams);
+				
+				//close
+				stmtrsListTeam.close();
+				conn.close();
+		
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			//System.out.println(name[i]);
+		}
+		response.sendRedirect("/GPubli-Project/Attributes?typeId="+typeId);
 	}
 
 }
