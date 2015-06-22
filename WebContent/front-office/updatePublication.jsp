@@ -12,7 +12,7 @@
 
 <div class="row">
 	<div class="col-sm-12">
-		<form class="form-horizontal" data-toggle="validator" data-form="not-sendable" enctype="multipart/form-data">
+		<form class="form-horizontal" data-toggle="validator" data-form="not-sendable"  action="updatepublication" method="post" enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="label-title" class="col-sm-2 control-label">Titre *</label>
 				<div class="col-sm-10">
@@ -84,13 +84,14 @@
 					<input type="file" class="form-control" name="file" id="label-file">
 				</div>
 			</div>
-			
+			<input type="hidden" name="publicationId" value="<c:out value="${publication.publicationId }"/>">
 			<div class="form-group form-group-submit">
 				<div class="col-sm-10 col-sm-offset-2">
 					<hr>
 					<button type="submit" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp; Modifier la publication</button>
 				</div>
 			</div>
+			
 		</form>
 	</div>
 </div>

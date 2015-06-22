@@ -63,7 +63,7 @@ public class AddPublications extends HttpServlet {
 		else{
 		int id = (int)s.getAttribute("authorId");
 		List<Types> types = typeDao.lister();
-		List<Authors> authors = authorDao.lister(id);
+		List<Authors> authors = authorDao.lister();
 		request.setAttribute("session", s);
         request.setAttribute("content",content);
         request.setAttribute("jsContent", jsContent);
@@ -93,30 +93,30 @@ public class AddPublications extends HttpServlet {
 		}
 		Publications publication = new Publications();
 		//récupère les coAuteurs
-		List <Authors> coAuteurs = new ArrayList <Authors>();
+		List <Authors> auteurs = new ArrayList <Authors>();
 		if(request.getParameterValues("authors")!=null){
-			String[] coAuthors = request.getParameterValues("authors");
-			for(int i=0;i<coAuthors.length;i++){
-				Authors coAuthor = new Authors();
-				if (coAuthors[i].startsWith("[")){
+			String[] authors = request.getParameterValues("authors");
+			for(int i=0;i<authors.length;i++){
+				Authors author = new Authors();
+				if (authors[i].startsWith("[")){
 					
-					coAuthor.setLastname(coAuthors[i].split("]")[1].split("/")[0]);
-					coAuthor.setFirstname(coAuthors[i].split("]")[1].split("/")[1]);
-					coAuthor.setAuthorId(authorDao.create(coAuthor, false));
+					author.setLastname(authors[i].split("]")[1].split("/")[0]);
+					author.setFirstname(authors[i].split("]")[1].split("/")[1]);
+					author.setAuthorId(authorDao.create(author, false));
 					}
 				else{
-					coAuthor=authorDao.findWithId(Integer.parseInt(coAuthors[i]));
+					author=authorDao.findWithId(Integer.parseInt(authors[i]));
 					
 				}
-				coAuteurs.add(coAuthor);
+				auteurs.add(author);
 			}
 			
 		}
 		HttpSession s = request.getSession();
 		int authorId = (int)(s.getAttribute("authorId"));
 		Authors author=authorDao.findWithId(authorId);
-		publication.setAuthor(author);
-		publication.setCoAuthors(coAuteurs);
+		auteurs.add(author);
+		publication.setAuthors(auteurs);
 		publication.setDate(date);
 		publication.setResume(resume);
 		publication.setTitle(title);

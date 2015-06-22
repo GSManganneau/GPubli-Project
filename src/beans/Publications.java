@@ -7,16 +7,15 @@ public class Publications {
 
 	@Override
 	public String toString() {
-
-		return "Publications [id=" + publicationId + ", type=" + type
+		return "Publications [publicationId=" + publicationId + ", type="
+				+ type +", authors=" + authors
 				+ ", date=" + date + ", resume=" + resume + ", title=" + title
-				+ "]";
+				+ ", url=" + url + ", count=" + count + "]";
 	}
 
 	private int publicationId;
 	private Types type = new Types();
-	private Authors author = new Authors();
-	private List<Authors> coAuthors = new ArrayList<Authors>();
+	private List<Authors> authors = new ArrayList<Authors>();
 	private String date;
 	private String resume;
 	private String title;
@@ -35,13 +34,6 @@ public class Publications {
 		return resume;
 	}
 
-	public Authors getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(Authors author) {
-		this.author = author;
-	}
 
 	public void setPublicationId(int publicationId) {
 		this.publicationId = publicationId;
@@ -91,12 +83,12 @@ public class Publications {
 		this.count = count;
 	}
 
-	public List<Authors> getCoAuthors() {
-		return coAuthors;
+	public List<Authors> getAuthors() {
+		return authors;
 	}
 
-	public void setCoAuthors(List<Authors> coAuthors) {
-		this.coAuthors = coAuthors;
+	public void setAuthors(List<Authors> authors) {
+		this.authors = authors;
 	}
 
 }
