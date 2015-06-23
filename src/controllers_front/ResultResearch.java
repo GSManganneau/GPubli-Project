@@ -42,7 +42,7 @@ public class ResultResearch extends HttpServlet {
     }
     
     public String template= "publication.jsp";
-    private PublicationsDao publicationsDao;
+    private PublicationsDao publicationsDao;   
     private AuthorsDao authorDao;
     private TypeDao typeDao;
     private TeamsDao teamsDao;  

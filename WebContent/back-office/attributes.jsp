@@ -68,22 +68,16 @@
 				<h3 class="panel-title"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Ajouter un attribut</h3>
 			</div>
 			<div class="panel-body">
-				<form role="form" data-toggle="validator" data-form="not-sendable">
+				<form role="form" data-toggle="validator" action="AddAttribute" method="post">
 					<div class="form-group">
 						<label for="label-name" class="control-label">Nom *</label>
-						<select class="form-control selectize-select-simple-create" id="label-name" name="name" data-rule-required="true">
+						<select class="form-control selectize-select-simple-create" id="label-name" name="attributeName" data-rule-required="true">
 							<option value="">Choisissez ou créez un nom d'attribut</option>
-							<option value="1">Éditeur</option>
-							<option value="2">Pages</option>
-							<option value="3">Chapitres</option>
-							<option value="4">Catégorie</option>
+							
 						</select>
+						<input type="hidden" name="typeId" value="<c:out value="${typeId}"/>">
 					</div>
-
-					<div class="form-group">
-						<label for="label-order" class="control-label">Ordre *</label>
-						<input type="text" class="form-control" id="label-order" name="order" placeholder="Entrez un nombre pour classer l'attribut" data-rule-required="true" data-rule-digits="true">
-					</div>
+				
 
 					<hr>
 
