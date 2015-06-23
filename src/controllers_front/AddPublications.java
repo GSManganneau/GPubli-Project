@@ -63,7 +63,7 @@ public class AddPublications extends HttpServlet {
 		else{
 		int id = (int)s.getAttribute("authorId");
 		List<Types> types = typeDao.lister();
-		List<Authors> authors = authorDao.lister();
+		List<Authors> authors = authorDao.lister(id);
 		request.setAttribute("session", s);
         request.setAttribute("content",content);
         request.setAttribute("jsContent", jsContent);

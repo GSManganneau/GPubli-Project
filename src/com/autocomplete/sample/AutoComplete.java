@@ -41,7 +41,8 @@ public class AutoComplete extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 		HttpServletResponse response) throws ServletException, IOException {
 		String field = request.getParameter("field");
-
+		
+		if (field != "") {
 		Hashtable<String, List<Hashtable<String, String>>> AllResults = new Hashtable<String, List<Hashtable<String, String>>>();
 		List<Hashtable<String, String>> AllResultsAuthors = new ArrayList<Hashtable<String, String>>();
 		List<Hashtable<String, String>> AllResultsTeams = new ArrayList<Hashtable<String, String>>();
@@ -55,9 +56,9 @@ public class AutoComplete extends HttpServlet {
 			Statement stmtrsPublications = conn.createStatement();
 
 			// Requêtes
-			String sqlAuthors = "SELECT authorId,firstname,lastname FROM authors LIMIT 3";
-			String sqlPublications = "SELECT title,publicationId FROM publications LIMIT 3";
-			String sqlTeams = "SELECT teamId,teamName FROM Teams LIMIT 3";
+			String sqlAuthors = "SELECT authorId,firstname,lastname FROM authors WHERE firstname like '%"+field+"%' or lastname like '%"+field+"%'  LIMIT 3";
+			String sqlPublications = "SELECT title,publicationId FROM publications WHERE title like '%"+field+"%' LIMIT 3";
+			String sqlTeams = "SELECT teamId,teamName FROM Teams WHERE teamName like '%"+field+"%' LIMIT 3";
 
 			// Résultats des requêtes
 			ResultSet rsAuthors = stmtrsAuthors.executeQuery(sqlAuthors);
@@ -77,7 +78,7 @@ public class AutoComplete extends HttpServlet {
 				
 				AllResultsAuthors.add(AuthorsResults);
 				
-				AllResults.put("Utilisateurs", AllResultsAuthors);
+				AllResults.put("users", AllResultsAuthors);
 			}
 
 			// Stocage des données dans la Hashmap Team
@@ -93,7 +94,7 @@ public class AutoComplete extends HttpServlet {
 				
 				AllResultsTeams.add(TeamsResults);
 				
-				AllResults.put("Teams", AllResultsTeams);
+				AllResults.put("teams", AllResultsTeams);
 			}
 
 			// Stocage des données dans la Hashmap Pub
@@ -109,7 +110,7 @@ public class AutoComplete extends HttpServlet {
 				
 				AllResultsPublications.add(PublicationsResults);
 				
-				AllResults.put("Publications", AllResultsPublications);
+				AllResults.put("publications", AllResultsPublications);
 			}
 
 
@@ -132,6 +133,12 @@ public class AutoComplete extends HttpServlet {
 
 		response.setContentType("application/json");
 		response.getWriter().print(json);
-		System.out.println("json :"+ json);
+		
+		}else {
+			String res = "{}";
+			response.setContentType("application/json");
+			response.getWriter().print(res);
+			
+		}
 	}
 }

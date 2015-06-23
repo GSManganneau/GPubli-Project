@@ -61,11 +61,15 @@ public class DeletePublication extends HttpServlet {
 			int id = Integer.parseInt(request.getParameter("publicationId"));
 			Publications publication = publicationDao.find(id);
 			int userId = (int)s.getAttribute("authorId");
-			Authors author= authorsDao.findWithId(userId);
-			publication.getAuthors().
-			if(publication.getAuthor().getAuthorId() == userId){
+			boolean find =false;
+			for(int i=0;i<publication.getAuthors().size() && !find ;i++){
+				
+			if(publication.getAuthors().get(i).getAuthorId() == userId){
 				publicationDao.delete(publication);
 				response.sendRedirect("/GPubli-Project/home");
+				find = true;
+			}
+			
 			}
 		/*	else{
 				String messageError = "You can't delete this publication!!!";

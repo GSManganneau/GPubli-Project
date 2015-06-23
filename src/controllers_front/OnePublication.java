@@ -16,7 +16,7 @@ import modelsDao.*;
 /**
  * Servlet implementation class Index
  */
-@WebServlet("/OnePublication")
+@WebServlet("/onepublication")
 public class OnePublication extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	// Definition du content à inclure au template, du style et du script.

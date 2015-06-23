@@ -19,7 +19,7 @@
 			<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp; Modifications effectuées avec succès !
 		</div>
 
-		<form data-toggle="validator-form">
+		<form data-toggle="validator-form" action="TreatmentTeam" method="post">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>&nbsp; Équipes</h3>
@@ -29,25 +29,23 @@
 						<thead>
 							<tr>
 								<th class="col-md-1" data-sort="int" data-alterable-type="id" data-alterable-name="id">Id &nbsp;<i class="fa fa-sort"></i></th>
-								<th class="col-md-6" data-sort="string" data-alterable-type="input" data-alterable-name="name" data-alterable-validate="required">Nom &nbsp;<i class="fa fa-sort"></i></th>
+								<th class="col-md-8" data-sort="string" data-alterable-type="input" data-alterable-name="name" data-alterable-validate="required">Nom &nbsp;<i class="fa fa-sort"></i></th>
 								<th class="col-md-2" data-alterable-type="icon" data-alterable-name="icon">Icône</th>
-								<th class="col-md-2" data-sort="int">Effectif &nbsp;<i class="fa fa-sort"></i></th>
 								<th class="col-md-1"><!-- Action --></th>
 							</tr>
 						</thead>
 						<tbody>
 						<c:forEach var="team" items="${teams}">
 							<tr>
-								<td data-title="Id"><c:out value="${ team.teamId }"/></td>
+								<td data-title="Id"><c:out value="${team.teamId }" /></td>
 								<td data-title="Nom"><c:out value="${ team.teamName }"/></td>
 								<td data-title="Icône"><i class="fa <c:out value="${ team.thumbnail }"/>"></i></td>
-								<td data-title="Effectif"><c:out value="${ team.count }"/></td>
 								<td data-title="Action" class="text-right">
 									<div class="btn-group">
 										<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></button>
 										<ul class="dropdown-menu dropdown-menu-right" role="menu">
 											<li><a href="#" class="update"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp; Modifier</a></li>
-											<li><a href="#delete-url" data-toggle="modal" data-target="#delete-modal"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp; Supprimer</a></li>
+											<li><a href="#" data-href="DeleteTeam?teamId=<c:out value="${team.teamId }" />" data-toggle="modal" data-target="#delete-modal"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp; Supprimer</a></li>
 										</ul>
 									</div>
 								</td>
@@ -69,7 +67,7 @@
 				<h3 class="panel-title"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Ajouter une équipe</h3>
 			</div>
 			<div class="panel-body">
-				<form role="form" data-toggle="validator" data-form="not-sendable">
+				<form role="form" data-toggle="validator" action="TreatmentTeam" method="post">
 					<div class="form-group">
 						<label for="label-name" class="control-label">Nom *</label>
 						<input type="text" class="form-control" id="label-name" name="name" placeholder="Entrez un nom d'équipe" data-rule-required="true">
