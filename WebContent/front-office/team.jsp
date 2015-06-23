@@ -5,7 +5,8 @@
 	<div class="col-md-12">
 		<ol class="breadcrumb">
 			<li><a href="home">Accueil</a></li>
-			<li class="active">Équipe : <c:out value="${ teamName }"/></li>
+			<li class="active">Équipe</li>
+			<li class="active"><c:out value="${ teamName }"/></li>
 		</ol>
 		<hr>
 	</div>
@@ -35,7 +36,7 @@
 				</div>
 			</div>
 
-			<div class="panel panel-default">
+			<!-- <div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">Chiffres-clés</h3>
 				</div>
@@ -45,7 +46,7 @@
 					<li class="list-group-item"><span class="badge"><c:out value="${ teamCount.count }"/></span><span class="glyphicon glyphicon-list-alt" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Équipes de ces publications"></span>&nbsp; Équipe(s)</li>
 					<li class="list-group-item"><span class="badge"><c:out value="${ typeCount.count }"/></span><span class="glyphicon glyphicon-asterisk" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Types de ces publications"></span>&nbsp; Type(s)</li>
 				</ul>
-			</div>
+			</div> -->
 		</nav>
 	</div>
 

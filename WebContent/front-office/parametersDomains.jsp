@@ -1,11 +1,9 @@
-<jsp:directive.page contentType="text/html;charset=UTF-8" />
-
 <div class="row">
 	<div class="col-md-12">
 		<ol class="breadcrumb">
 			<li><a href="?page=index">Accueil</a></li>
 			<li class="active">Paramètres</li>
-			<li class="active">API</li>
+			<li class="active">Domaines API</li>
 		</ol>
 		<hr>
 	</div>
@@ -20,14 +18,15 @@
 				</div>
 				<div class="list-group">
 					<a href="?page=parameters-profile" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp; Profil</a>
-					<a href="?page=parameters-api" class="list-group-item active"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>&nbsp; API</a>
+					<a href="?page=parameters-api" class="list-group-item"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>&nbsp; API</a>
+					<a href="?page=parameters-domains" class="list-group-item active"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span>&nbsp; Domaines API</a>
 				</div>
 			</div>
 		</nav>
 	</div>
 
 	<div class="col-md-9">
-		<div class="alert alert-success alert-dismissible" role="alert">
+		<!-- <div class="alert alert-success alert-dismissible" role="alert">
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp; Ajout effectué avec succès !
 		</div>
@@ -35,12 +34,12 @@
 		<div class="alert alert-success alert-dismissible" role="alert">
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp; Modifications effectuées avec succès !
-		</div>
+		</div> -->
 
 		<form data-toggle="validator-form">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title">Autorisation des noms de domaine</h3>
+					<h3 class="panel-title">Autorisation des noms de domaine pour l'API</h3>
 				</div>
 				<div class="table-responsive-plus">
 					<table class="table table-fixed table-striped table-hover">

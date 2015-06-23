@@ -1,0 +1,193 @@
+<div class="row">
+	<div class="col-md-12">
+		<ol class="breadcrumb">
+			<li><a href="?page=index">Accueil</a></li>
+			<li class="active">Paramètres</li>
+			<li class="active">API</li>
+		</ol>
+		<hr>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-3">
+		<nav>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp; Paramètres</h3>
+				</div>
+				<div class="list-group">
+					<a href="?page=parameters-profile" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp; Profil</a>
+					<a href="?page=parameters-api" class="list-group-item active"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>&nbsp; API</a>
+					<a href="?page=parameters-domains" class="list-group-item"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span>&nbsp; Domaines API</a>
+				</div>
+			</div>
+		</nav>
+	</div>
+
+	<div class="col-md-9">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Obtention de l'API</h3>
+			</div>
+			<div class="panel-body">
+				<ul class="nav nav-tabs" role="tablist">
+					<li role="presentation" class="active"><a href="#api-javascript" aria-controls="api-javascript" role="tab" data-toggle="tab">API Javascript</a></li>
+					<li role="presentation"><a href="#iframe" aria-controls="profile" role="tab" data-toggle="tab">&lt;iframe&gt;</a></li>
+				</ul>
+
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane active" id="api-javascript">
+						<div class="page-header">
+							<h3>Utilisation des CDN <small>Serveur ISEP</small></h3>
+						</div>
+						<p>Feuille de style <code>gpubli.min.css</code> :</p>
+						<pre>&lt;link rel=&quot;stylesheet&quot; href=&quot;<strong>http://www.gpubli.fr/cdn/gpubli-api-1.0.0/css/gpubli.min.css</strong>&quot;&gt;</pre>
+						<hr>
+						<p>Script <code>gpubli.min.js</code> :</p>
+						<pre>&lt;script src=&quot;<strong>http://www.gpubli.fr/cdn/gpubli-api-1.0.0/js/gpubli.min.js</strong>&quot;&gt;&lt;/script&gt;</pre>
+						<div class="page-header">
+							<h3>Téléchargement de l'API</h3>
+						</div>
+						<a href="#" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-save" aria-hidden="true"></span>&nbsp; Télécharger au format zip</a>
+					</div>
+
+					<div role="tabpanel" class="tab-pane" id="iframe">
+						<div class="page-header">
+							<h3>Utilisation des <code>&lt;iframe&gt;</code></h3>
+						</div>
+						<p>Il suffit de placer la balise <code>&lt;iframe&gt;</code> ci-dessous dans votre code, en ajoutant votre <strong>login ISEP</strong> en paramètre de l'url :</p>
+						<pre>&lt;iframe src=&quot;<strong>http://www.gpubli.fr/getPublication?login=monLoginIsep</strong>&quot; width=&quot;100%&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;</pre>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Documentation de l'API Javascript</h3>
+			</div>
+			<div class="panel-body">
+				<div class="page-header">
+					<h3>Commencer</h3>
+				</div>
+				<p>Cette API fonctionne avec la librairie jQuery. Vous devez donc commencer par inclure <code>jquery.js</code> sur votre page :</p>
+				<pre>&lt;script src=&quot;<strong>jquery.js</strong>&quot;&gt;&lt;/script&gt;</pre>
+				<p>Ensuite, vous pouvez inclure <code>gpubli.js</code> :</p>
+				<pre>&lt;script src=&quot;<strong>gpubli.js</strong>&quot;&gt;&lt;/script&gt;</pre>
+
+				<p>Si vous voulez utiliser le style GPubli pour les publications, vous devez inclure <code>gpubli.css</code> dans le head de votre page :</p>
+				<pre>&lt;link rel=&quot;stylesheet&quot; href=&quot;<strong>gpubli.css</strong>&quot;&gt;</pre>
+
+				<div class="page-header">
+					<h3>Utilisation</h3>
+				</div>
+				<p>Instanciez un objet <code>GPubli</code> en mettant votre login ISEP en paramètre :</p>
+				<pre>&lt;script&gt;
+	$(function () {
+		var gpubli = new GPubli('votreLoginIsep');
+	});
+&lt;/script&gt;</pre>
+				<p>On charge ensuite les publications grâce à la méthode <code>load(afterLoading)</code> :</p>
+				<pre>		gpubli.load(afterLoading);</pre>
+				<p>Cette méthode prend en paramètre une fonction qui contient les instructions à executer lorsque les données sont chargées. Exemple :</p>
+				<pre>		gpubli.load(function () {
+			alert('Les publications sont bien chargées !');
+		});</pre>
+				<hr>
+				<p>On peut récupérer les publications directement en accédant à la propriété <code>publications</code> de l'objet <code>GPubli</code> :</p>
+				<pre>		gpubli.publications;</pre>
+				<p>La propriété <code>publications</code> est de la forme :</p>
+				<pre style="max-height: 400px;">"publications": [
+	{
+		"id": 0,
+		"title": "Big Data",
+		"resume": "Le big data est blabla...",
+		"authors": [
+			{
+				"firstName": "Matthieu",
+				"lastName": "Puibaraud",
+				"login": "mpuibara"
+			},
+			{
+				"firstName": "Guy-Stéphane",
+				"lastName": "Manganneau",
+				"login": "gmangann"
+			},
+			{
+				"firstName": "Roland",
+				"lastName": "Basset-Chercot",
+				"login": "rbasset-"
+			}
+		],
+		"date": "2015-02-17",
+		"type": "Livre",
+		"attributes": [
+			{
+				"name": "Éditeur",
+				"value": "Bayard"
+			},
+			{
+				"name": "Chapitres",
+				"value": "7"
+			},
+			{
+				"name": "Pages",
+				"value": "257"
+			}
+		]
+	},
+	{
+		"id": 1,
+		"title": "Datacenter",
+		"resume": "Les datacenters sont blabla...",
+		"authors": [
+			{
+				"firstName": "Aboubacar",
+				"lastName": "Bessenga",
+				"login": "abesseng"
+			}
+		],
+		"date": "2015-03-02",
+		"type": "Article",
+		"attributes": [
+			{
+				"name": "Journal",
+				"value": "Le Monde"
+			},
+			{
+				"name": "Numéro",
+				"value": "234"
+			}
+		]
+	}
+]</pre>
+				<hr>
+				<p>La méthode <code>print(publication)</code> renvoie la publication passée en paramètre sous la forme d'une chaîne de caractères formatée suivant le style GPubli :</p>
+				<pre>		var str = gpubli.print(gpubli.publications[1]);</pre>
+				<hr>
+				<p>La méthode <code>printAll()</code> renvoie l'ensemble des publications sous la forme d'une chaîne de caractères formatée suivant le style GPubli :</p>
+				<pre>		var str = gpubli.printAll();</pre>
+				<hr>
+				<p>La méthode <code>show(publication, selector)</code> ajoute la publication passée en paramètre au selecteur css spécifié en paramètre :</p>
+				<pre>		gpubli.show(gpubli.publications[1], '#div-publications');</pre>
+				<hr>
+				<p>La méthode <code>showAll(selector)</code> ajoute l'ensemble des publications au selecteur css spécifié en paramètre :</p>
+				<pre>		gpubli.showAll('#div-publications');</pre>
+
+				<div class="page-header">
+					<h3>Exemple général</h3>
+				</div>
+				<p>L'exemple suivant permet d'importer toutes ses publications et de les afficher :</p>
+				<pre>&lt;script&gt;
+	$(function () {
+		var gpubli = new GPubli('mpuibara');
+		gpubli.load(function () {
+			gpubli.showAll('#colonne-publication');
+		});
+	});
+&lt;/script&gt;</pre>
+			</div>
+		</div>
+	</div>
+</div>

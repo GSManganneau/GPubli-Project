@@ -22,7 +22,7 @@ public class OnePublication extends HttpServlet {
 	// Definition du content à inclure au template, du style et du script.
 
 	public String cssContent = "publications.css";
-	public String content = "home.jsp";
+	public String content = "onepublication.jsp";
 	public String jsContent = "publications.js";
 
 	private PublicationsDao publicationDao;

@@ -21,7 +21,7 @@
 							<c:if test="${ author.authorId == sessionId }"> 
 							<li class="divider"></li>
 							<li><a href="updatepublication?publicationId=<c:out value="${publication.publicationId}" />"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;Modifier la publication</a></li>
-							<li><a href="deletepublication?publicationId=<c:out value="${publication.publicationId}" />"data-toggle="modal" data-target="#delete-modal"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp; Supprimer la publication</a></li>
+							<li><a href="#" data-href="deletepublication?publicationId=<c:out value="${publication.publicationId}" />"data-toggle="modal" data-target="#delete-modal"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp; Supprimer la publication</a></li>
 							 </c:if> 
 							</c:forEach>
 							</ul>
