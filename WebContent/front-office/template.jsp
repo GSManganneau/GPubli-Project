@@ -45,8 +45,8 @@
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>&nbsp; Outils <span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
-									<li><a href="addpublication"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Ajouter une publication</a></li>
-									<li><a href="advanced-search"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp; Recherche avancée</a></li>
+									<li><a href="addpublications"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Ajouter une publication</a></li>
+									<li><a href="AdvancedResearch"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp; Recherche avancée</a></li>
 									<li><a href="statistics"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span>&nbsp; Statistiques</a></li>
 								</ul>
 							</li>
@@ -62,7 +62,7 @@
 							</li>
 						</ul>
 
-						<form class="navbar-form">
+						<form class="navbar-form" action="Search" method="get">
 							<div class="form-group" style="display: inline;">
 								<div class="input-group" style="display: table;">
 									<span class="input-group-btn" style="width: 1%;">
@@ -70,7 +70,7 @@
 											<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 										</button>
 									</span>
-									<input type="text" class="form-control" placeholder="Chercher...">
+									<input type="text" name="search" class="form-control" placeholder="Chercher...">
 								</div>
 							</div>
 						</form>

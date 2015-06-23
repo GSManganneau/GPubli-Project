@@ -193,7 +193,52 @@ public class PublicationsDao extends Dao<Publications> {
 	@Override
 	public boolean update(Publications object) {
 		// TODO Auto-generated method stub
-		return false;
+		Connection connexion = null;
+
+		int typeId = object.getType().getTypeId();
+		List<Attributes> attributes = object.getType().getAttributes();
+		List <Authors> authors = object.getAuthors();
+		String date = object.getDate();
+		String resume = object.getResume();
+		String title = object.getTitle();
+		int publicationId = object.getPublicationId();
+		try {
+
+			connexion = factory.getConnection();
+			String query = "UPDATE Publications SET date=?,typeId=?,resume=?,title=? WHERE publicationId="+publicationId;
+			PreparedStatement preparedStatement = connexion.prepareStatement(query);
+			preparedStatement.setString(1, date);
+			preparedStatement.setInt(2, typeId);
+			preparedStatement.setString(3, resume);
+			preparedStatement.setString(4, title);
+			preparedStatement.executeUpdate();
+
+			String query2 = "UPDATE DataPublications SET datas=?,attributeId=?,typeId=? where publicationId="+publicationId;
+			for (int i = 0; i < attributes.size(); i++) {
+				PreparedStatement pS2 = connexion.prepareStatement(query2);
+				pS2.setString(1, attributes.get(i).getDatas());
+				pS2.setInt(2, attributes.get(i).getAttributeId());
+				pS2.setInt(3,typeId);
+				pS2.executeUpdate();
+
+			}
+			String query3 = "UPDATE Repositories SET authorId=? where publicationId="+publicationId;
+			PreparedStatement pS3 = connexion.prepareStatement(query3);
+			for (int i = 0; i < authors.size(); i++) {
+				pS3 = connexion.prepareStatement(query3);
+				pS3.setInt(1,authors.get(i).getAuthorId());
+				pS3.executeUpdate();
+
+			}
+			
+			System.out.print("update");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return true;
+
 	}
 
 	@Override
@@ -833,7 +878,7 @@ int id = resultat.getInt("publicationId");
 
 	}
 
-	public List<Publications> search(String s, int i, int j) {
+	public List<Publications> search(String s) {
 		List<Publications> publications = new ArrayList<Publications>();
 
 		Connection connexion = null;
@@ -852,8 +897,7 @@ int id = resultat.getInt("publicationId");
 			String queri = "SELECT DISTINCT * FROM  Repositories"
 					+ " natural join Publications " + " natural join Authors "
 					+ "natural join Types " + "WHERE title like '%" + s + "%'"
-					+ " ORDER BY publicationId DESC " + "LIMIT " + i + " , "
-					+ j;
+					+ " ORDER BY publicationId DESC ";
 
 			resultat = statement.executeQuery(queri);
 			while (resultat.next()) {
@@ -1186,10 +1230,6 @@ int id = resultat.getInt("publicationId");
 			}
 			
 			
-			
-			
-			System.out.println(requeteToExecute);
-			System.out.println(preparedStatement);
 			
 			ResultSet resultat = preparedStatement.executeQuery();
 

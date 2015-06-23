@@ -64,12 +64,6 @@
 
 			<div class="type-attributes"></div>
 
-			<div class="form-group">
-				<label for="label-file" class="col-sm-2 control-label">Fichier</label>
-				<div class="col-sm-10">
-					<input type="file" class="form-control" name="file" id="label-file">
-				</div>
-			</div>
 			
 			<div class="form-group form-group-submit">
 				<div class="col-sm-10 col-sm-offset-2">

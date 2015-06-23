@@ -5,7 +5,7 @@
 <div class="row">
 	<div class="col-md-12">
 		<ol class="breadcrumb">
-			<li><a href="?page=index">Accueil</a></li>
+			<li><a href="home">Accueil</a></li>
 			<li class="active">Résultats de recherche pour &laquo; <em><c:out value="${field}" /></em> &raquo;</li>
 		</ol>
 		<hr>
@@ -72,7 +72,5 @@
 				</c:forEach>
 			</div>
 		</div>
-		
-		<jsp:include page="pagination.jsp" />
 	</div>
 </div>
