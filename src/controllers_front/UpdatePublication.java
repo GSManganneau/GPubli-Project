@@ -111,6 +111,7 @@ public class UpdatePublication extends HttpServlet {
 			String date = request.getParameter("date");
 			String resume = request.getParameter("resume");
 			String title = request.getParameter("title");
+			
 			if (typeId != publication.getType().getTypeId()) {
 				publication.setType(typeDao.find(typeId));
 				for (int i = 0; i < publication.getType().getAttributes()
