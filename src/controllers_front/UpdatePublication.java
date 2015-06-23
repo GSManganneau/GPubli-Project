@@ -106,6 +106,7 @@ public class UpdatePublication extends HttpServlet {
 			int publicationId = Integer.parseInt((String) request
 					.getParameter("publicationId"));
 			Publications publication = publicationDao.find(publicationId);
+			System.out.print(publication.toString());
 			int typeId = Integer.parseInt(request.getParameter("type"));
 			String date = request.getParameter("date");
 			String resume = request.getParameter("resume");
@@ -161,6 +162,10 @@ public class UpdatePublication extends HttpServlet {
 				if (!auteurs.equals(publication.getAuthors())) {
 					publication.setAuthors(auteurs);
 				}
+				HttpSession s = request.getSession();
+				int authorId = (int)(s.getAttribute("authorId"));
+				Authors author=authorDao.findWithId(authorId);
+				auteurs.add(author);
 
 			}
 			publicationDao.update(publication);
