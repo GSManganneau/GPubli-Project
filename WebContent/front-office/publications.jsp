@@ -14,7 +14,7 @@
 							<ul class="dropdown-menu dropdown-menu-right" role="menu">
 								<li><a href="ExportDataLonely?p=<c:out value="${publication.publicationId}" />&export=bibTeX"><span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span>&nbsp; Export Bibtex</a></li>
 								<li><a href="ExportDataLonely?p=<c:out value="${publication.publicationId}" />&export=text"><span class="glyphicon glyphicon-text-size" aria-hidden="true"></span>&nbsp; Export Texte</a></li>
-								<li><a href="OnePublication?p=<c:out value="${publication.publicationId}" />"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>&nbsp; Visualiser</a></li>
+								<li><a href="onepublication?p=<c:out value="${publication.publicationId}" />"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>&nbsp; Visualiser</a></li>
 								
 								<c:set var="sessionId"  value="${session.getAttribute(\"authorId\")}"/>
 							<c:forEach var="author" items="${publication.authors }">

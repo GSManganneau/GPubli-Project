@@ -62,7 +62,7 @@
 							</li>
 						</ul>
 
-						<form class="navbar-form" action="Search" method="get">
+						<form class="navbar-form" action="Search">
 							<div class="form-group" style="display: inline;">
 								<div class="input-group" style="display: table;">
 									<span class="input-group-btn" style="width: 1%;">

@@ -110,10 +110,11 @@ $(function () {
 				data: {
 					'field': $.trim(this.input.val())
 				},
-				url: 'autocomplete'
+				url: 'Auto'
 			});
 
 			request.done($.proxy(function (data) {
+				console.log(data);
 				this.display(data);
 			}, this));
 		};
@@ -122,31 +123,31 @@ $(function () {
 			var strData = '';
 
 			if (data.publications != null) {
-				strData += this.displayData(data.publications, 'Publications', 'book', 'publication');
+				strData += this.displayData(data.publications, 'Publications', 'book', 'onepublication', 'p');
 			}
 
 			if (data.users != null) {
-				strData += this.displayData(data.users, 'Utilisateurs', 'user', 'user');
+				strData += this.displayData(data.users, 'Utilisateurs', 'user', 'userpage', 'ldapId');
 			}
 
 			if (data.teams != null) {
-				strData += this.displayData(data.teams, 'Équipes', 'list-alt', 'team');
+				strData += this.displayData(data.teams, 'Équipes', 'list-alt', 'teampage', 'teamId');
 			}
 
 			if (strData != '') {
-				strData = '<div class="panel panel-default">' + strData + '<div class="panel-body text-center"><a href="?page=search-results&query=' + $.trim(this.input.val()) + '">Voir plus de résultats...</a></div></div>';
+				strData = '<div class="panel panel-default">' + strData + '<div class="panel-body text-center"><a href="Search?search=' + $.trim(this.input.val()) + '">Voir plus de résultats...</a></div></div>';
 			}
 
 			this.autocomplete.html(strData);
 		};
 
-		this.displayData = function (data, title, icon, page) {
+		this.displayData = function (data, title, icon, page, parameter) {
 			var strData = '';
 			strData += '<div class="panel-heading"><h4 class="panel-title"><span class="glyphicon glyphicon-' + icon + '" aria-hidden="true"></span>&nbsp; ' + title + '</h4></div>';
 			strData += '<div class="list-group">';
 
 			for (var i = 0, n = data.length ; i < n ; i++) {
-				strData += '<a href="?page=' + page + '&id=' + data[i].id + '" class="list-group-item"><span class="hide-overflow">' + this.bold(data[i].value, $.trim(this.input.val())) + '</span></a>';
+				strData += '<a href="' + page + '?'+ parameter +'=' + data[i].id + '" class="list-group-item"><span class="hide-overflow">' + this.bold(data[i].value, $.trim(this.input.val())) + '</span></a>';
 			}
 
 			return strData + '</div>';

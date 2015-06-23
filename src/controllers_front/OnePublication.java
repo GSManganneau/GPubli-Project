@@ -51,7 +51,7 @@ public class OnePublication extends HttpServlet {
 			String pId = request.getParameter("p");
 			int p = Integer.parseInt(pId);
 			
-			request.setAttribute("publications", publicationDao.find(p));
+			request.setAttribute("publications", publicationDao.listeLoneLy(p));
 			request.setAttribute("content", content);
 			request.setAttribute("jsContent", jsContent);
 

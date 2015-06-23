@@ -56,7 +56,7 @@
 				<c:forEach var="Author" items="${Authors}">
 					<div class="panel panel-default panel-result-element">
 						<div class="panel-body">
-							<h3 class="panel-title"><span class="glyphicon glyphicon-user" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Utilisateur"></span>&nbsp; <a href="#"><c:out value="${ Author.firstname }" /> <c:out value="${ Author.lastname }" /></a></h3>
+							<h3 class="panel-title"><span class="glyphicon glyphicon-user" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Utilisateur"></span>&nbsp; <a href="userpage"><c:out value="${ Author.firstname }" /> <c:out value="${ Author.lastname }" /></a></h3>
 						</div>
 					</div>
 				</c:forEach>
@@ -66,7 +66,7 @@
 				<c:forEach var="Team" items="${Teams}">
 					<div class="panel panel-default panel-result-element">
 						<div class="panel-body">
-							<h3 class="panel-title"><span class="glyphicon glyphicon-list-alt" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Équipe"></span>&nbsp; <a href="#"><c:out value="${ Team.name }" /></a></h3>
+							<h3 class="panel-title"><span class="glyphicon glyphicon-list-alt" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Équipe"></span>&nbsp; <a href="#"><c:out value="${ Team.teamName }" /></a></h3>
 						</div>
 					</div>
 				</c:forEach>
