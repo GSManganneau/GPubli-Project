@@ -19,7 +19,7 @@
 			<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp; Modifications effectuées avec succès !
 		</div>
 
-		<form data-toggle="validator-form">
+		<form data-toggle="validator-form" action="TreatmentType" method="post">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>&nbsp; Types</h3>
@@ -29,9 +29,8 @@
 						<thead>
 							<tr>
 								<th class="col-md-1" data-sort="int" data-alterable-type="id" data-alterable-name="id">Id &nbsp;<i class="fa fa-sort"></i></th>
-								<th class="col-md-6" data-sort="string" data-alterable-type="input" data-alterable-name="name" data-alterable-validate="required">Nom &nbsp;<i class="fa fa-sort"></i></th>
+								<th class="col-md-8" data-sort="string" data-alterable-type="input" data-alterable-name="name" data-alterable-validate="required">Nom &nbsp;<i class="fa fa-sort"></i></th>
 								<th class="col-md-2" data-alterable-type="icon" data-alterable-name="icon">Icône</th>
-								<th class="col-md-2" data-sort="int">Attributs &nbsp;<i class="fa fa-sort"></i></th>
 								<th class="col-md-1"><!-- Action --></th>
 							</tr>
 						</thead>
@@ -41,7 +40,6 @@
 								<td data-title="Id"><c:out value="${ type.typeId }"/></td>
 								<td data-title="Nom"><c:out value="${ type.typeName }"/></td>
 								<td data-title="Icône"><i class="fa <c:out value="${ type.iconName }"/>"></i></td>
-								<td data-title="Attributs"><c:out value="${ type.count }"/></td>
 								<td data-title="Action" class="text-right">
 									<div class="btn-group">
 										<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></button>
@@ -49,7 +47,7 @@
 											<li><a href="Attributes?typeId=<c:out value="${ type.typeId }"/>"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp; Voir en détail</a></li>
 											<li class="divider"></li>
 											<li><a href="#" class="update"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp; Modifier</a></li>
-											<li><a href="#delete-url" data-toggle="modal" data-target="#delete-modal"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp; Supprimer</a></li>
+											<li><a href="#" data-href="DeleteType?typeId=<c:out value="${ type.typeId }"/>" data-toggle="modal" data-target="#delete-modal"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp; Supprimer</a></li>
 										</ul>
 									</div>
 								</td>
@@ -71,7 +69,7 @@
 				<h3 class="panel-title"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Ajouter un type</h3>
 			</div>
 			<div class="panel-body">
-				<form role="form" data-toggle="validator" data-form="not-sendable">
+				<form role="form" data-toggle="validator" action="TreatmentType" method="post">
 					<div class="form-group">
 						<label for="label-name" class="control-label">Nom *</label>
 						<input type="text" class="form-control" id="label-name" name="name" placeholder="Entrez un nom de type" data-rule-required="true">

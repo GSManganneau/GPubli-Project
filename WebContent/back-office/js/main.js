@@ -221,4 +221,14 @@ $(function() {
 
 		that.parent().remove();
 	});
+	
+	
+	
+	// Delete publication (modal)
+
+	$('a[data-target="#delete-modal"]').click(function (event) {
+		event.preventDefault();
+		
+		$($(this).attr('data-target')).find('.modal-footer a').attr('href', $(this).attr('data-href'));
+	});
 });

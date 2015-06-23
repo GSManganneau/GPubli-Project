@@ -80,19 +80,15 @@ public class TeamsDao extends Dao<Teams>{
         try {
             connexion = factory.getConnection();
             statement = connexion.createStatement();
-            resultat  = statement.executeQuery("SELECT t.teamName,t.teamId,t.thumbnail, COUNT(a.firstName) nombre FROM teams t JOIN authors a "
-            		+ "ON t.teamId = a.teamId "
-            		+ "group BY teamName");
+            resultat  = statement.executeQuery("SELECT t.teamName,t.teamId,t.thumbnail FROM teams t");
 
             while (resultat.next()) {
                 String name = resultat.getString("teamName");
 
                 int teamId = Integer.parseInt(resultat.getString("teamId"));
                 String thumbnail = resultat.getString("thumbnail");
-                int effectif = Integer.parseInt(resultat.getString("nombre"));
                 
                 Teams team = new Teams();
-                team.setCount(effectif);
                 team.setTeamId(teamId);
                 team.setTeamName(name);
                 team.setThumbnail(thumbnail);
@@ -103,6 +99,32 @@ public class TeamsDao extends Dao<Teams>{
             e.printStackTrace();
         }
 		return Teams;
+	}
+	
+	public Teams countEffectif(int teamId) {
+		// TODO Auto-generated method stub
+		Teams team = new Teams();
+        Connection connexion = null;
+        Statement statement = null;
+        ResultSet resultat = null;
+
+        try {
+            connexion = factory.getConnection();
+            statement = connexion.createStatement();
+            resultat  = statement.executeQuery("SELECT COUNT(a.AuthorId) nombre FROM Authors a JOIN Teams t ON a.teamId = t.teamId AND t.teamId ="+teamId);
+
+            while (resultat.next()) {
+
+                int effectif = Integer.parseInt(resultat.getString("nombre"));
+                
+                
+                team.setTeamId(effectif);
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+		return team;
 	}
 
 	public List<Teams> search(String field) {

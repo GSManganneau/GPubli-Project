@@ -94,13 +94,12 @@ public class TypeDao extends Dao<Types>{
         ResultSet resultat = null;
         try{
         	connexion=factory.getConnection();
-        	String query = "SELECT t.*, COUNT(a.attributeId) nombre FROM Types t NATURAL JOIN TypeHasAttributes ta NATURAL JOIN Attributes a "
-        			+ "GROUP BY t.typeName";
+        	String query = "SELECT t.* FROM Types t ";
         	statement = connexion.createStatement();
         	resultat=statement.executeQuery(query);
         	while(resultat.next()){
         		int typeId= resultat.getInt("typeId");
-        		int nombre = resultat.getInt("nombre");
+        		
         		String typeName = resultat.getString("typeName");
         		String iconName = resultat.getString("iconName");
         		
@@ -108,7 +107,7 @@ public class TypeDao extends Dao<Types>{
         		type.setTypeName(typeName);
         		type.setTypeId(typeId);
         		type.setIconName(iconName);
-        		type.setCount(nombre);
+        		
  
         		types.add(type);
         	}
