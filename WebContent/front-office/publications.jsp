@@ -5,7 +5,7 @@
 			<div class="panel-heading">
 				<div class="row">
 					<div class="col-sm-11 col-xs-9">
-						<h3 class="panel-title"><span class="hide-overflow"><i class="fa <%-- <c:out value="${publication.type.iconeName}" /> --%>" data-toggle="tooltip" data-placement="bottom" title=""></i>&nbsp; <c:out value="${publication.title}" /></span></h3>
+						<h3 class="panel-title"><span class="hide-overflow"><i class="fa <c:out value="${publication.type.iconName}" />" data-toggle="tooltip" data-placement="bottom" title="${publication.type.typeName}"></i>&nbsp; <c:out value="${publication.title}" /></span></h3>
 					</div>
 
 					<div class="col-sm-1 col-xs-3 text-right">

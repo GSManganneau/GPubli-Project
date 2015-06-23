@@ -56,6 +56,7 @@ public class PublicationsDao extends Dao<Publications> {
 				
 				String typeName="";
 				String resume="";
+				String iconName="";
 				String date="";
 				String title="";
 				int typeId=0;
@@ -64,6 +65,7 @@ public class PublicationsDao extends Dao<Publications> {
 				while(resultat4.next()){
 				typeName = resultat4.getString("typeName");
 				typeId = resultat4.getInt("typeId");
+				iconName=resultat4.getString("iconName");
 				resume = resultat4.getString("resume");
 				date = resultat4.getString("date");
 				title = resultat4.getString("title");
@@ -113,6 +115,7 @@ public class PublicationsDao extends Dao<Publications> {
 				type.setTypeId(typeId);
 				type.setTypeName(typeName);
 				type.setAttributes(attributes);
+				type.setIconName(iconName);
 
 				
 
@@ -418,6 +421,7 @@ public class PublicationsDao extends Dao<Publications> {
 				String typeName="";
 				String resume="";
 				String date="";
+				String iconName="";
 				String title="";
 				int typeId=0;
 				
@@ -425,6 +429,7 @@ public class PublicationsDao extends Dao<Publications> {
 				while(resultat4.next()){
 				typeName = resultat4.getString("typeName");
 				typeId = resultat4.getInt("typeId");
+				iconName = resultat4.getString("iconName");
 				resume = resultat4.getString("resume");
 				date = resultat4.getString("date");
 				title = resultat4.getString("title");
@@ -475,6 +480,7 @@ public class PublicationsDao extends Dao<Publications> {
 				type.setTypeId(typeId);
 				type.setTypeName(typeName);
 				type.setAttributes(attributes);
+				type.setIconName(iconName);
 
 				
 

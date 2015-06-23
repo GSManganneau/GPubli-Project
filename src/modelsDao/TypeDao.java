@@ -47,13 +47,9 @@ public class TypeDao extends Dao<Types>{
 	        if (i==1) typeName = resultat.getString("typeName");
 	       	String attributeName = resultat.getString("attributeName");
 	       	int attributeId = resultat.getInt("attributeId");
-	       	String attributeNature= resultat.getString("attributeNature");
-	       	boolean attributeRequired=resultat.getBoolean("attributeRequired");
 	        Attributes attribute = new Attributes();
 	        attribute.setAttributeName(attributeName);
 	        attribute.setAttributeId(attributeId);
-	        attribute.setAttributeNature(attributeNature);
-	        attribute.setAttributeRequired(attributeRequired);
 	        attributes.add(attribute);
 	        }
 	      
