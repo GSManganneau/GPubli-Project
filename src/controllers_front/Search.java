@@ -56,49 +56,7 @@ public class Search extends HttpServlet {
 		if (connected == null) {
 			response.sendRedirect("/GPubli-Project/connexion");
 		} else { 
-			Paginate paginate = new Paginate();
 			String search = request.getParameter("search");
-
-			// On définit le nombre d'éléments par page
-			paginate.setElementsByPage(7);
-			// on calcule le nombre de pages
-			int numberOfPages = publicationDao.countNumberPage(paginate
-					.getElementsByPage(),search);
-			int pageId = 0;
-		
-			
-			if (request.getParameter("page") != null) {
-
-				pageId = Integer.parseInt(request.getParameter("page"));
-
-				if (pageId > 0 && pageId <= numberOfPages) {
-
-					// On récupère le numéro de la page actuelle
-					int page = Integer.parseInt(request.getParameter("page"));
-					paginate.setCurrentPageNumber(page);
-
-					// On définit la page précédente
-					if (paginate.getCurrentPageNumber() > 1)
-						paginate.setPreviousPageNumber(paginate
-								.getCurrentPageNumber() - 1);
-					else
-						paginate.setPreviousPageNumber(0);
-
-					// On défint la page suivante
-					if (publicationDao.checkNextPage(page,
-							paginate.getElementsByPage()))
-						paginate.setNextPageNumber(page + 1);
-					else
-						paginate.setNextPageNumber(0);
-
-					// On définit le nombre de Pages
-					paginate.setNumberOfPages(numberOfPages);
-
-					// On définit la servlet
-					paginate.setServlet("search");
-
-					// On récupère les données
-					int elementsByPage = paginate.getElementsByPage();
 
 				request.setAttribute("Authors", authorsDao.search(search));
 				request.setAttribute("AuthorCount", authorsDao.count(search));
@@ -116,12 +74,9 @@ public class Search extends HttpServlet {
 				getServletContext().getRequestDispatcher(
 						"/front-office/template.jsp")
 						.include(request, response);
-			} else {
-				response.sendRedirect("/GPubli-Project/searchpublication?page=1");
-			}
+			} 
 		}
-	}
-	}
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)

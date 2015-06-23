@@ -24,7 +24,7 @@
 				</div>
 			</li>
 
-			<c:if test="${paginate.nextPageNumber != null }">
+			<c:if test="${paginate.nextPageNumber != 0 }">
 			<c:if test="${ null != parameter }">
 <li class="next"><a href="/GPubli-Project/<c:out value="${paginate.servlet }"/>?page=<c:out value="${paginate.nextPageNumber }"/>&<c:out value="${parameter }"/>=<c:out value="${parameterValue}"/>">Suivant <span aria-hidden="true">&rarr;</span></a></li>
 			</c:if>
@@ -55,12 +55,13 @@
 					</select>
 				</div>
 			</li>
-
+ <c:if test="${paginate.nextPageNumber != 0 }">
 			<c:if test="${ null != parameter }">
 				<li class="next"><a href="/GPubli-Project/<c:out value="${paginate.servlet }"/>?page=<c:out value="${paginate.nextPageNumber }"/>&<c:out value="${parameter }"/>=<c:out value="${parameterValue}"/>">Suivant<span aria-hidden="true">&rarr;</span></a></li>
 			</c:if>
 			<c:if test="${ null== parameter}">
 				<li class="next"><a href="/GPubli-Project/<c:out value="${paginate.servlet }"/>?page=<c:out value="${paginate.nextPageNumber }"/>">Suivant <span aria-hidden="true">&rarr;</span></a></li>
+			</c:if>
 			</c:if>
 		</ul>
 	</nav>

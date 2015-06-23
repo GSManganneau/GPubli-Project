@@ -131,7 +131,8 @@ public class TeamPage extends HttpServlet {
 			request.setAttribute("countAuthorTeam", teamDao.countAuthorTeam(team.getTeamName()));
 	        getServletContext().getRequestDispatcher("/front-office/template.jsp").include(request, response);
 		
-		}
+		} else response.sendRedirect("/GPubli-Project/teampage?page=1&teamId="
+				+ i);
 			}else {
 				response.sendRedirect("/GPubli-Project/teampage?page=1&teamId="
 						+ i);

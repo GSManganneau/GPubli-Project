@@ -12,7 +12,7 @@
 
 <div class="row">
 	<div class="col-sm-12">
-		<form class="form-horizontal" data-toggle="validator" data-form="not-sendable"  action="updatepublication" method="post" enctype="multipart/form-data">
+		<form class="form-horizontal" data-toggle="validator" data-form="sendable"  action="updatepublication" method="post">
 			<div class="form-group">
 				<label for="label-title" class="col-sm-2 control-label">Titre *</label>
 				<div class="col-sm-10">
@@ -30,9 +30,12 @@
 			<div class="form-group">
 				<label for="label-authors" class="col-sm-2 control-label">Co-auteur(s)</label>
 				<div class="col-sm-10">
+				<c:set var="sessionId"  value="${session.getAttribute(\"authorId\")}"/>
 					<select class="form-control selectize-select-multiple-create-user" name="authors" id="label-authors" placeholder="Choisissez un ou plusieurs co-auteurs" multiple>
-						<c:forEach var="coAuthor" items="${publication.coAuthors }">
-						<option value="<c:out value="${coAuthor.authorId}"/>" selected><c:out value="${coAuthor.firstname} ${coAuthor.lastname}"/></option>
+						<c:forEach var="author" items="${publication.authors }">
+						<c:if test="${sessionId != author.authorId }">
+						<option value="<c:out value="${author.authorId}"/>" selected><c:out value="${author.firstname} ${author.lastname}"/></option>
+						</c:if>
 						</c:forEach>
 					</select>
 				</div>
@@ -76,13 +79,6 @@
 				</div>
 				</c:forEach>
 
-			</div>
-
-			<div class="form-group">
-				<label for="label-file" class="col-sm-2 control-label">Fichier</label>
-				<div class="col-sm-10">
-					<input type="file" class="form-control" name="file" id="label-file">
-				</div>
 			</div>
 			<input type="hidden" name="publicationId" value="<c:out value="${publication.publicationId }"/>">
 			<div class="form-group form-group-submit">
