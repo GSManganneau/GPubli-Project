@@ -47,11 +47,12 @@ public class AddAttribute extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String attributeName =request.getParameter("attributeName");
+		String attributeName =request.getParameter("attributeName").split("]")[1];
 		Attributes attribute = new Attributes();
 		attribute.setAttributeName(attributeName);
 		int typeId = Integer.parseInt(request.getParameter("typeId"));
 		attributeDao.update(attribute, typeId);
+		response.sendRedirect("/GPubli-Project/Attributes?typeId="+typeId);
 	}
 
 }

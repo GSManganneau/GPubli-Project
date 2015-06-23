@@ -21,7 +21,7 @@ public class TypeDao extends Dao<Types>{
 		this.factory = daoFactory;
 	}
 
-
+ 
 	@Override
 	public Types find(int id) {
 		// TODO Auto-generated method stub
