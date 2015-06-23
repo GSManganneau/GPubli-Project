@@ -134,7 +134,7 @@ public class UserPage extends HttpServlet {
 							response);
 
 				}
-
+				else response.sendRedirect("/GPubli-Project/userpage?page=1&ldapId="+i);
 			} else {
 				response.sendRedirect("/GPubli-Project/userpage?page=1&ldapId="
 						+ i);

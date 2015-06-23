@@ -36,7 +36,8 @@ public class TypeDao extends Dao<Types>{
 			String query= "SELECT * FROM TypeHasAttributes "
 					+ "natural join Types "
 					+ "natural join Attributes "
-					+ " where typeId="+id;
+					+ " where typeId="+id
+					+ " ORDER BY Rang ASC";
 			statement = connexion.createStatement();
 	        resultat = statement.executeQuery(query);
 	        int i =0;

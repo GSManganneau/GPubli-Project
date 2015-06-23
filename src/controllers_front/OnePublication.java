@@ -16,7 +16,7 @@ import modelsDao.*;
 /**
  * Servlet implementation class Index
  */
-@WebServlet("/OnePublication")
+@WebServlet("/onepublication")
 public class OnePublication extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	// Definition du content à inclure au template, du style et du script.
@@ -51,7 +51,7 @@ public class OnePublication extends HttpServlet {
 			String pId = request.getParameter("p");
 			int p = Integer.parseInt(pId);
 			
-			request.setAttribute("publications", publicationDao.listeLoneLy(p));
+			request.setAttribute("publications", publicationDao.find(p));
 			request.setAttribute("content", content);
 			request.setAttribute("jsContent", jsContent);
 

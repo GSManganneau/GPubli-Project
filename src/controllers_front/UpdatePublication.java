@@ -66,9 +66,10 @@ public class UpdatePublication extends HttpServlet {
 			if(request.getParameter("publicationId")!=null){
 				int publicationId = Integer.parseInt((String)request.getParameter("publicationId"));
 				Publications publication = publicationDao.find(publicationId);
-				System.out.print(publication.toString());
-				int authorId = publication.getAuthor().getAuthorId();
-				if(authorId==(int)s.getAttribute("authorId")){
+				boolean find =false;
+				for(int i=0;i<publication.getAuthors().size() && !find ;i++){
+				if(publication.getAuthors().get(i).getAuthorId()==(int)s.getAttribute("authorId")){
+					find=true;
 					request.setAttribute("publication", publication);
 					request.setAttribute("types",typeDao.lister());
 					request.setAttribute("session", s);
@@ -77,12 +78,15 @@ public class UpdatePublication extends HttpServlet {
 					this.getServletContext().getRequestDispatcher("/front-office/template.jsp").forward(request, response);
 				}
 			}
+			}
 			else{
 				response.sendRedirect("/GPubli-Project/home");
 			
 			}
 	}
 	}
+			
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
