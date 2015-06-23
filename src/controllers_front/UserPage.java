@@ -118,6 +118,7 @@ public class UserPage extends HttpServlet {
 
 					request.setAttribute("session", s);
 					request.setAttribute("content", content);
+					request.setAttribute("cssContent", cssContent);
 					request.setAttribute("parameterValue", i);
 					request.setAttribute("paginate", paginate);
 					request.setAttribute("author", authorDao.find(i));

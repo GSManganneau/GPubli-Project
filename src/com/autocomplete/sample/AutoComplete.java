@@ -56,7 +56,7 @@ public class AutoComplete extends HttpServlet {
 			Statement stmtrsPublications = conn.createStatement();
 
 			// Requêtes
-			String sqlAuthors = "SELECT authorId,firstname,lastname FROM authors WHERE firstname like '%"+field+"%' or lastname like '%"+field+"%'  LIMIT 3";
+			String sqlAuthors = "SELECT ldapId,firstname,lastname FROM authors WHERE firstname like '%"+field+"%' or lastname like '%"+field+"%'  LIMIT 3";
 			String sqlPublications = "SELECT title,publicationId FROM publications WHERE title like '%"+field+"%' LIMIT 3";
 			String sqlTeams = "SELECT teamId,teamName FROM Teams WHERE teamName like '%"+field+"%' LIMIT 3";
 
@@ -67,13 +67,13 @@ public class AutoComplete extends HttpServlet {
 
 			// Stocage des données dans la Hashmap Author
 			while (rsAuthors.next()) {
-				String authorId = rsAuthors.getString("authorId");
+				String ldapId = rsAuthors.getString("ldapId");
 				String firstname = rsAuthors.getString("firstname");
 				String lastname = rsAuthors.getString("lastname");
 				
 				Hashtable<String, String> AuthorsResults = new Hashtable<String, String>();
 				AuthorsResults.put("value", firstname+" "+lastname);
-				AuthorsResults.put("id", authorId);
+				AuthorsResults.put("id", ldapId);
 				
 				
 				AllResultsAuthors.add(AuthorsResults);
