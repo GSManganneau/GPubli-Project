@@ -66,7 +66,7 @@ public class ResultResearch extends HttpServlet {
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
 		
-		this.content = "publications.jsp";
+		this.content = "advancedSearchResults.jsp";
 		//request.setAttribute("Publications", PublicationsDao.research("rola",null,null,2));
 		String publiName = null;
 		String keyWords[];
@@ -131,8 +131,10 @@ public class ResultResearch extends HttpServlet {
         	Publications publication = publicationsDao.find(publicationsId.get(i));
         	publications.add(publication);
         }
+        int countPubli = publications.size();
         request.setAttribute("publications", publications);
         request.setAttribute("content",content);
+        request.setAttribute("countPubli",countPubli);
         getServletContext().getRequestDispatcher("/front-office/template.jsp").include(request, response);
 		
 	}
