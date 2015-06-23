@@ -95,17 +95,21 @@ public class TypeDao extends Dao<Types>{
         ResultSet resultat = null;
         try{
         	connexion=factory.getConnection();
-        	String query = "SELECT * FROM Types ";
+        	String query = "SELECT t.*, COUNT(a.attributeId) nombre FROM Types t NATURAL JOIN TypeHasAttributes ta NATURAL JOIN Attributes a "
+        			+ "GROUP BY t.typeName";
         	statement = connexion.createStatement();
         	resultat=statement.executeQuery(query);
         	while(resultat.next()){
         		int typeId= resultat.getInt("typeId");
+        		int nombre = resultat.getInt("nombre");
         		String typeName = resultat.getString("typeName");
         		String iconName = resultat.getString("iconName");
         		
         		Types type = new Types();
         		type.setTypeName(typeName);
         		type.setTypeId(typeId);
+        		type.setIconName(iconName);
+        		type.setCount(nombre);
  
         		types.add(type);
         	}
@@ -116,6 +120,33 @@ public class TypeDao extends Dao<Types>{
         }
         return types;
 		
+	}
+	
+	public Types lister(int typeId){
+		Types type = new Types();
+		Connection connexion = null;
+        Statement statement = null;
+        ResultSet resultat = null;
+        try{
+        	connexion=factory.getConnection();
+        	String query = "SELECT * FROM Types WHERE typeId="+typeId;
+        	statement = connexion.createStatement();
+        	resultat=statement.executeQuery(query);
+        	
+        	while(resultat.next()){
+        		String typeName = resultat.getString("typeName");
+        		String iconName = resultat.getString("iconName");
+    
+        		type.setTypeName(typeName);
+        		type.setIconName(iconName);
+
+        	}
+        	
+        }
+        catch(SQLException e){
+        	e.printStackTrace();
+        }
+        return type;		
 	}
 	
 	public Types countAll() {

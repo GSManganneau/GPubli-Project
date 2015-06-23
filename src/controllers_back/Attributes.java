@@ -18,31 +18,34 @@ import org.json.JSONArray;
 
 import com.DataSource.mysql.DataSource;
 
-import modelsDao.AuthorsDao;
+import modelsDao.AttributesDao;
 import modelsDao.DAOFactory;
+import modelsDao.TypeDao;
 
 /**
- * Servlet implementation class Users
+ * Servlet implementation class Attributes
  */
-@WebServlet("/Users")
-public class Users extends HttpServlet {
+@WebServlet("/Attributes")
+public class Attributes extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	public String content = "users.jsp";
+	public String content = "attributes.jsp";
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Users() {
+    public Attributes() {
         super();
         // TODO Auto-generated constructor stub
     }
     
-    private AuthorsDao authorDao;
+    private AttributesDao attributeDao;
+    private TypeDao typeDao;
     
     public void init() throws ServletException {
       	 DAOFactory factory = DAOFactory.getInstance();
-           this.authorDao = factory.getAuthors();
+           this.attributeDao = factory.getAttributes();
+           this.typeDao = factory.getType();
       }
 
 	/**
@@ -50,35 +53,39 @@ public class Users extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		List<Hashtable<String, String>> listTeams = new ArrayList<Hashtable<String, String>>();
+		int typeId = Integer.parseInt(request.getParameter("typeId"));
+		String typeName = request.getParameter("typeName");
+		String iconName = request.getParameter("iconName");
+		
+		List<Hashtable<String, String>> listAttributes = new ArrayList<Hashtable<String, String>>();
 		
 		try {
 			DataSource ds = DataSource.getInstace();
 			Connection conn = ds.getConnection();
-			Statement stmtrsListTeam = conn.createStatement();
+			Statement stmtrsListAttributes = conn.createStatement();
 	
 			// Requête
-			String sqlTeams = "SELECT teamName, teamId FROM Teams";
+			String sqlTeams = "SELECT attributeName, attributeId FROM attributes";
 			
 	
 			// Résultats de la requête
-			ResultSet rslTeams = stmtrsListTeam.executeQuery(sqlTeams);
+			ResultSet rslAttributes = stmtrsListAttributes.executeQuery(sqlTeams);
 	
 			// Stocage des données
-			while (rslTeams.next()) {
-				String teamName = rslTeams.getString("teamName");
-				String teamId = rslTeams.getString("teamId");
+			while (rslAttributes.next()) {
+				String attributeName = rslAttributes.getString("attributeName");
+				String attributeId = rslAttributes.getString("attributeId");
 				
-				Hashtable<String, String> listTeam = new Hashtable<String, String>();				
-				listTeam.put("name", teamName);
-				listTeam.put("value", teamId);
+				Hashtable<String, String> listAttribute = new Hashtable<String, String>();				
+				listAttribute.put("name", attributeName);
+				listAttribute.put("value", attributeId);
 				
-				listTeams.add(listTeam);
+				listAttributes.add(listAttribute);
 			}
 
 			// Close
-			rslTeams.close();		
-			stmtrsListTeam.close();
+			rslAttributes.close();		
+			stmtrsListAttributes.close();
 			conn.close();
 	
 		} catch (Exception e) {
@@ -86,12 +93,18 @@ public class Users extends HttpServlet {
 		}
 	
 	
-		JSONArray json = new JSONArray(listTeams);
+		JSONArray json = new JSONArray(listAttributes);
 		
 		
 		request.setAttribute("json", json);
-		request.setAttribute("infoAuthor", authorDao.lister());
+		
+		request.setAttribute("attributes", attributeDao.lister(typeId));
+		request.setAttribute("type", typeDao.lister(typeId));
 		request.setAttribute("content", content);
+		request.setAttribute("typeName", typeName);
+		request.setAttribute("iconName", iconName);
+		request.setAttribute("typeId", typeId);
+		
 		
 		getServletContext().getRequestDispatcher("/back-office/template.jsp").include(request, response);
 	}

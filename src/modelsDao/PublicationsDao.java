@@ -1013,10 +1013,11 @@ int id = resultat.getInt("publicationId");
 
 	}
 
-	public List<Publications> research(String reqPubliName, String reqDate, String reqResume, Integer reqAuthor) {
-		List<Publications> Publications = new ArrayList<Publications>();
+	public List<Integer> research(String reqPubliName, String reqDateFrom, String reqDateTo, String reqResume, int[] reqAuthors, int reqType, int reqTeam, String[] reqKeyWords) {
+
 		Connection connexion = null;
 		// Statement statement = null;
+		ArrayList<Integer> publicationsId = new ArrayList<Integer>();
 
 		PreparedStatement preparedStatement = null;
 
@@ -1024,58 +1025,31 @@ int id = resultat.getInt("publicationId");
 			connexion = factory.getConnection();
 			// statement = connexion.createStatement();
 
-			/*
-			 * String requete_part1 = "SELECT * FROM publication"; String
-			 * requete_part2 = " WHERE "; String requete_date =
-			 * "date = '"+req_date+"'"; String requete_name =
-			 * "title LIKE '%"+req_publi_name+"%'"; String requete_resume =
-			 * "resume LIKE '%"+req_resume+"%'"; //String requete_type =
-			 * "typeId = '"+req_type+"'"; String requete_and = " AND "; boolean
-			 * and = false;
-			 */
-
-			/*
-			 * if(!req_date.isEmpty()){ if(and){ requete_to_execute +=
-			 * requete_and; } requete_to_execute += requete_date; and = true; }
-			 * 
-			 * if(!requete_name.isEmpty()){ if(and){ requete_to_execute +=
-			 * requete_and; } requete_to_execute += requete_name; and = true; }
-			 * 
-			 * if(!requete_resume.isEmpty()){ if(and){ requete_to_execute +=
-			 * requete_and; } requete_to_execute += requete_resume; and = true;
-			 * }
-			 */
-
 			String requetePart1_Normal = "SELECT * FROM publications";
-			String requetePart1_Author = "SELECT * FROM publications, repositories, authors";
-			String requetePart2 = " WHERE ";
-			String requetePreAuthor = "publications.publicationId = repositories.publicationId AND authors.authorId = repositories.authorId AND authors.authorId = ?";
-			String requeteAuthorId = "authors.authorId = ?";
-			String requeteDate = "date = ?";
+			String requetePart1_Author = "SELECT DISTINCT publications.publicationId FROM publications, repositories, authors";
+			String requetePart2 = " WHERE publications.publicationId = repositories.publicationId AND authors.authorId = repositories.authorId AND ";
+			String requeteKeyWords = "(title LIKE ? OR resume LIKE ?)";
+			String requetePreAuthor = "publications.publicationId = repositories.publicationId AND authors.authorId = repositories.authorId";
+			String requeteFirstAuthor = " repositories.authorId = ?";
+			String requeteMultipleAuthor = " AND repositories.publicationId IN (SELECT repositories.publicationId FROM repositories WHERE repositories.authorId = ?";
+			String requeteAuthorEnd = ")";
+			String requeteDateFrom = "date > ?";
+			String requeteDateTo = "date < ?";
 			String requeteName = "title LIKE ?";
 			String requeteResume = "resume LIKE ?";
-			// String requete_type = "typeId = '"+req_type+"'";
+			String requeteType = "typeId=?";
+			String requeteTeam = "teamId=?";
 			String requeteAnd = " AND ";
+			String requeteOr = " OR ";
 			boolean and = false;
+			boolean or = false;
 			int i = 1;
 			String requeteToExecute = null;
-			
-			if (reqAuthor != null) {
-				requeteToExecute = requetePart1_Author + requetePart2;
-			} else {
-				requeteToExecute = requetePart1_Normal + requetePart2;
-			}
+
+//CONSTRUIT LA REQUETE
+			requeteToExecute = requetePart1_Author + requetePart2;
 
 			
-			if (!reqDate.isEmpty()) {
-				if (and) {
-					requeteToExecute += requeteAnd;
-				}
-				requeteToExecute += requeteDate;
-				System.out.println(requeteToExecute);
-				and = true;
-			}
-
 			if (!reqPubliName.isEmpty()) {
 				if (and) {
 					requeteToExecute += requeteAnd;
@@ -1084,7 +1058,7 @@ int id = resultat.getInt("publicationId");
 				and = true;
 			}
 
-			if (!reqResume.isEmpty()) {
+			if (reqResume!=null) {
 				if (and) {
 					requeteToExecute += requeteAnd;
 				}
@@ -1093,43 +1067,137 @@ int id = resultat.getInt("publicationId");
 
 			}
 
-			
-			
-			if (reqAuthor!=null) {
+			if (reqDateFrom!=null && !reqDateFrom.isEmpty()) {
 				if (and) {
 					requeteToExecute += requeteAnd;
 				}
-				requeteToExecute += requetePreAuthor;
-				System.out.println(requeteToExecute);
+				requeteToExecute += requeteDateFrom;
+				and = true;
+			}
+
+			if (reqDateTo!=null && !reqDateTo.isEmpty()) {
+				if (and) {
+					requeteToExecute += requeteAnd;
+				}
+				requeteToExecute += requeteDateTo;
+				and = true;
+			}
+							
+			if (reqAuthors!=null) {
+				if (and) {
+					requeteToExecute += requeteAnd;
+				}
+				//requeteToExecute += requetePreAuthor;
+				and = true;
+				
+				requeteToExecute += requeteFirstAuthor;
+				
+				for(int j=1;j<reqAuthors.length;j++){					
+					requeteToExecute += requeteMultipleAuthor;					
+				}
+				for(int k=1;k<reqAuthors.length;k++){
+					requeteToExecute += requeteAuthorEnd;
+				}
+			}
+			
+			if (reqType!=0) {
+				if (and) {
+					requeteToExecute += requeteAnd;
+				}
+				requeteToExecute += requeteType;
 				and = true;				
 			}
+			
+			if (reqTeam!=0) {
+				if (and) {
+					requeteToExecute += requeteAnd;
+				}
+				requeteToExecute += requeteTeam;
+				and = true;				
+			}
+			
+			if(reqKeyWords != null){
+				if (and) {
+					requeteToExecute += requeteAnd;
+				}
+				
+					for(int j = 0; j < reqKeyWords.length; j++){
+						if (or) {
+							requeteToExecute += requeteOr;
+						}
+						
+						requeteToExecute += requeteKeyWords;
+						or = true;
+					}
+				
+				and = true;			
+			  }
 
 			preparedStatement = connexion.prepareStatement(requeteToExecute);
 
-			if (!reqDate.isEmpty()) {
-				preparedStatement.setString(i, reqDate);
-				i++;
-			}
+//REMPLACEMENT DES ? DANS LES PREPARESTATEMENT
+			
 
 			if (!reqPubliName.isEmpty()) {
 				preparedStatement.setString(i, "%" + reqPubliName + "%");
 				i++;
 			}
 
-			if (!reqResume.isEmpty()) {
+			if (reqResume!=null) {
 				preparedStatement.setString(i, "%" + reqResume + "%");
 				i++;
 			}
 			
-			if (reqAuthor!=null) {
-				preparedStatement.setInt(i, reqAuthor );
+			if (reqDateFrom!=null && !reqDateFrom.isEmpty()) {
+				preparedStatement.setString(i, reqDateFrom);
 				i++;
 			}
+			
+			if (reqDateTo!=null && !reqDateTo.isEmpty()) {
+				preparedStatement.setString(i, reqDateTo);
+				i++;
+			}
+			
+			if (reqAuthors!=null) {
+				for(int j=0;j<reqAuthors.length;j++){
+					preparedStatement.setInt(i, reqAuthors[j] );
+					i++;
+				}
+			}
+			
+			if (reqType!=0) {
+				preparedStatement.setInt(i, reqType );
+				i++;
+			}	
+			
+			if (reqTeam!=0) {
+				preparedStatement.setInt(i, reqTeam );
+				i++;
+			}	
+			
+			if(reqKeyWords != null){
 
+				for(int j = 0; j < reqKeyWords.length; j++){
+					preparedStatement.setString(i, "%" +reqKeyWords[j] + "%");
+					i++;
+					preparedStatement.setString(i,  "%" + reqKeyWords[j] + "%");
+					i++;
+				}
+			}
+			
+			
+			
+			
+			System.out.println(requeteToExecute);
+			System.out.println(preparedStatement);
+			
 			ResultSet resultat = preparedStatement.executeQuery();
 
+			
 			while (resultat.next()) {
 				int publicationId = resultat.getInt("publicationId");
+				publicationsId.add(publicationId);
+				/*
 				String resume = resultat.getString("resume");
 				String title = resultat.getString("title");
 				String date = resultat.getString("date");
@@ -1137,8 +1205,14 @@ int id = resultat.getInt("publicationId");
 				int authorId = resultat.getInt("authorId");
 				String firstName = resultat.getString("firstName");
 				String lastName = resultat.getString("lastName");
-				// int typeId = resultat.getInt("typeId");
-				//String url = resultat.getString("url");
+				int typeId = resultat.getInt("typeId");
+				String typeName = resultat.getString("lastName");
+				//String attributes = resultat.getString("attributes");
+				
+				Types type = new Types();
+				type.setTypeId(typeId);
+				type.setTypeName(typeName);
+				//type.setAttributes(attributes);
 				
 				Authors author = new Authors();
 				author.setAuthorId(authorId);
@@ -1155,11 +1229,14 @@ int id = resultat.getInt("publicationId");
 				//Publication.setUrl(url);
 
 				Publications.add(Publication);
+				
+				*/
+				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return Publications;
+		return publicationsId;
 	}
 	
 	public List<Publications>listeLoneLy(int pubId) {

@@ -2,7 +2,7 @@
 <div class="row">
 	<div class="col-md-12">
 		<ol class="breadcrumb">
-			<li><a href="?page=index">Dashboard</a></li>
+			<li><a href="AdminHome">Dashboard</a></li>
 			<li class="active">Équipes</li>
 		</ol>
 		<hr>
@@ -40,7 +40,7 @@
 							<tr>
 								<td data-title="Id"><c:out value="${ team.teamId }"/></td>
 								<td data-title="Nom"><c:out value="${ team.teamName }"/></td>
-								<td data-title="Icône"><i class="fa fa-desktop"></i><c:out value="${ team.thumbnail }"/></td>
+								<td data-title="Icône"><i class="fa <c:out value="${ team.thumbnail }"/>"></i></td>
 								<td data-title="Effectif"><c:out value="${ team.count }"/></td>
 								<td data-title="Action" class="text-right">
 									<div class="btn-group">

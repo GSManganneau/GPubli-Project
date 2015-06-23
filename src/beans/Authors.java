@@ -1,6 +1,14 @@
 package beans;
 
 public class Authors {
+	@Override
+	public String toString() {
+		return "Authors [ldapId=" + ldapId + ", authorId=" + authorId
+				+ ", firstname=" + firstname + ", lastname=" + lastname
+				+ ", count=" + count + ", login=" + login + ", team=" + team
+				+ "]";
+	}
+
 	private int ldapId;
 	private int authorId;
 	private String firstname;

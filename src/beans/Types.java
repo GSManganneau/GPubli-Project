@@ -12,6 +12,7 @@ public class Types {
 	private int typeId;
 	private String typeName;
 	private int count;
+	private String iconName;
 	private List<Attributes> attributes = new ArrayList<Attributes>();
 	
 	
@@ -41,6 +42,12 @@ public class Types {
 	}
 	public void setCount(int count) {
 		this.count = count;
+	}
+	public String getIconName() {
+		return iconName;
+	}
+	public void setIconName(String iconName) {
+		this.iconName = iconName;
 	}
 
 	
